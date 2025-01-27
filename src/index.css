@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Brandon-light';
+  src: url('/fonts/BrandonGrotesque-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon-regular';
+  src: url('/fonts/BrandonGrotesque-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon-medium';
+  src: url('/fonts/BrandonGrotesque-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'Brandon-bold';
+  src: url('/fonts/BrandonGrotesque-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon-black';
+  src: url('/fonts/BrandonGrotesque-Black.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.no-scrollbar::-webkit-scrollbar{
+  display: none;
+}
+
+.bg-gradient {
+  background: linear-gradient(90deg, #bc1e33 2.34%, #c98026 100.78%);
+}
+
+.rotate-logo{
+  transform: rotateY(180deg);
+}
+
+.max-w-container{
+    @apply max-w-[1440px]
+}
+
+.bg-banner{
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.btn-white{
+  @apply border border-white rounded-full px-16 py-4 hover:bg-white hover:text-fofalText transition-all ease-in-out duration-300
+}
