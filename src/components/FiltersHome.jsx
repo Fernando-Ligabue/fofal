@@ -6,14 +6,12 @@ const categorias = ['Carrinha', 'Carro', 'SUV'];
 const marcas = {
     'Carrinha': ['Volkswagen', 'Citroen', 'Renault'],
     'Carro': ['Volkswagen', 'Citroen', 'Renault'],
-    'SUV': ['Jeep', 'Land Rover', 'Toyota']
 };
 
 const anos = Array.from({ length: 30 }, (_, i) => new Date().getFullYear() - i);
 const modelos = {
     'Volkswagen': ['Tiguan', 'Polo', 'T-Cross'],
     'Citroen': ['C3', 'C4', 'C5'],
-    'Renault': ['Clio', 'Mégane', 'Captur']
 };
 
 const FiltersHome = () => {
@@ -42,6 +40,12 @@ const FiltersHome = () => {
 
     const handleSubmit = () => {
         console.log('Consulta enviada:', dropdowns);
+        setDropdowns({
+            categoria: '',
+            marca: '',
+            ano: '',
+            modelo: ''
+        });
     };
 
     const renderDropdown = (dropdown, options) => (
@@ -72,9 +76,9 @@ const FiltersHome = () => {
     return (
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 p-6">
             {renderDropdown('categoria', categorias)}
-            {renderDropdown('marca', dropdowns.categoria ? marcas[dropdowns.categoria] : [])}
+            {renderDropdown('marca', dropdowns.categoria ? marcas[dropdowns.categoria] : ["Selecione a categoria"])}
             {renderDropdown('ano', anos)}
-            {renderDropdown('modelo', dropdowns.marca ? modelos[dropdowns.marca] || [] : [])}
+            {renderDropdown('modelo', dropdowns.marca ? modelos[dropdowns.marca] || [] : ["Selecione a marca"])}
             <Button
                 onClick={handleSubmit}
                 disabled={!dropdowns.modelo}

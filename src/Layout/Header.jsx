@@ -55,7 +55,7 @@ const Header = () => {
 
                         {/* Botões para login e ícones de ações */}
                         <div className="flex items-center space-x-4">
-                            <Button className='bg-transparent text-white font-brandon-400 px-8 py-2 !border border-1 border-white rounded-full'>
+                            <Button className='bg-transparent text-white font-brandon-400 px-8 py-2 !border border-1 border-white rounded-full z-50'>
                                 Login
                             </Button>
                             <div className="flex space-x-2">
