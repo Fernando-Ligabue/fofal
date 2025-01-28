@@ -37,7 +37,7 @@ export function ShopProvider({ children }) {
 export function useShop() {
   const context = useContext(ShopContext);
   if (!context) {
-    throw new Error('useShop must be used within a ShopProvider');
+    throw new Error('useShop tem de fornecer um ShopProvider');
   }
   return context;
 }

@@ -31,7 +31,9 @@ const Automovel = () => {
         <>
             <section
                 className="w-full bg-banner flex-center text-center text-white p-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 max-w-container gap-6 pt-60 pb-10" data-aos="fade-up" data-aos-delay="300">
+                <div className="grid grid-cols-1 md:grid-cols-3 max-w-container gap-6 pt-60 md:pt-40 pb-10" 
+                // data-aos="fade-up" data-aos-delay="300"
+                >
                     {itemsAuto.map((item) => (
                         <div
                             className="cursor-pointer"
@@ -52,7 +54,7 @@ const Automovel = () => {
             </section>
             <section className="w-full h-2 bg-bgCards"></section>
             <section className="w-full flex-center p-4">
-                <div className="max-w-container mx-auto p-4">
+                <div className="w-full max-w-container mx-auto p-4">
                     {tapetesComponent && <p>tapetes componente</p>}
                     {sobMedidaComponent && <p>sob medida componente</p>}
                     {coberturasUComponent && <CoberturasUniversais />}
