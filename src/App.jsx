@@ -4,11 +4,11 @@ import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 
 
-import { ShopProvider } from './context/ShopContext';
 import MainLayout from './Layout/MainLayout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Automovel from './pages/Automovel';
+import GlobalProvider from './context/GlobalContext';
 
 const App = () => {
     useEffect(() => {
@@ -16,7 +16,7 @@ const App = () => {
     }, []);
 
     return (
-        <ShopProvider>
+        <GlobalProvider>
             <BrowserRouter>
                 <MainLayout>
                     <Routes>
@@ -30,7 +30,7 @@ const App = () => {
                 position="bottom-right"
                 reverseOrder={false}
             />
-        </ShopProvider>
+        </GlobalProvider>
     );
 };
 
