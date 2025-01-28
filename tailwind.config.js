@@ -23,7 +23,10 @@ export default {
 				'brandon-500': ['Brandon-medium', 'sans-serif'],
 				'brandon-800': ['Brandon-bold', 'sans-serif'],
 				'brandon-900': ['Brandon-black', 'sans-serif'],
-			}
+			},
+			maxWidth: {
+				container: '1440px',
+			  },
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

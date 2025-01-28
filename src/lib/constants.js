@@ -1,3 +1,4 @@
+// assets  /home / header - footer
 export const heroHome = '/imagens/home/hero-home.webp';
 export const sobMedidaBanner = '/imagens/home/sob-medida.webp';
 
@@ -11,6 +12,49 @@ export const shipping = '/imagens/home/shipping.svg';
 export const safeOrder = '/imagens/home/safe-order.svg';
 export const specialists = '/imagens/home/specialists.svg';
 export const atendCustom = '/imagens/home/atend-custom.svg';
+
+export const navLinks = [
+    {
+        id: 1,
+        title: 'Automóvel',
+        link: '/auto'
+    },
+    {
+        id: 2,
+        title: 'Comércio & Indústria',
+        link: '/com-ind'
+    },
+    {
+        id: 3,
+        title: 'Náutica',
+        link: '/nautica'
+    },
+    {
+        id: 4,
+        title: 'Aviação',
+        link: '/aviation'
+    },
+    {
+        id: 5,
+        title: 'Casa',
+        link: '/house'
+    },
+    {
+        id: 6,
+        title: 'Relva',
+        link: '/grass'
+    },
+    {
+        id: 7,
+        title: 'Sobre Nós',
+        link: '/about'
+    },
+    {
+        id: 8,
+        title: 'Contacto',
+        link: '/contact'
+    },
+]
 
 export const categoriesHome = [
     {
@@ -70,47 +114,26 @@ export const iconsHome = [
     },
 ]
 
+// assets pagina auto
+export const tapetes = '/imagens/auto/tapetes.webp';
+export const cobMedida = '/imagens/auto/cob-medida.webp';
+export const cobUniversal = '/imagens/auto/cob-universais.webp';
 
 
-export const navLinks = [
+export const itemsAuto = [
     {
         id: 1,
-        title: 'Automóvel',
-        link: '/auto'
+        title: 'Tapetes',
+        imageUrl: tapetes,
     },
     {
         id: 2,
-        title: 'Comércio & Indústria',
-        link: '/com-ind'
+        title: 'Coberturas à medida',
+        imageUrl: cobMedida,
     },
     {
         id: 3,
-        title: 'Náutica',
-        link: '/nautica'
-    },
-    {
-        id: 4,
-        title: 'Aviação',
-        link: '/aviation'
-    },
-    {
-        id: 5,
-        title: 'Casa',
-        link: '/house'
-    },
-    {
-        id: 6,
-        title: 'Relva',
-        link: '/grass'
-    },
-    {
-        id: 7,
-        title: 'Sobre Nós',
-        link: '/about'
-    },
-    {
-        id: 8,
-        title: 'Contacto',
-        link: '/contact'
+        title: 'Coberturas Universais',
+        imageUrl: cobUniversal,
     },
 ]

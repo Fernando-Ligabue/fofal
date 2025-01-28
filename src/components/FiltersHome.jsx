@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 
-const categorias = ['Carrinha', 'Carro', 'SUV'];
+const categorias = ['Carrinha', 'Carro',];
 const marcas = {
     'Carrinha': ['Volkswagen', 'Citroen', 'Renault'],
     'Carro': ['Volkswagen', 'Citroen', 'Renault'],
@@ -84,7 +84,7 @@ const FiltersHome = () => {
                 disabled={!dropdowns.modelo}
                 className="px-6 py-2 bg-white hover:bg-white/90 text-fofalText rounded-full !border border-1 border-white disabled:opacity-50"
             >
-                Consultar
+                Personalizar
             </Button>
         </div>
     );

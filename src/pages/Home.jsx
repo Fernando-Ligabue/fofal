@@ -18,7 +18,7 @@ const HomePage = () => {
         <>
             {/* Hero Section */}
             <section
-                className="w-full min-h-screen bg-banner flex items-center justify-center text-center text-white p-4"
+                className="w-full min-h-[80vh] bg-banner flex items-center justify-center text-center text-white p-4"
                 style={{ backgroundImage: `url(${heroHome})` }}
             >
                 <div className="hero-content py-60" data-aos="fade-up" data-aos-delay="300">
@@ -27,7 +27,6 @@ const HomePage = () => {
                     <FiltersHome />
                 </div>
             </section>
-
             {/* Text Section */}
             <section className="p-12 w-full" data-aos="fade-up" data-aos-delay="300">
                 <div className='w-full max-w-container mx-auto  grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-4'>
@@ -42,7 +41,6 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
-
             {/* Categories Section */}
             <section className="categories px-12 py-12 space-y-20" data-aos="fade-up" data-aos-delay="300">
                 <h2 className="text-3xl font-brandon-800 mb-6 max-w-container mx-auto">Categorias</h2>
@@ -75,21 +73,20 @@ const HomePage = () => {
                     )))}
                 </div>
             </section>
-
             {/* Custom Product Section */}
             <section
-                className="h-screen bg-banner flex flex-col items-center justify-center text-white"
+                className="min-h-[80vh] bg-banner flex flex-col items-center justify-center text-white p-4"
                 style={{ backgroundImage: `url(${sobMedidaBanner})` }}
                 data-aos="fade-up" data-aos-delay="300"
             >
-                <h2 className="text-7xl font-brandon-800 mb-6">Produto à medida</h2>
+                <h2 className="text-5xl sm:text-7xl font-brandon-800 mb-6 text-center">Produto à medida</h2>
                 <div className="buttons flex space-x-4">
-                    <button className="text-white font-brandon-500 text-2xl btn-white">
+                    <NavLink to="/aviation" className="text-white font-brandon-500 text-xl sm:text-2xl btn-white">
                         Aviões
-                    </button>
-                    <button className="text-white font-brandon-500 text-2xl btn-white">
+                    </NavLink>
+                    <NavLink to="/nautica" className="text-white font-brandon-500 text-xl sm:text-2xl btn-white">
                         Barcos
-                    </button>
+                    </NavLink>
                 </div>
             </section>
         </>

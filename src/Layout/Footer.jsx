@@ -6,6 +6,7 @@ import { FaInstagram } from "react-icons/fa";
 
 
 import logoSvg from '/logo-svg.svg';
+import cards from '/cards.webp'
 
 function Footer() {
   const [email, setEmail] = useState('');
@@ -24,7 +25,9 @@ function Footer() {
     <footer className="w-full bg-fofalText text-white font-archive pt-20">
       <div className='px-4'>
         <div className="w-full max-w-container mx-auto flex justify-center md:justify-start items-center">
-          <img src={logoSvg} className='w-full max-w-52' alt="Logo FOFAL" />
+          <NavLink to="/">
+            <img src={logoSvg} className='w-full max-w-52' alt="Logo FOFAL" />
+          </NavLink>
         </div>
 
         <div className="w-full max-w-container mx-auto py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_2fr] place-items-start md-place-items-start gap-2">
@@ -88,9 +91,12 @@ function Footer() {
             <div>
               <p className='text-white font-brandon-500 text-xl'>Seguir</p>
               <div className='flex justify-start items-center gap-4 mt-8'>
-                  <a className="no-underline"href="https://www.facebook.com/fofal.casadostapetes" target="_blank"><TfiFacebook size={24}/></a>
-                  <a className="no-underline"href="https://www.instagram.com/fofal_lda/" target="_blank"><FaInstagram size={24}/></a>
+                <a className="no-underline" href="https://www.facebook.com/fofal.casadostapetes" target="_blank"><TfiFacebook size={24} /></a>
+                <a className="no-underline" href="https://www.instagram.com/fofal_lda/" target="_blank"><FaInstagram size={24} /></a>
               </div>
+            </div>
+            <div className='w-full'>
+              <img className='w-full max-w-96' src={cards} alt="Logo Fofal" />
             </div>
           </div>
 
@@ -98,7 +104,7 @@ function Footer() {
       </div>
 
       <div className='w-full bg-gradient'>
-        <div className='w-full flex justify-between items-center px-4 py-4 max-w-container mx-auto'>
+        <div className='w-full flex flex-col sm:flex-row justify-between items-center px-4 py-4 max-w-container mx-auto'>
           <p className='text-white font-brandon-400'>© {year} FOFAL. Todos os direitos reservados.</p>
           <p className='text-white font-brandon-400'>Desenvolvido por <a href="https://creative-minds.pt/" className='no-underline'>Creative Minds.</a></p>
         </div>

@@ -7,23 +7,46 @@ import { Button } from '@/components/ui/button';
 
 import { navLinks } from '@/lib/constants';
 import logoSvg from '/logo-svg.svg';
+import logoAuto from '/logo-auto.svg';
+import logoComInd  from '/logo-comind.svg';
+import logoNautico  from '/logo-nautico.svg';
+import logoCasa  from '/logo-casa.svg';
 
 const Header = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const location = useLocation(); // Obter a localização atual
+    const location = useLocation();
 
     const toggleSidebar = () => {
         setIsSidebarOpen(prev => !prev);
     };
 
+    const isHome = location.pathname === '/';
+
     const getLinkClassNames = (path) => {
         return location.pathname === path
-            ? 'mx-2 text-white font-bold underline cursor-pointer'
-            : 'mx-2 text-white no-underline cursor-pointer';
+            ? `mx-2 font-bold cursor-pointer ${isHome ? 'text-white' : 'text-black'}`
+            : `mx-2 cursor-pointer ${isHome ? 'text-white' : 'text-black'}`;
+    };
+
+    const getLogoSrc = () => {
+        switch (location.pathname) {
+            case '/auto':
+                return logoAuto;
+            case '/com-ind':
+                return logoComInd;
+            case '/nautica':
+                return logoNautico;
+            case '/aviation':
+                return logoNautico;
+            case '/house':
+                return logoCasa;
+            default:
+                return logoSvg;
+        }
     };
 
     return (
-        <header className='w-full absolute top-0 left-0'>
+        <header className='w-full absolute top-0 left-0 z-50'>
             <div className='w-full mx-auto text-white font-brandon-300 text-xs p-2 bg-primary flex justify-center items-center'>
                 <p className='font-brandon-400'>RÁPIDO, PORTES GRÁTIS E DEVOLUÇÕES</p>
             </div>
@@ -32,7 +55,7 @@ const Header = () => {
                     <div className='w-full flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0'>
                         <div className="logo">
                             <NavLink to="/" className={getLinkClassNames('/')}>
-                                <img src={logoSvg} className='w-full max-w-52' alt="Logo FOFAL" />
+                                <img src={getLogoSrc()} className='w-full max-w-52' alt="Logo FOFAL" />
                             </NavLink>
                         </div>
 
@@ -54,23 +77,26 @@ const Header = () => {
                         </nav>
 
                         {/* Botões para login e ícones de ações */}
-                        <div className="flex items-center space-x-4">
-                            <Button className='bg-transparent text-white font-brandon-400 px-8 py-2 !border border-1 border-white rounded-full z-50'>
+                        <div className={`flex items-center space-x-4 ${isHome ? 'text-white' : 'text-black'}`}>
+                            <Button className={`bg-transparent font-brandon-400 px-8 py-2 !border border-1 rounded-full ${isHome ? 'text-white border-white' : 'text-black border-black hover:bg-white'}`}>
                                 Login
                             </Button>
-                            <div className="flex space-x-2">
-                                <Search size={22} className='text-white' />
-                                <Heart size={22} className='text-white' />
-                                <User2 size={22} className='text-white' />
-                                <GiShoppingCart size={22} className='text-white rotate-logo' />
+                            <div className={`flex space-x-2 ${isHome ? 'text-white' : 'text-black'}`}>
+                                <Search size={22} className={`text-current`} />
+                                <Heart size={22} className={`text-current`} />
+                                <User2 size={22} className={`text-current`} />
+                                <div className='relative'>
+                                <GiShoppingCart size={22} className={`text-current rotate-logo`} />
+                                <span className='h-3 w-3 bg-gradient text-white text-[8px] rounded-full absolute top-0 left-0 flex justify-center items-center font-brandon-300'>2</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="xl:hidden flex items-center mt-4 md:mt-0">
+                    <div className={`xl:hidden flex items-center mt-4 md:mt-0 ${isHome ? 'text-white' : 'text-black'}`}>
                         <Menu
                             size={48}
                             onClick={toggleSidebar}
-                            className="text-white p-2 rounded-md cursor-pointer"
+                            className="p-2 rounded-md cursor-pointer"
                         />
                     </div>
                 </div>
@@ -86,9 +112,9 @@ const Header = () => {
                         }`}
                 >
                     <X
-                        size={36}
+                        size={28}
                         onClick={toggleSidebar}
-                        className="absolute top-8 right-4 text-white cursor-pointer"
+                        className="absolute top-16 right-4 text-white cursor-pointer"
                     />
                     <div className="logo">
                         <NavLink to="/" className={getLinkClassNames('/')}>
@@ -100,7 +126,6 @@ const Header = () => {
                             <li key={index} className='font-brandon-400'>
                                 <NavLink
                                     to={link.link}
-                                    className={() => getLinkClassNames(link.link)}
                                     onClick={toggleSidebar}
                                 >
                                     {link.title}
