@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Automovel from './pages/Automovel';
 import GlobalProvider from './context/GlobalContext';
+import CoberturaPage from './pages/CoberturaUniversal/[id]';
 
 const App = () => {
     useEffect(() => {
@@ -23,6 +24,7 @@ const App = () => {
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/auto" element={<Automovel />} />
+                        <Route path="/auto/cobertura-universal/:cobertura_id" element={<CoberturaPage />} />
                     </Routes>
                 </MainLayout>
             </BrowserRouter>

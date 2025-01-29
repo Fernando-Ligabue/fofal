@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCobUniversal } from "@/context/CobUniversalContext";
+import { ChevronRight, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +9,7 @@ const CoberturasUniversais = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [sortType, setSortType] = useState('relevant');
+  const [openFilters, setOpenFilters] = useState(true)
 
   const navigate = useNavigate();
 
@@ -22,11 +24,20 @@ const CoberturasUniversais = () => {
 
     switch (sortType) {
       case 'low-high':
-        setFilteredProducts(sortered.sort((a , b) => (a.price - b.price)));
+        setFilteredProducts(sortered.sort((a, b) => (a.price - b.price)));
         break;
 
-      case 'high-low':  
-        setFilteredProducts(sortered.sort((a , b) => (b.price - a.price)));
+      case 'high-low':
+        setFilteredProducts(sortered.sort((a, b) => (b.price - a.price)));
+        break;
+
+      case 'relevant':
+        setFilteredProducts(sortered.sort((a, b) => {
+          if (a.isNew && !b.isNew) return -1;
+          if (!a.isNew && b.isNew) return 1;
+
+          return 0;
+        }));
         break;
 
       default:
@@ -40,53 +51,60 @@ const CoberturasUniversais = () => {
     setFilteredProducts(filtered);
   };
 
+  const handleOpenFilters = () => {
+    setOpenFilters(!openFilters);
+  }
+
   useEffect(() => {
     setFilteredProducts(filterProducts(selectedCategory));
   }, [products, selectedCategory]);
 
   useEffect(() => {
-    sortProducts(); 
+    sortProducts();
   }, [sortType]);
 
-  
+
   const handleSetCategory = (category) => {
     setSelectedCategory(category);
   };
 
   const handleViewProduct = (productId) => {
-    navigate(`/produto/${productId}`);
+    navigate(`/auto/cobertura-universal/${productId}`);
   };
 
   return (
     <section className="py-10 flex flex-col lg:flex-row justify-between gap-10">
       {/* filtros */}
       <div className="flex flex-col justify-start gap-2">
-        <div className="w-full lg:max-w-60 md:sticky relative md:top-10">
-          <p className="w-full my-2 text-2xl text-fofalText font-brandon-800 flex items-center cursor-pointer gap-2">
+        <div className="w-full lg:max-w-60 min-w-60 md:sticky relative md:top-10">
+          <p className="w-full my-2 text-2xl text-fofalText font-brandon-800 flex items-center cursor-pointer gap-2" onClick={handleOpenFilters}>
             Filtros
-            {selectedCategory !== '' && <span className="w-fit ml-auto font-brandon-400 text-sm" onClick={() => setSelectedCategory('')}>Limpar filtros</span>}
+            <ChevronRight className={`w-5 h-5 transition-all ease-in-out duration-300 ${openFilters ? 'rotate-90' : 'rotate-0'}`} />
+            {selectedCategory !== '' && <><span className="w-fit ml-auto font-brandon-400 text-sm" onClick={() => setSelectedCategory('')}>Limpar filtros</span> <X size={10} /></>}
           </p>
-          <div className='py-3 sm:block'>
-            <div className="flex flex-col text-md">
-              {['autocaravana', 'automovel', 'caravana', 'motociclo', 'scooter'].map((category) => (
-                <div key={category} className="w-full border-t border-fofalText py-3 px-1 cursor-pointer hover:bg-zinc-300">
-                  <p
-                    className="font-brandon-400"
-                    onClick={() => handleSetCategory(category)}
-                  >
-                    {`Coberturas Universais ${category.charAt(0).toUpperCase() + category.slice(1)}`}
-                  </p>
-                </div>
-              ))}
+          {openFilters && (
+            <div className='py-3 sm:block'>
+              <div className="flex flex-col text-md">
+                {['autocaravana', 'automovel', 'caravana', 'motociclo', 'scooter'].map((category) => (
+                  <div key={category} className="w-full border-t border-fofalText py-3 px-1 cursor-pointer hover:bg-zinc-300">
+                    <p
+                      className="font-brandon-400"
+                      onClick={() => handleSetCategory(category)}
+                    >
+                      {`Coberturas Universais ${category.charAt(0).toUpperCase() + category.slice(1)}`}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
       {/* produtos */}
       <div className="min-h-[60vh] flex flex-1 flex-col gap-4">
         <div className="w-full flex items-center gap-2">
-          <p className="w-fit ml-auto font-brandon-800 text-2xl">
+          <p className="w-fit sm:ml-auto text-zinc-500 font-brandon-800 text-2xl">
             Ordernar por:
           </p>
           <select onChange={(e) => setSortType(e.target.value)} className='w-fit h-10 text-2xl px-2 font-brandon-500 border border-fofalText rounded focus:ring-fofalText focus:ring-1'>

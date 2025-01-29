@@ -5,6 +5,7 @@ export const coberturasData = [
       category: "autocaravana",
       size: "DH55",
       dimensions: "540 x 205 x 250",
+      aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
       price: 466.17,
       image: 'https://dummyjson.com/image/200x100',
       isNew: true
@@ -15,6 +16,7 @@ export const coberturasData = [
       category: "caravana",
       size: "DH60",
       dimensions: "620 x 235 x 270",
+      aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
       price: 527.67,
       image:'https://dummyjson.com/image/200x100',
       isNew: true
@@ -25,6 +27,7 @@ export const coberturasData = [
       category: "scooter",
       size: "DH65",
       dimensions: "660 x 235 x 270",
+      aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
       price: 666.06,
       image:'https://dummyjson.com/image/200x100',
       isNew: true
@@ -35,6 +38,7 @@ export const coberturasData = [
       category: "autocaravana",
       size: "DH55",
       dimensions: "540 x 205 x 250",
+      aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
       price: 366.17,
       image: 'https://dummyjson.com/image/200x100',
       isNew: true
@@ -45,6 +49,7 @@ export const coberturasData = [
       category: "caravana",
       size: "DH60",
       dimensions: "620 x 235 x 270",
+      aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
       price: 487.67,
       image:'https://dummyjson.com/image/200x100',
       isNew: true
@@ -55,9 +60,10 @@ export const coberturasData = [
       category: "scooter",
       size: "DH65",
       dimensions: "660 x 235 x 270",
+      aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
       price: 554.06,
       image:'https://dummyjson.com/image/200x100',
-      isNew: true
+      isNew: false
     },
     {
       id: "7",
@@ -65,9 +71,10 @@ export const coberturasData = [
       category: "autocaravana",
       size: "DH55",
       dimensions: "540 x 205 x 250",
+      aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
       price: 392.17,
       image: 'https://dummyjson.com/image/200x100',
-      isNew: true
+      isNew: false
     },
     {
       id: "8",
@@ -75,9 +82,10 @@ export const coberturasData = [
       category: "caravana",
       size: "DH60",
       dimensions: "620 x 235 x 270",
+      aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
       price: 618.67,
       image:'https://dummyjson.com/image/200x100',
-      isNew: true
+      isNew: false
     },
     {
       id: "9",
@@ -85,6 +93,7 @@ export const coberturasData = [
       category: "scooter",
       size: "DH65",
       dimensions: "660 x 235 x 270",
+      aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
       price: 991.06,
       image:'https://dummyjson.com/image/200x100',
       isNew: true
