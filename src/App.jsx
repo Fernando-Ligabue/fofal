@@ -24,7 +24,7 @@ const App = () => {
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/auto" element={<Automovel />} />
-                        <Route path="/auto/cobertura-universal/:cobertura_id" element={<CoberturaPage />} />
+                        <Route path="/auto/cobertura-universal/:id" element={<CoberturaPage />} />
                     </Routes>
                 </MainLayout>
             </BrowserRouter>
