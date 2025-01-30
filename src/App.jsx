@@ -7,11 +7,14 @@ import { useEffect } from 'react';
 import MainLayout from './Layout/MainLayout';
 import Home from './pages/Home';
 import About from './pages/About';
-import Automovel from './pages/Automovel';
+import AutoTapetes from './pages/AutoTapetes';
 import GlobalProvider from './context/GlobalContext';
 import CoberturaPage from './pages/CoberturaUniversal/[id]';
 import LoginPage from './pages/Login';
+import AutoCoberturasUniversaisPage from './pages/AutoCoberturasUniversaisPage';
 import SignupPage from './pages/Signup';
+import { Helmet } from 'react-helmet';
+import AutoCoberturasMedida from './pages/AutoCoberturasMedida';
 
 const App = () => {
     useEffect(() => {
@@ -19,24 +22,33 @@ const App = () => {
     }, []);
 
     return (
-        <GlobalProvider>
-            <BrowserRouter>
-                <MainLayout>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/auto" element={<Automovel />} />
-                        <Route path="/auto/cobertura-universal/:id" element={<CoberturaPage />} />
-                        <Route path="/login" element={<LoginPage />} />
-                        <Route path="/signup" element={<SignupPage />} />
-                    </Routes>
-                </MainLayout>
-            </BrowserRouter>
-            <Toaster
-                position="bottom-right"
-                reverseOrder={false}
-            />
-        </GlobalProvider>
+        <>
+            <Helmet>
+                <title>FOFAL</title>
+                <meta name="description" content="COBERTURAS PARA AUTOMÓVEIS - Personalize a cobertura para o seu automóvel - TAPETES AUTOMÓVEL - AVIÕES & BARCOS - Alcatifas" />
+            </Helmet>
+
+            <GlobalProvider>
+                <BrowserRouter>
+                    <MainLayout>
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/auto/tapetes" element={<AutoTapetes />} />
+                            <Route path="/auto/coberturas-medida" element={<AutoCoberturasMedida />} />
+                            <Route path="/auto/coberturas-universais" element={<AutoCoberturasUniversaisPage />} />
+                            <Route path="/auto/cobertura-universal/:id" element={<CoberturaPage />} />
+                            <Route path="/login" element={<LoginPage />} />
+                            <Route path="/signup" element={<SignupPage />} />
+                        </Routes>
+                    </MainLayout>
+                </BrowserRouter>
+                <Toaster
+                    position="bottom-right"
+                    reverseOrder={false}
+                />
+            </GlobalProvider>
+        </>
     );
 };
 

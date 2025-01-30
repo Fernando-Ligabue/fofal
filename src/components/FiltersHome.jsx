@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { Button } from './ui/button';
 
 const categorias = ['Carrinha', 'Carro',];
 const marcas = {
@@ -79,13 +78,13 @@ const FiltersHome = () => {
             {renderDropdown('marca', dropdowns.categoria ? marcas[dropdowns.categoria] : ["Selecione a categoria"])}
             {renderDropdown('ano', anos)}
             {renderDropdown('modelo', dropdowns.marca ? modelos[dropdowns.marca] || [] : ["Selecione a marca"])}
-            <Button
+            <button
                 onClick={handleSubmit}
                 disabled={!dropdowns.modelo}
                 className="px-6 py-2 bg-white hover:bg-white/90 text-fofalText rounded-full !border border-1 border-white disabled:opacity-50"
             >
                 Personalizar
-            </Button>
+            </button>
         </div>
     );
 };

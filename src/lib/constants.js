@@ -17,7 +17,7 @@ export const navLinks = [
     {
         id: 1,
         title: 'Automóvel',
-        link: '/auto'
+        link: '/auto/tapetes'
     },
     {
         id: 2,
@@ -125,15 +125,18 @@ export const itemsAuto = [
         id: 1,
         title: 'Tapetes',
         imageUrl: tapetes,
+        url: "/auto/tapetes"
     },
     {
         id: 2,
         title: 'Coberturas à medida',
         imageUrl: cobMedida,
+        url: "/auto/coberturas-medida"
     },
     {
         id: 3,
         title: 'Coberturas Universais',
         imageUrl: cobUniversal,
+        url: "/auto/coberturas-universais"
     },
 ]

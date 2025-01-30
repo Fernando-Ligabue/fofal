@@ -26,10 +26,13 @@ const Header = () => {
     const isHome = location.pathname === '/';
 
     const getLinkClassNames = (path) => {
-        return location.pathname === path
-            ? `mx-2 font-brandon-800 cursor-pointer underline ${isHome ? 'text-white' : 'text-black'}`
-            : `mx-2 cursor-pointer ${isHome ? 'text-white' : 'text-black'}`;
-    };
+        const pathPrefix = path.substring(0, 4);
+        const pathnamePrefix = location.pathname.substring(0, 4);
+      
+        return pathnamePrefix === pathPrefix
+          ? `mx-2 font-brandon-800 cursor-pointer underline ${isHome ? 'text-white' : 'text-black'}`
+          : `mx-2 cursor-pointer ${isHome ? 'text-white' : 'text-black'}`;
+      };
 
     const getLogoSrc = () => {
         switch (location.pathname) {

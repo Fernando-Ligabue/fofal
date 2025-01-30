@@ -1,17 +1,12 @@
-import { ChevronRight, X } from "lucide-react";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useCobUniversal } from "@/context/CobUniversalContext";
-import ProductGridSkeleton from "./ProductGridSkeleton";
+import { itemsAuto } from "@/lib/constants";
+import { ChevronRight, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import ProductGridSkeleton from "./ProductGridSkeleton";
 
 const CoberturasUniversais = () => {
   const { filteredProducts, loading, filterProducts } = useCobUniversal();
@@ -19,8 +14,15 @@ const CoberturasUniversais = () => {
   const [openFilters, setOpenFilters] = useState(true);
   const [sortType, setSortType] = useState("relevant");
   const [sortedProducts, setSortedProducts] = useState(filteredProducts);
+  const [currentPage, setCurrentPage] = useState(1);  // Track current page
+  const productsPerPage = 9; // Number of products per page
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const getLinkClassNames = (path) => {
+    return location.pathname === path ? `font-brandon-800` : `font-brandon-400`;
+  };
 
   useEffect(() => {
     filterProducts(selectedCategory);
@@ -69,74 +71,63 @@ const CoberturasUniversais = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredProducts, sortType]);
 
+  // Handle URL state changes for pagination
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const page = queryParams.get("page");
+    if (page) {
+      setCurrentPage(Number(page));
+    }
+  }, [location.search]);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set("page", page);
+    navigate(`${location.pathname}?${queryParams.toString()}`);
+  };
+
+  // Get current products to display based on pagination
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
+
   return (
     <>
       <Helmet>
         <title>FOFAL | Coberturas Universais</title>
         <meta name="description" content="Fofal - Coberturas Universais para automóveis, caravanas, autocaravanas, scooters" />
       </Helmet>
-      <section className="py-10 flex flex-col justify-between gap-10">
-        <div className="w-full max-w-container mx-auto p-4">
-          <h3 className="font-brandon-800 text-3xl text-fofalText w-full mb-4">
-            Descrição
-          </h3>
-          <div className="space-y-6 columns-1 md:columns-2">
-            <p className="font-brandon-400 text-xl">
-              <span className="font-brandon-800 text-fofalText">
-                As coberturas universais
-              </span>{" "}
-              são a escolha ideal para quem busca uma solução{" "}
-              <span className="font-brandon-800 text-fofalText">
-                prática, acessível e eficaz
-              </span>{" "}
-              para proteger o automóvel. Projetadas para se adaptar a uma ampla
-              gama de modelos e tamanhos de veículos, elas oferecem{" "}
-              <span className="font-brandon-800 text-fofalText">
-                proteção completa
-              </span>{" "}
-              contra fatores externos,{" "}
-              <span className="font-brandon-800 text-fofalText">
-                como poeira, chuva, raios UV, excrementos de pássaros e seiva de
-                árvores
-              </span>
-              .
-            </p>
 
-            <p className="font-brandon-400 text-xl">
-              Além de preservar a{" "}
-              <span className="font-brandon-800 text-fofalText">pintura</span>,
-              as coberturas universais também protegem os componentes{" "}
-              <span className="font-brandon-800 text-fofalText">plásticos</span>{" "}
-              e de{" "}
-              <span className="font-brandon-800 text-fofalText">borracha</span>,
-              ajudando a evitar{" "}
-              <span className="font-brandon-800 text-fofalText">
-                ressecamento
-              </span>{" "}
-              e desgastes prematuros. Fabricadas com{" "}
-              <span className="font-brandon-800 text-fofalText">
-                materiais duráveis e resistentes
-              </span>
-              , elas garantem uma barreira confiável contra as{" "}
-              <span className="font-brandon-800 text-fofalText">
-                intempéries
-              </span>
-              , sendo perfeitas para uso em ambientes externos e internos.
-            </p>
-
-            <p className="font-brandon-400 text-xl">
-              Se você valoriza a{" "}
-              <span className="font-brandon-800 text-fofalText">
-                conservação do seu veículo
-              </span>{" "}
-              e quer mantê-lo sempre protegido, as coberturas universais são uma
-              solução prática e eficiente para prolongar sua vida útil e manter
-              sua aparência como nova.
-            </p>
-          </div>
+      <section className="w-full bg-banner flex-center text-center text-white p-4">
+        <div
+          className="grid grid-cols-1 md:grid-cols-3 max-w-container gap-6 pt-60 md:pt-40 pb-10"
+        >
+          {itemsAuto.map((item) => (
+            <div
+              className="cursor-pointer"
+              key={item.id}
+              onClick={() => navigate(item.url)}
+            >
+              <div className="rounded-2xl bg-bgCards p-4 flex-center flex-col">
+                <img src={item.imageUrl} className="w-full" alt={item.title} />
+              </div>
+              <h3
+                className={`text-2xl mt-4 ${getLinkClassNames(item.url)} text-fofalText`}
+              >
+                {item.title}
+              </h3>
+            </div>
+          ))}
         </div>
+      </section>
 
-        <div className="py-10 flex flex-col lg:flex-row justify-between gap-10 p-4">
+      <section className="w-full h-2 bg-bgCards"></section>
+
+      <section className="py-10 flex flex-col justify-between gap-10">
+        <div className="w-full max-w-container mx-auto p-4 py-10 flex flex-col lg:flex-row justify-between gap-10">
           {/* Filtros */}
           <div className="flex flex-col justify-start gap-2">
             <div className="w-full lg:max-w-60 min-w-60 md:sticky relative md:top-10">
@@ -146,9 +137,7 @@ const CoberturasUniversais = () => {
               >
                 Filtros
                 <ChevronRight
-                  className={`w-5 h-5 transition-all ease-in-out duration-300 ${
-                    openFilters ? "rotate-90" : "rotate-0"
-                  }`}
+                  className={`w-5 h-5 transition-all ease-in-out duration-300 ${openFilters ? "rotate-90" : "rotate-0"}`}
                 />
                 {selectedCategory !== "" && (
                   <>
@@ -165,13 +154,7 @@ const CoberturasUniversais = () => {
               {openFilters && (
                 <div className="py-3 sm:block">
                   <div className="flex flex-col text-md">
-                    {[
-                      "autocaravana",
-                      "automovel",
-                      "caravana",
-                      "motociclo",
-                      "scooter",
-                    ].map((category) => (
+                    {["autocaravana", "automovel", "caravana", "motociclo", "scooter"].map((category) => (
                       <div
                         key={category}
                         className="w-full border-t border-fofalText py-3 px-1 cursor-pointer hover:bg-zinc-300"
@@ -180,9 +163,7 @@ const CoberturasUniversais = () => {
                           className="font-brandon-400"
                           onClick={() => handleSetCategory(category)}
                         >
-                          {`Coberturas Universais ${
-                            category.charAt(0).toUpperCase() + category.slice(1)
-                          }`}
+                          {`Coberturas Universais ${category.charAt(0).toUpperCase() + category.slice(1)}`}
                         </p>
                       </div>
                     ))}
@@ -212,8 +193,8 @@ const CoberturasUniversais = () => {
               <ProductGridSkeleton /> // Exibe o Skeleton durante o carregamento
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_1fr_1fr] gap-0">
-                {sortedProducts.length > 0 ? (
-                  sortedProducts.map((product) => (
+                {currentProducts.length > 0 ? (
+                  currentProducts.map((product) => (
                     <div
                       key={product.id}
                       className="w-full flex flex-col justify-between border rounded-lg py-8 px-4 space-y-6 hover:bg-bgCards transition-all ease-in-out duration-300 group"
@@ -221,7 +202,7 @@ const CoberturasUniversais = () => {
                       {/* Conteúdo do produto */}
                       <div className="relative">
                         {product.isNew && (
-                          <span className="absolute top-1 left-1 z-50 text-fofalText border border-fofalText px-2 py-1 rounded text-sm">
+                          <span className="absolute top-1 left-1 z-50 text-fofalText border border-fofalText px-2 py-1 rounded text-sm pointer-events-none">
                             Novo
                           </span>
                         )}
@@ -280,6 +261,25 @@ const CoberturasUniversais = () => {
                 )}
               </div>
             )}
+
+            {/* Paginação */}
+            <div className="w-full flex justify-end items-center gap-4 mt-6">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="px-4 py-2 bg-transparent text-fofalText rounded disabled:opacity-50"
+              >
+                Anterior
+              </button>
+              <span className="text-fofalText font-brandon-800">{currentPage} / {totalPages}</span>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 bg-transparent text-fofalText rounded disabled:opacity-50"
+              >
+                Próxima
+              </button>
+            </div>
           </div>
         </div>
       </section>

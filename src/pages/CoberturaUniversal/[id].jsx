@@ -50,7 +50,6 @@ const CoberturaPage = () => {
         <title>FOFAL | {product.title}</title>
         <meta name="description" content={product.description} />
       </Helmet>
-      {console.log(product.description)}
       <section className="w-full h-full py-40 p-4">
         <div className="max-w-container h-full md:min-h-[70vh] mx-auto pt-40 sm:p-4 flex flex-col md:flex-row justify-between items-stretch gap-10">
           <div className="w-full flex flex-col justify-center items-center md:max-w-[50%] bg-bgCards">
@@ -83,17 +82,15 @@ const CoberturaPage = () => {
             <div className="w-full flex gap-10 border-b border-fofalText py-4">
               <span
                 onClick={() => setActiveTab("caracteristicas")}
-                className={`font-brandon-500 text-fofalText text-md gap-4 uppercase cursor-pointer ${
-                  activeTab === "caracteristicas" ? "font-bold" : ""
-                }`}
+                className={`font-brandon-500 text-fofalText text-md gap-4 uppercase cursor-pointer ${activeTab === "caracteristicas" ? "font-bold" : ""
+                  }`}
               >
                 Características
               </span>
               <span
                 onClick={() => setActiveTab("informacoes")}
-                className={`font-brandon-500 text-fofalText text-md gap-4 uppercase cursor-pointer ${
-                  activeTab === "informacoes" ? "font-bold" : ""
-                }`}
+                className={`font-brandon-500 text-fofalText text-md gap-4 uppercase cursor-pointer ${activeTab === "informacoes" ? "font-bold" : ""
+                  }`}
               >
                 Informações
               </span>
