@@ -58,7 +58,7 @@ const Header = () => {
                 <p className='font-brandon-400'>RÁPIDO, PORTES GRÁTIS E DEVOLUÇÕES</p>
             </div>
             <div className='w-full max-w-container mx-auto'>
-                <div className='flex justify-between items-start md:items-center gap-6 px-4 py-4'>
+                <div className='flex justify-between items-start md:items-center gap-6 px-4 sm:py-4'>
                     <div className='w-full flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0'>
                         <div className="logo">
                             <NavLink to="/" className={getLinkClassNames('/')}>

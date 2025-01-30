@@ -13,11 +13,13 @@ const LoginPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         login(email, password);
+        setEmail("");
+        setPassword("");
     };
 
     return (
         <section className="flex flex-col justify-between gap-10">
-            <div className='w-full max-w-container mx-auto flex flex-col justify-center py-60 sm:px-6 lg:px-8 space-y-6'>
+            <div className='w-full max-w-container mx-auto flex flex-col justify-center py-60 sm:py-40 sm:px-6 lg:px-8 space-y-6'>
                 <div className='sm:mx-auto sm:w-full sm:max-w-md'>
                     <h2 className='mt-6 text-center text-5xl font-brandon-700 text-fofalText'>Login</h2>
                 </div>
