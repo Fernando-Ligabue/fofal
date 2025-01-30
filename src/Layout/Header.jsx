@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { GiShoppingCart } from "react-icons/gi";
 import { Heart, Menu, Search, User2, X } from 'lucide-react';
 
@@ -8,13 +8,16 @@ import { Button } from '@/components/ui/button';
 import { navLinks } from '@/lib/constants';
 import logoSvg from '/logo-svg.svg';
 import logoAuto from '/logo-auto.svg';
-import logoComInd  from '/logo-comind.svg';
-import logoNautico  from '/logo-nautico.svg';
-import logoCasa  from '/logo-casa.svg';
+import logoComInd from '/logo-comind.svg';
+import logoNautico from '/logo-nautico.svg';
+import logoCasa from '/logo-casa.svg';
+import { useUser } from '@/context/UserContext';
 
 const Header = () => {
+    const { user } = useUser();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
 
     const toggleSidebar = () => {
         setIsSidebarOpen(prev => !prev);
@@ -24,7 +27,7 @@ const Header = () => {
 
     const getLinkClassNames = (path) => {
         return location.pathname === path
-            ? `mx-2 font-bold cursor-pointer ${isHome ? 'text-white' : 'text-black'}`
+            ? `mx-2 font-brandon-800 cursor-pointer underline ${isHome ? 'text-white' : 'text-black'}`
             : `mx-2 cursor-pointer ${isHome ? 'text-white' : 'text-black'}`;
     };
 
@@ -45,6 +48,10 @@ const Header = () => {
         }
     };
 
+    const handleLoginPage = () => {
+        navigate('/login');
+    }
+
     return (
         <header className='w-full absolute top-0 left-0 z-50'>
             <div className='w-full mx-auto text-white font-brandon-300 text-xs p-2 bg-primary flex justify-center items-center'>
@@ -64,7 +71,7 @@ const Header = () => {
                             <ul className="menu flex list-none text-xl font-brandon-400">
                                 {/* Navegação Interna */}
                                 {navLinks.map((link, index) => (
-                                    <li key={index}>
+                                    <li key={index} className='hover:underline'>
                                         <NavLink
                                             to={link.link}
                                             className={() => getLinkClassNames(link.link)}
@@ -78,18 +85,23 @@ const Header = () => {
 
                         {/* Botões para login e ícones de ações */}
                         <div className={`flex items-center space-x-4 ${isHome ? 'text-white' : 'text-black'}`}>
-                            <Button className={`bg-transparent font-brandon-400 px-8 py-2 !border border-1 rounded-full ${isHome ? 'text-white border-white' : 'text-black border-black hover:bg-white'}`}>
+                            <Button className={`bg-transparent font-brandon-400 px-8 py-2 !border border-1 rounded-full ${isHome ? 'text-white border-white' : 'text-black border-black hover:bg-white'}`}
+                            onClick={handleLoginPage}
+                            >
                                 Login
                             </Button>
-                            <div className={`flex space-x-2 ${isHome ? 'text-white' : 'text-black'}`}>
-                                <Search size={22} className={`text-current`} />
-                                <Heart size={22} className={`text-current`} />
-                                <User2 size={22} className={`text-current`} />
-                                <div className='relative'>
-                                <GiShoppingCart size={22} className={`text-current rotate-logo`} />
-                                <span className='h-3 w-3 bg-gradient text-white text-[8px] rounded-full absolute top-0 left-0 flex justify-center items-center font-brandon-300'>2</span>
+                            {user && (
+                                <div className={`flex space-x-2 ${isHome ? 'text-white' : 'text-black'}`}>
+                                    <Search size={22} className={`text-current`} />
+                                    <Heart size={22} className={`text-current`} />
+                                    <User2 size={22} className={`text-current`} />
+                                    <div className='relative'>
+                                        <GiShoppingCart size={22} className={`text-current rotate-logo`} />
+                                        <span className='h-3 w-3 bg-gradient text-white text-[8px] rounded-full absolute top-0 left-0 flex justify-center items-center font-brandon-300'>2</span>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
+
                         </div>
                     </div>
                     <div className={`xl:hidden flex items-center mt-4 md:mt-0 ${isHome ? 'text-white' : 'text-black'}`}>

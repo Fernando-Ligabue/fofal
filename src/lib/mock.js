@@ -1,3 +1,18 @@
+// export const userData = {
+//   id: "1",
+//   firstName: "John",
+//   lastName: "Doe",
+//   email: "john.doe@example.com",
+//   birthDate: "1990-01-01",
+//   password: "teste123",
+//   phone: "123456789",
+//   address: "Rua da Fofal, 123",
+//   city: "Lisboa",
+//   country: "Portugal",
+//   postalCode: "1234-567",
+// }
+export const userData = null;
+
 export const coberturasData = [
     {
       id: "1",
