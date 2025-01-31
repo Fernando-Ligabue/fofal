@@ -3,8 +3,6 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { GiShoppingCart } from "react-icons/gi";
 import { Heart, Menu, Search, User2, X } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
-
 import { navLinks } from '@/lib/constants';
 import logoSvg from '/logo-svg.svg';
 import logoAuto from '/logo-auto.svg';
@@ -88,11 +86,11 @@ const Header = () => {
 
                         {/* Botões para login e ícones de ações */}
                         <div className={`flex items-center space-x-4 ${isHome ? 'text-white' : 'text-black'}`}>
-                            <Button className={`bg-transparent font-brandon-400 px-8 py-2 !border border-1 rounded-full ${isHome ? 'text-white border-white' : 'text-black border-black hover:bg-white'}`}
+                            <button className={`bg-transparent font-brandon-400 px-8 py-2 !border border-1 rounded-full transition-all ease-in-out duration-300 ${isHome ? 'text-white border-white hover:bg-red-600' : 'text-black border-black hover:bg-red-600 hover:text-white hover:border-white'}`}
                             onClick={handleLoginPage}
                             >
                                 Login
-                            </Button>
+                            </button>
                             {user && (
                                 <div className={`flex space-x-2 ${isHome ? 'text-white' : 'text-black'}`}>
                                     <Search size={22} className={`text-current`} />

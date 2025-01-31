@@ -1,27 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { LogIn, Mail, Lock, ArrowRight, Loader } from "lucide-react";
+import { LogIn, Mail, Lock, ArrowRight, Loader, Eye, EyeClosed } from "lucide-react";
 
 import { useUser } from "@/context/UserContext";
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     const { login, loading } = useUser();
 
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
+
+
+
+    const handleShowPassword = () => setShowPassword(!showPassword);
     const handleSubmit = (e) => {
         e.preventDefault();
+
         login(email, password);
         setEmail("");
         setPassword("");
     };
 
     return (
-        <section className="flex flex-col justify-between gap-10">
+        <section className="flex flex-col justify-between gap-10" data-aos="fade-up" data-aos-delay="300">
             <div className='w-full max-w-container mx-auto flex flex-col justify-center py-60 sm:py-40 sm:px-6 lg:px-8 space-y-6'>
                 <div className='sm:mx-auto sm:w-full sm:max-w-md'>
-                    <h2 className='mt-6 text-center text-5xl font-brandon-700 text-fofalText'>Login</h2>
+                    <h1 className='mt-6 text-center text-5xl font-brandon-400 text-fofalText'>Login</h1>
                 </div>
 
                 <div className="w-full max-w-lg mx-auto">
@@ -42,7 +51,7 @@ const LoginPage = () => {
                                             required
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className='block w-full px-3 py-2 pl-10  border border-zinc-300 rounded-[4px] sm:text-sm placeholder:text-zinc-300'
+                                            className='input-form'
                                             placeholder='email@example.com'
                                         />
                                     </div>
@@ -56,13 +65,21 @@ const LoginPage = () => {
                                         <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
                                             <Lock className='h-5 w-5 text-zinc-300' aria-hidden='true' />
                                         </div>
+                                        <div className='absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer' onClick={handleShowPassword}>
+                                            {showPassword ? (
+                                                <EyeClosed className='h-5 w-5 text-zinc-300' aria-hidden='true' />
+                                            ) : (
+                                                <Eye className='h-5 w-5 text-zinc-300' aria-hidden='true' />
+                                            )
+                                            }
+                                        </div>
                                         <input
                                             id='password'
-                                            type='password'
+                                            type={showPassword ? "text" : "password"}
                                             required
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
-                                            className='block w-full px-3 py-2 pl-10  border border-zinc-300 rounded-[4px] sm:text-sm placeholder:text-zinc-300'
+                                            className='input-form'
                                             placeholder='••••••••'
                                         />
                                     </div>

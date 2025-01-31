@@ -14,8 +14,8 @@ const CoberturasUniversais = () => {
   const [openFilters, setOpenFilters] = useState(true);
   const [sortType, setSortType] = useState("relevant");
   const [sortedProducts, setSortedProducts] = useState(filteredProducts);
-  const [currentPage, setCurrentPage] = useState(1);  // Track current page
-  const productsPerPage = 9; // Number of products per page
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 6;
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -40,6 +40,11 @@ const CoberturasUniversais = () => {
   const handleViewProduct = (productId) => {
     navigate(`/auto/cobertura-universal/${productId}`);
   };
+
+  const handleClearFilters = (e) => {
+    e.stopPropagation();
+    setSelectedCategory("");
+  }
 
   const sortProducts = (products) => {
     let sorted = [...products];
@@ -71,7 +76,7 @@ const CoberturasUniversais = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredProducts, sortType]);
 
-  // Handle URL state changes for pagination
+  // captura do URL state para checar a paginação
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const page = queryParams.get("page");
@@ -87,7 +92,7 @@ const CoberturasUniversais = () => {
     navigate(`${location.pathname}?${queryParams.toString()}`);
   };
 
-  // Get current products to display based on pagination
+  // get dos produtos atuais para apresentar baseado na paginação
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -101,7 +106,8 @@ const CoberturasUniversais = () => {
         <meta name="description" content="Fofal - Coberturas Universais para automóveis, caravanas, autocaravanas, scooters" />
       </Helmet>
 
-      <section className="w-full bg-banner flex-center text-center text-white p-4">
+      <section className="w-full bg-banner flex-center flex-col text-center text-white p-4">
+        
         <div
           className="grid grid-cols-1 md:grid-cols-3 max-w-container gap-6 pt-60 md:pt-40 pb-10"
         >
@@ -131,7 +137,7 @@ const CoberturasUniversais = () => {
           {/* Filtros */}
           <div className="flex flex-col justify-start gap-2">
             <div className="w-full lg:max-w-60 min-w-60 md:sticky relative md:top-10">
-              <p
+              <h1
                 className="w-full my-2 text-2xl text-fofalText font-brandon-800 flex items-center cursor-pointer gap-2"
                 onClick={handleOpenFilters}
               >
@@ -143,14 +149,14 @@ const CoberturasUniversais = () => {
                   <>
                     <span
                       className="w-fit ml-auto font-brandon-400 text-sm"
-                      onClick={() => setSelectedCategory("")}
+                      onClick={handleClearFilters}
                     >
                       Limpar filtros
                     </span>
                     <X size={10} />
                   </>
                 )}
-              </p>
+              </h1>
               {openFilters && (
                 <div className="py-3 sm:block">
                   <div className="flex flex-col text-md">
@@ -190,96 +196,98 @@ const CoberturasUniversais = () => {
             </div>
 
             {loading ? (
-              <ProductGridSkeleton /> // Exibe o Skeleton durante o carregamento
+              <ProductGridSkeleton />
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_1fr_1fr] gap-0">
-                {currentProducts.length > 0 ? (
-                  currentProducts.map((product) => (
-                    <div
-                      key={product.id}
-                      className="w-full flex flex-col justify-between border rounded-lg py-8 px-4 space-y-6 hover:bg-bgCards transition-all ease-in-out duration-300 group"
-                    >
-                      {/* Conteúdo do produto */}
-                      <div className="relative">
-                        {product.isNew && (
-                          <span className="absolute top-1 left-1 z-50 text-fofalText border border-fofalText px-2 py-1 rounded text-sm pointer-events-none">
-                            Novo
-                          </span>
-                        )}
-                        <Carousel className="w-full max-w-full relative">
-                          <CarouselContent>
-                            {product.images.map((image, index) => (
-                              <CarouselItem key={index}>
-                                <img
-                                  src={image}
-                                  alt={product.title}
-                                  className="w-full h-48 object-cover"
-                                />
-                              </CarouselItem>
-                            ))}
-                          </CarouselContent>
-                          <CarouselPrevious className="absolute top-1/2 left-4" />
-                          <CarouselNext className="absolute top-1/2 right-4" />
-                        </Carousel>
-                      </div>
+              /*grid dos produtos*/
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_1fr_1fr] gap-0">
+                  {currentProducts.length > 0 ? (
+                    currentProducts.map((product) => (
+                      <div
+                        key={product.id}
+                        className="w-full flex flex-col justify-between border rounded-lg py-8 px-4 space-y-6 hover:bg-bgCards transition-all ease-in-out duration-300 group"
+                      >
+                        {/* Conteúdo do produto */}
+                        <div className="relative">
+                          {product.isNew && (
+                            <span className="absolute top-1 left-1 z-50 text-fofalText border border-fofalText px-2 py-1 rounded text-sm pointer-events-none">
+                              Novo
+                            </span>
+                          )}
+                          <Carousel className="w-full max-w-full relative">
+                            <CarouselContent>
+                              {product.images.map((image, index) => (
+                                <CarouselItem key={index}>
+                                  <img
+                                    src={image}
+                                    alt={product.title}
+                                    className="w-full h-48 object-cover"
+                                  />
+                                </CarouselItem>
+                              ))}
+                            </CarouselContent>
+                            <CarouselPrevious className="absolute top-1/2 left-4" />
+                            <CarouselNext className="absolute top-1/2 right-4" />
+                          </Carousel>
+                        </div>
 
-                      <div className="flex gap-2 mt-4 w-full justify-end">
-                        <button
-                          className="px-4 py-2 bg-bgCards group-hover:bg-white font-brandon-800 text-sm"
-                          onClick={() => handleViewProduct(product.id)}
-                        >
-                          Ver produto
-                        </button>
-                        <button
-                          className="px-4 py-2 bg-bgCards group-hover:bg-white font-brandon-800 text-sm"
-                          onClick={() => console.log("add-tocart")}
-                        >
-                          Adicionar carrinho
-                        </button>
-                      </div>
+                        <div className="flex gap-2 mt-4 w-full justify-end">
+                          <button
+                            className="px-4 py-2 bg-bgCards group-hover:bg-white font-brandon-800 text-sm"
+                            onClick={() => handleViewProduct(product.id)}
+                          >
+                            Ver produto
+                          </button>
+                          <button
+                            className="px-4 py-2 bg-bgCards group-hover:bg-white font-brandon-800 text-sm"
+                            onClick={() => console.log("add-tocart")}
+                          >
+                            Adicionar carrinho
+                          </button>
+                        </div>
 
-                      <div className="flex flex-col">
-                        <h3 className="text-lg font-bold">{product.title}</h3>
-                        <p className="text-sm font-brandon-400">
-                          Tamanho {product.size} – {product.dimensions}
+                        <div className="flex flex-col">
+                          <h3 className="text-lg font-bold">{product.title}</h3>
+                          <p className="text-sm font-brandon-400">
+                            Tamanho {product.size} – {product.dimensions}
+                          </p>
+                        </div>
+                        <p className="text-lg font-brandon-800 mt-2">
+                          {product.price && !isNaN(product.price)
+                            ? product.price.toFixed(2)
+                            : "Preço indisponível"}{" "}
+                          €
                         </p>
                       </div>
-                      <p className="text-lg font-brandon-800 mt-2">
-                        {product.price && !isNaN(product.price)
-                          ? product.price.toFixed(2)
-                          : "Preço indisponível"}{" "}
-                        €
+                    ))
+                  ) : (
+                    <div className="w-full flex flex-1 justify-center items-center">
+                      <p className="text-fofalText font-brandon-800 text-2xl">
+                        Nenhum produto encontrado
                       </p>
                     </div>
-                  ))
-                ) : (
-                  <div className="w-full flex flex-1 justify-center items-center">
-                    <p className="text-fofalText font-brandon-800 text-2xl">
-                      Nenhum produto encontrado
-                    </p>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
+                {/* Paginação */}
+                <div className="w-full flex justify-end items-center gap-4 mt-6">
+                  <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="px-4 py-2 bg-transparent text-fofalText rounded disabled:opacity-50"
+                  >
+                    Anterior
+                  </button>
+                  <span className="text-fofalText font-brandon-800">{currentPage} / {totalPages}</span>
+                  <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className="px-4 py-2 bg-transparent text-fofalText rounded disabled:opacity-50"
+                  >
+                    Próxima
+                  </button>
+                </div>
+              </>
             )}
-
-            {/* Paginação */}
-            <div className="w-full flex justify-end items-center gap-4 mt-6">
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="px-4 py-2 bg-transparent text-fofalText rounded disabled:opacity-50"
-              >
-                Anterior
-              </button>
-              <span className="text-fofalText font-brandon-800">{currentPage} / {totalPages}</span>
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="px-4 py-2 bg-transparent text-fofalText rounded disabled:opacity-50"
-              >
-                Próxima
-              </button>
-            </div>
           </div>
         </div>
       </section>

@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
+import AOS from 'aos';
 
 
 import MainLayout from './Layout/MainLayout';
@@ -18,7 +19,10 @@ import AutoCoberturasMedida from './pages/AutoCoberturasMedida';
 
 const App = () => {
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        AOS.init({
+            duration: 700,
+            easing: "ease-out-cubic",
+        });
     }, []);
 
     return (

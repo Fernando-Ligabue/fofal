@@ -1,19 +1,9 @@
-import { useEffect } from 'react';
-import AOS from 'aos';
-
-import FiltersHome from '@/components/FiltersHome';
-
-import { heroHome, sobMedidaBanner, categoriesHome, iconsHome } from '@/lib/constants';
 import { NavLink } from 'react-router-dom';
 
-const HomePage = () => {
-    useEffect(() => {
-        AOS.init({
-            duration: 700,
-            easing: "ease-out-cubic",
-        });
-    }, []);
+import { heroHome, sobMedidaBanner, categoriesHome, iconsHome } from '@/lib/constants';
+import FiltersHome from '@/components/FiltersHome';
 
+const HomePage = () => {
     return (
         <>
             {/* Hero Section */}
