@@ -121,7 +121,7 @@ const Header = () => {
                     }`}
             >
                 <div
-                    className={`flex flex-col justify-center items-center gap-14 bg-black text-white h-full p-4 transition-all duration-300 ease-in-out ${isSidebarOpen ? 'opacity-100' : 'opacity-0'
+                    className={`flex flex-col justify-center items-center gap-6 bg-black text-white h-full p-4 transition-all duration-300 ease-in-out ${isSidebarOpen ? 'opacity-100' : 'opacity-0'
                         }`}
                 >
                     <X
@@ -134,7 +134,7 @@ const Header = () => {
                             <img src={logoSvg} className='w-full max-w-52' alt="Logo FOFAL" onClick={toggleSidebar} />
                         </NavLink>
                     </div>
-                    <ul className="space-y-8 text-center">
+                    <ul className="space-y-4 text-center">
                         {navLinks.map((link, index) => (
                             <li key={index} className='font-brandon-400'>
                                 <NavLink

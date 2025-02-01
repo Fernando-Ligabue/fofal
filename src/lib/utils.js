@@ -20,6 +20,5 @@ export const fetchCountries = async () => {
     }))
     .sort((a, b) => a.label.localeCompare(b.label));
 
-  console.log(sortedCountries);
   return sortedCountries;
 };

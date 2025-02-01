@@ -1,4 +1,10 @@
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { useCobUniversal } from "@/context/CobUniversalContext";
 import { itemsAuto } from "@/lib/constants";
 import { ChevronRight, X } from "lucide-react";
@@ -44,7 +50,7 @@ const CoberturasUniversais = () => {
   const handleClearFilters = (e) => {
     e.stopPropagation();
     setSelectedCategory("");
-  }
+  };
 
   const sortProducts = (products) => {
     let sorted = [...products];
@@ -95,7 +101,10 @@ const CoberturasUniversais = () => {
   // get dos produtos atuais para apresentar baseado na paginação
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = sortedProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
 
@@ -103,14 +112,14 @@ const CoberturasUniversais = () => {
     <>
       <Helmet>
         <title>FOFAL | Coberturas Universais</title>
-        <meta name="description" content="Fofal - Coberturas Universais para automóveis, caravanas, autocaravanas, scooters" />
+        <meta
+          name="description"
+          content="Fofal - Coberturas Universais para automóveis, caravanas, autocaravanas, scooters"
+        />
       </Helmet>
 
       <section className="w-full bg-banner flex-center flex-col text-center text-white p-4">
-        
-        <div
-          className="grid grid-cols-1 md:grid-cols-3 max-w-container gap-6 pt-60 md:pt-40 pb-10"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 max-w-container gap-6 pt-60 md:pt-40 pb-10">
           {itemsAuto.map((item) => (
             <div
               className="cursor-pointer"
@@ -121,7 +130,9 @@ const CoberturasUniversais = () => {
                 <img src={item.imageUrl} className="w-full" alt={item.title} />
               </div>
               <h3
-                className={`text-2xl mt-4 ${getLinkClassNames(item.url)} text-fofalText`}
+                className={`text-2xl mt-4 ${getLinkClassNames(
+                  item.url
+                )} text-fofalText`}
               >
                 {item.title}
               </h3>
@@ -143,24 +154,32 @@ const CoberturasUniversais = () => {
               >
                 Filtros
                 <ChevronRight
-                  className={`w-5 h-5 transition-all ease-in-out duration-300 ${openFilters ? "rotate-90" : "rotate-0"}`}
+                  className={`w-5 h-5 transition-all ease-in-out duration-300 ${
+                    openFilters ? "rotate-90" : "rotate-0"
+                  }`}
                 />
-                {selectedCategory !== "" && (
-                  <>
-                    <span
-                      className="w-fit ml-auto font-brandon-400 text-sm"
-                      onClick={handleClearFilters}
-                    >
-                      Limpar filtros
-                    </span>
-                    <X size={10} />
-                  </>
-                )}
               </h1>
+              {selectedCategory !== "" && (
+                <>
+                  <span
+                    className="absolute top-4 right-0 cursor-pointer w-fit ml-auto font-brandon-400 text-sm flex flex-nowra items-center gap-2"
+                    onClick={handleClearFilters}
+                  >
+                    Limpar filtros
+                  <X size={10} />
+                  </span>
+                </>
+              )}
               {openFilters && (
                 <div className="py-3 sm:block">
                   <div className="flex flex-col text-md">
-                    {["autocaravana", "automovel", "caravana", "motociclo", "scooter"].map((category) => (
+                    {[
+                      "autocaravana",
+                      "automovel",
+                      "caravana",
+                      "motociclo",
+                      "scooter",
+                    ].map((category) => (
                       <div
                         key={category}
                         className="w-full border-t border-fofalText py-3 px-1 cursor-pointer hover:bg-zinc-300"
@@ -169,7 +188,9 @@ const CoberturasUniversais = () => {
                           className="font-brandon-400"
                           onClick={() => handleSetCategory(category)}
                         >
-                          {`Coberturas Universais ${category.charAt(0).toUpperCase() + category.slice(1)}`}
+                          {`Coberturas Universais ${
+                            category.charAt(0).toUpperCase() + category.slice(1)
+                          }`}
                         </p>
                       </div>
                     ))}
@@ -277,7 +298,9 @@ const CoberturasUniversais = () => {
                   >
                     Anterior
                   </button>
-                  <span className="text-fofalText font-brandon-800">{currentPage} / {totalPages}</span>
+                  <span className="text-fofalText font-brandon-800">
+                    {currentPage} / {totalPages}
+                  </span>
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
