@@ -103,7 +103,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className='w-full bg-gradient'>
+      <div className='w-full bg-gradient-auto'>
         <div className='w-full flex flex-col sm:flex-row justify-between items-center px-4 py-4 max-w-container mx-auto'>
           <p className='text-white font-brandon-400'>© {year} FOFAL. Todos os direitos reservados.</p>
           <p className='text-white font-brandon-400'>Desenvolvido por <a href="https://creative-minds.pt/" className='no-underline'>Creative Minds.</a></p>

@@ -86,7 +86,7 @@ const Header = () => {
 
                         {/* Botões para login e ícones de ações */}
                         <div className={`flex items-center space-x-4 ${isHome ? 'text-white' : 'text-black'}`}>
-                            <button className={`bg-transparent font-brandon-400 px-8 py-2 !border border-1 rounded-full transition-all ease-in-out duration-300 ${isHome ? 'text-white border-white hover:bg-red-600' : 'text-black border-black hover:bg-red-600 hover:text-white hover:border-white'}`}
+                            <button className={`bg-transparent font-brandon-400 px-8 py-2 border rounded-full transition-all ease-in-out duration-300 ${isHome ? 'text-white border-white btn-gradient' : 'text-black border-black btn-gradient hover:text-white hover:border-black'}`}
                             onClick={handleLoginPage}
                             >
                                 Login
@@ -98,7 +98,7 @@ const Header = () => {
                                     <User2 size={22} className={`text-current`} />
                                     <div className='relative'>
                                         <GiShoppingCart size={22} className={`text-current rotate-logo`} />
-                                        <span className='h-3 w-3 bg-gradient text-white text-[8px] rounded-full absolute top-0 left-0 flex justify-center items-center font-brandon-300'>2</span>
+                                        <span className='h-3 w-3 bg-gradient-auto text-white text-[8px] rounded-full absolute top-0 left-0 flex justify-center items-center font-brandon-300'>2</span>
                                     </div>
                                 </div>
                             )}
@@ -117,7 +117,7 @@ const Header = () => {
 
             {/* Sidebar mobile */}
             <div
-                className={`fixed inset-0 bg-black bg-opacity-70 z-50 xl:hidden transition-all duration-300 ease-in-out ${isSidebarOpen ? 'w-full' : 'w-0'
+                className={`fixed inset-0 bg-black bg-opacity-70 z-50 xl:hidden transition-all duration-300 ease-in-out ${isSidebarOpen ? 'w-full' : 'w-0 -left-10'
                     }`}
             >
                 <div

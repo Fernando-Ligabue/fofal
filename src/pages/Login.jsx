@@ -98,7 +98,7 @@ const LoginPage = () => {
               <button
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent 
-							rounded-full text-sm font-medium text-white bg-gradient max-w-96 mx-auto"
+							rounded-full text-sm font-medium text-white bg-gradient-auto max-w-96 mx-auto"
                 disabled={loading}
               >
                 {loading ? (

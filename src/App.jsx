@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import AOS from 'aos';
 
 
@@ -10,11 +11,10 @@ import Home from './pages/Home';
 import About from './pages/About';
 import AutoTapetes from './pages/AutoTapetes';
 import GlobalProvider from './context/GlobalContext';
-import CoberturaPage from './pages/CoberturaUniversal/[id]';
+import CoberturaPageUniversal from './pages/CoberturaUniversal/[id]';
 import LoginPage from './pages/Login';
-import AutoCoberturasUniversaisPage from './pages/AutoCoberturasUniversaisPage';
 import SignupPage from './pages/Signup';
-import { Helmet } from 'react-helmet';
+import AutoCoberturasUniversaisPage from './pages/AutoCoberturasUniversaisPage';
 import AutoCoberturasMedida from './pages/AutoCoberturasMedida';
 
 const App = () => {
@@ -41,7 +41,7 @@ const App = () => {
                             <Route path="/auto/tapetes" element={<AutoTapetes />} />
                             <Route path="/auto/coberturas-medida" element={<AutoCoberturasMedida />} />
                             <Route path="/auto/coberturas-universais" element={<AutoCoberturasUniversaisPage />} />
-                            <Route path="/auto/cobertura-universal/:id" element={<CoberturaPage />} />
+                            <Route path="/auto/cobertura-universal/:id" element={<CoberturaPageUniversal />} />
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/signup" element={<SignupPage />} />
                         </Routes>

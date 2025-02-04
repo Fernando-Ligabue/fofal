@@ -12,7 +12,7 @@ import {
 import { useCobUniversal } from "@/context/CobUniversalContext";
 import { Helmet } from "react-helmet";
 
-const CoberturaPage = () => {
+const CoberturaPageUniversal = () => {
   const { id } = useParams();
   const { products } = useCobUniversal();
   const [product, setProduct] = useState(null);
@@ -73,7 +73,7 @@ const CoberturaPage = () => {
             <span className="text-lg text-fofalText font-brandon-400">
               Loja
             </span>
-            <h2 className="text-3xl font-brandon-900">{product.title}</h2>
+            <h1 className="text-3xl font-brandon-900">{product.title}</h1>
             <p>{product.description}</p>
             <p className="text-lg font-brandon-800">
               {product.price.toFixed(2)} €
@@ -122,12 +122,12 @@ const CoberturaPage = () => {
               <p className="font-brandon-500 text-lg text-fofalText">
                 Quantidade
               </p>
-              <PlusCircle size={20} className="text-fofalText" />
-              <span>1</span>
               <MinusCircle size={20} className="text-fofalText" />
+              <span>1</span>
+              <PlusCircle size={20} className="text-fofalText" />
             </div>
             <div className="w-full flex-center gap-4 p-4">
-              <button className="w-full max-w-80 bg-gradient rounded-full font-brandon-500 text-base text-white py-2 px-6">
+              <button className="w-full max-w-80 bg-gradient-auto rounded-full font-brandon-500 text-base text-white py-2 px-6">
                 Adicionar ao carrinho - {product.price.toFixed(2)} €
               </button>
             </div>
@@ -138,4 +138,4 @@ const CoberturaPage = () => {
   );
 };
 
-export default CoberturaPage;
+export default CoberturaPageUniversal;

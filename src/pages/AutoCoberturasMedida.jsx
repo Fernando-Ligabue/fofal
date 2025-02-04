@@ -2,6 +2,8 @@ import { itemsAuto } from "@/lib/constants";
 import { Helmet } from "react-helmet";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import CoberturaMedida from "@/components/CoberturaMedida";
+
 const AutoCoberturasMedida = () => {
   const navigate = useNavigate();
 
@@ -45,7 +47,7 @@ const AutoCoberturasMedida = () => {
 
       <section className="w-full flex-center p-4">
         <div className="w-full max-w-container mx-auto p-4">
-          O CONTEUDO DAS COBERTURAS  MEDIDA  VAI AQUI
+          <CoberturaMedida />
         </div>
       </section>
     </>

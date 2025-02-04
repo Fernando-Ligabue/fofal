@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import { userData } from "@/lib/mock"; // Simula a chamada da API
 import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -7,21 +6,21 @@ import axios from "axios";
 const UserContext = createContext();
 
 export function UserContextProvider({ children }) {
-  const [user, setUser] = useState(userData);
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+  const [user, setUser] = useState('');
   const [loading, setLoading] = useState(false);
 
   const login = async (email, password) => {
     setLoading(true);
 
     try {
-      const res = await axios.post("/auth/login", { email, password });
-
+      const res = await axios.post(`${baseUrl}/auth/login`, { email, password });
       setUser(res.data.user);
-      res.status === 200 && toast.success("Login bem-sucedido!");
+      toast.success("Login bem-sucedido!");
     } catch (error) {
       toast.error(
         error.response?.data?.message ||
-          "Utilizador ou palavra-passe incorreta. por favor tente nvamente."
+        "Utilizador ou palavra-passe incorreta. por favor tente nvamente."
       );
     } finally {
       setLoading(false);
@@ -29,41 +28,43 @@ export function UserContextProvider({ children }) {
   };
 
   const signup = async (
-    primeiro_nome,
-    ultimo_nome,
+    first_name,
+    last_name,
     email,
     password,
-    data_nascimento,
-    politica_privacidade,
-    empresa,
-    pais,
-    morada,
-    codigo_postal,
-    cidade,
-    distrito,
-    telefone,
-    nif
+    birthDate,
+    company,
+    country,
+    address,
+    zipCode,
+    city,
+    district,
+    phone,
+    nif,
+    privacyPolicy,
   ) => {
     setLoading(true);
 
+    console.log(first_name, last_name, email, password, birthDate, company, country, address, zipCode, city, district, phone, nif, privacyPolicy);  
+
     try {
-      const res = await axios.post("/auth/signup", {
-        primeiro_nome,
-        ultimo_nome,
+      const res = await axios.post(`${baseUrl}/auth/register`, {
+        first_name,
+        last_name,
         email,
         password,
-        data_nascimento,
-        politica_privacidade,
-        empresa,
-        pais,
-        morada,
-        codigo_postal,
-        cidade,
-        distrito,
-        telefone,
+        birthDate,
+        company,
+        country,
+        address,
+        zipCode,
+        city,
+        district,
+        phone,
         nif,
+        privacyPolicy,
       });
-      res.status === 201 && setUser(res.data.user);
+      setUser(res.data.user);
       toast.success("Registo efetuado com sucesso, redirecionando para a página de login!");
     } catch (error) {
       toast.error(error.response?.data?.message || "Ocorreu um erro");

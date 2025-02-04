@@ -22,28 +22,31 @@ import {
 import SelectCountry from "@/components/SelectCountry";
 import InputForm from "@/components/InputForm";
 import toast from "react-hot-toast";
+
+import { fetchAPI } from "@/lib/utils";
 const SignupPage = () => {
   const { signup, loading } = useUser();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    console.log(fetchAPI())
   }, []);
 
   const [formData, setFormData] = useState({
-    primeiro_nome: "",
-    ultimo_nome: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
-    data_nascimento: "",
-    empresa: "",
-    pais: "",
-    morada: "",
-    codigo_postal: "",
-    cidade: "",
-    distrito: "",
-    telefone: "",
+    birthDate: "",
+    company: "",
+    country: "",
+    address: "",
+    zipCode: "",
+    city: "",
+    district: "",
+    phone: "",
     nif: "",
-    politica_privacidade: false,
+    privacyPolicy: false,
   });
 
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -59,18 +62,18 @@ const SignupPage = () => {
 
   const codigoPostalRegex = /^\d{4}-\d{3}$/;
 
-  const telefoneRegex = /^\d+$/;
+  const phoneRegex = /^\d+$/;
   const nifRegex = /^\d+$/;
 
   const validateFormRegister = () => {
-    if (!formData.primeiro_nome.trim() || formData.primeiro_nome.length < 5) {
+    if (!formData.first_name.trim() || formData.first_name.length < 5) {
       toast.error(
         "Por favor, insira o primeiro nome, deve conter ao menos 5 caracteres."
       );
       return false;
     }
 
-    if (!formData.ultimo_nome.trim() || formData.ultimo_nome.length < 5) {
+    if (!formData.last_name.trim() || formData.last_name.length < 5) {
       toast.error(
         "Por favor, insira o último nome, deve conter ao menos 5 caracteres."
       );
@@ -100,26 +103,26 @@ const SignupPage = () => {
       return false;
     }
 
-    if (!formData.data_nascimento || formData.data_nascimento.trim() === "") {
+    if (!formData.birthDate || formData.birthDate.trim() === "") {
       toast.error("Por favor, insira a data de nascimento.");
       return false;
     }
 
-    if (!formData.pais) {
+    if (!formData.country) {
       toast.error("Por favor, selecione o país.");
       return false;
     }
 
-    if (!formData.morada || formData.morada.length < 5) {
+    if (!formData.address || formData.address.length < 5) {
       toast.error(
-        "Por favor, preencha a morada, deve conter ao menos 5 caracteres."
+        "Por favor, preencha a address, deve conter ao menos 5 caracteres."
       );
       return false;
     }
 
     if (
-      !formData.codigo_postal ||
-      !codigoPostalRegex.test(formData.codigo_postal)
+      !formData.zipCode ||
+      !codigoPostalRegex.test(formData.zipCode)
     ) {
       toast.error(
         "Por favor, insira um código postal válido (formato: 0000-000)."
@@ -127,28 +130,28 @@ const SignupPage = () => {
       return false;
     }
 
-    if (!formData.cidade || formData.cidade.length < 3) {
+    if (!formData.city || formData.city.length < 3) {
       toast.error(
-        "Por favor, preencha a cidade, deve conter ao menos 3 caracteres."
+        "Por favor, preencha a city, deve conter ao menos 3 caracteres."
       );
       return false;
     }
 
-    if (!formData.distrito || formData.distrito.length < 3) {
+    if (!formData.district || formData.district.length < 3) {
       toast.error(
-        "Por favor, preencha o distrito, deve conter ao menos 3 caracteres."
+        "Por favor, preencha o district, deve conter ao menos 3 caracteres."
       );
       return false;
     }
 
     if (
-      !formData.telefone ||
-      formData.telefone.length < 9 ||
-      formData.telefone.length > 13 ||
-      !telefoneRegex.test(formData.telefone)
+      !formData.phone ||
+      formData.phone.length < 9 ||
+      formData.phone.length > 13 ||
+      !phoneRegex.test(formData.phone)
     ) {
       toast.error(
-        "Por favor, insira um número de telefone válido, entre 9 e 13 dígitos."
+        "Por favor, insira um número de phone válido, entre 9 e 13 dígitos."
       );
       return false;
     }
@@ -165,9 +168,9 @@ const SignupPage = () => {
       return false;
     }
 
-    if (!formData.politica_privacidade) {
+    if (!formData.privacyPolicy) {
       toast.error(
-        "Para efetuar o registo, você deve aceitar a nossa Política de Privacidade e Cookies."
+        "Para efetuar o registo, você deve aceitar a nossa Política de Privacity e Cookies."
       );
       return false;
     }
@@ -186,20 +189,20 @@ const SignupPage = () => {
     signup(formData);
 
     setFormData({
-      primeiro_nome: "",
-      ultimo_nome: "",
+      first_name: "",
+      last_name: "",
       email: "",
       password: "",
-      data_nascimento: "",
-      empresa: "",
-      pais: "",
-      morada: "",
-      codigo_postal: "",
-      cidade: "",
-      distrito: "",
-      telefone: "",
+      birthDate: "",
+      company: "",
+      country: "",
+      address: "",
+      zipCode: "",
+      city: "",
+      district: "",
+      phone: "",
       nif: "",
-      politica_privacidade: false,
+      privacyPolicy: false,
     });
     setConfirmPassword("");
   };
@@ -227,13 +230,13 @@ const SignupPage = () => {
               <div className="space-y-4">
                 <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
                   <InputForm
-                    id="primeiro_nome"
+                    id="first_name"
                     type="text"
-                    value={formData.primeiro_nome}
+                    value={formData.first_name}
                     onChange={(e) =>
                       setFormData({
                         ...formData,
-                        primeiro_nome: e.target.value,
+                        first_name: e.target.value,
                       })
                     }
                     label="Primeiro Nome"
@@ -241,11 +244,11 @@ const SignupPage = () => {
                     icon={User2}
                   />
                   <InputForm
-                    id="ultimo_nome"
+                    id="last_name"
                     type="text"
-                    value={formData.ultimo_nome}
+                    value={formData.last_name}
                     onChange={(e) =>
-                      setFormData({ ...formData, ultimo_nome: e.target.value })
+                      setFormData({ ...formData, last_name: e.target.value })
                     }
                     label="Último Nome"
                     placeholder="Doe"
@@ -294,13 +297,13 @@ const SignupPage = () => {
                 </div>
 
                 <InputForm
-                  id="data_nascimento"
+                  id="birthDate"
                   type="date"
-                  value={formData.data_nascimento}
+                  value={formData.birthDate}
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      data_nascimento: e.target.value,
+                      birthDate: e.target.value,
                     })
                   }
                   label="Data de Nascimento"
@@ -309,11 +312,11 @@ const SignupPage = () => {
 
                 <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
                   <InputForm
-                    id="empresa"
+                    id="company"
                     type="text"
-                    value={formData.empresa}
+                    value={formData.company}
                     onChange={(e) =>
-                      setFormData({ ...formData, empresa: e.target.value })
+                      setFormData({ ...formData, company: e.target.value })
                     }
                     label="Empresa"
                     placeholder="Empresa xyz"
@@ -331,12 +334,12 @@ const SignupPage = () => {
                         />
                       </div>
                       <SelectCountry
-                        id="pais"
-                        value={formData.pais}
+                        id="country"
+                        value={formData.country}
                         onChange={(selectedCountry) => {
                           setFormData({
                             ...formData,
-                            pais: selectedCountry,
+                            country: selectedCountry,
                           });
                         }}
                       />
@@ -346,25 +349,25 @@ const SignupPage = () => {
 
                 <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
                   <InputForm
-                    id="morada"
+                    id="address"
                     type="text"
-                    value={formData.morada}
+                    value={formData.address}
                     onChange={(e) =>
-                      setFormData({ ...formData, morada: e.target.value })
+                      setFormData({ ...formData, address: e.target.value })
                     }
-                    label="Morada"
+                    label="Endereço"
                     placeholder="Rua, Av, etc"
                     icon={MapPinHouse}
                   />
                   <div className="flex-1">
                     <InputForm
-                      id="codigo_postal"
+                      id="zipCode"
                       type="text"
-                      value={formData.codigo_postal}
+                      value={formData.zipCode}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          codigo_postal: e.target.value,
+                          zipCode: e.target.value,
                         })
                       }
                       label="Código Postal"
@@ -376,11 +379,11 @@ const SignupPage = () => {
 
                 <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
                   <InputForm
-                    id="cidade"
+                    id="city"
                     type="text"
-                    value={formData.cidade}
+                    value={formData.city}
                     onChange={(e) =>
-                      setFormData({ ...formData, cidade: e.target.value })
+                      setFormData({ ...formData, city: e.target.value })
                     }
                     label="Cidade"
                     placeholder="Sua cidade"
@@ -388,13 +391,13 @@ const SignupPage = () => {
                   />
                   <div className="flex-1">
                     <InputForm
-                      id="distrito"
+                      id="district"
                       type="text"
-                      value={formData.distrito}
+                      value={formData.district}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          distrito: e.target.value,
+                          district: e.target.value,
                         })
                       }
                       label="Distrito"
@@ -406,14 +409,14 @@ const SignupPage = () => {
 
                 <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
                   <InputForm
-                    id="telefone"
+                    id="phone"
                     type="text"
-                    value={formData.telefone}
+                    value={formData.phone}
                     onChange={(e) =>
-                      setFormData({ ...formData, telefone: e.target.value })
+                      setFormData({ ...formData, phone: e.target.value })
                     }
                     label="Telefone"
-                    placeholder="Seu telefone"
+                    placeholder="+351 999 999 999"
                     icon={Phone}
                   />
                   <div className="flex-1">
@@ -436,18 +439,18 @@ const SignupPage = () => {
 
                 <div className="flex justify-start items-center gap-2">
                   <InputForm
-                    id="politica_privacidade"
+                    id="privacyPolicy"
                     type="checkbox"
-                    checked={formData.politica_privacidade}
+                    checked={formData.privacyPolicy}
                     onChange={(e) => {
                       setFormData({
                         ...formData,
-                        politica_privacidade: e.target.checked,
+                        privacyPolicy: e.target.checked,
                       });
                     }}
                   />
                   <span className="block text-sm font-brandon-500 text-zinc-400">
-                    Li e compreendi a politica de privacidade e cookies
+                    Li e compreendi a Política de Privacidade e Cookies
                   </span>
                 </div>
               </div>
@@ -455,7 +458,7 @@ const SignupPage = () => {
               <button
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent 
-                    rounded-full text-sm font-medium text-white bg-gradient max-w-96 mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                    rounded-full text-sm font-medium text-white bg-gradient-auto max-w-96 mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={loading}
               >
                 {loading ? (

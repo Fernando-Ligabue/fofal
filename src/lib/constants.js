@@ -59,7 +59,7 @@ export const navLinks = [
 export const categoriesHome = [
     {
         id: 1,
-        href: "/auto",
+        href: "/auto/tapetes",
         label: "Automóvel",
         imageUrl: auto,
         description: "Lorem ipsum dolor sit amet,consectetuer adipiscing elit lorem "

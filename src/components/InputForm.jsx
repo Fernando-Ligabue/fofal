@@ -32,7 +32,7 @@ const InputForm = ({
           type={type === "password" && showPassword ? "text" : type}
           value={value}
           onChange={onChange}
-          className="input-form w-full"
+          className="input-form w-full cursor-pointer"
           placeholder={placeholder}
           autoComplete={autocomplete}
         />
