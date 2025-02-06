@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { MinusCircle, PlusCircle } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -14,15 +13,13 @@ import { useProducts } from "@/context/ProductsContext";
 import shipping from "/images/home/shipping.svg";
 import safeOrder from "/images/home/safe-order.svg";
 import specialists from "/images/home/specialists.svg";
-import { useCart } from "@/context/CartContext";
+import QuantitySelector from "@/components/QuantitySelector";
 
 const AlcatifaEventosPage = () => {
   const { id } = useParams();
   const { products } = useProducts();
-  const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
   const [activeTab, setActiveTab] = useState("visao-geral");
-  const [quantity, setQuantity] = useState(1);
 
   const navigate = useNavigate();
 
@@ -40,23 +37,6 @@ const AlcatifaEventosPage = () => {
 
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [id, products]);
-
-  const handleIncreaseQuantity = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
-  };
-
-  const handleDecreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity((prevQuantity) => prevQuantity - 1);
-    }
-  };
-
-  const handleAddToCart = () => {
-    if (product) {
-      const productWithQuantity = { ...product, quantity };
-      addToCart(productWithQuantity);
-    }
-  };
 
   if (!product) {
     return (
@@ -158,31 +138,7 @@ const AlcatifaEventosPage = () => {
                     </div>
                   </div>
 
-                  <div className="w-full flex justify-start items-center gap-4 text-lg text-fofalText border-t border-fofalText py-4">
-                    <p className="font-brandon-800 text-lg text-fofalText">
-                      Quantidade
-                    </p>
-                    <MinusCircle
-                      size={20}
-                      className={`text-fofalText cursor-pointer ${quantity === 1 ? "cursor-not-allowed opacity-50" : ""}`}
-                      onClick={handleDecreaseQuantity}
-                    />
-                    <span className="text-fofalText font-brandon-500 text-base">{quantity}</span>
-                    <PlusCircle
-                      size={20}
-                      className="text-fofalText cursor-pointer"
-                      onClick={handleIncreaseQuantity}
-                    />
-                  </div>
-
-                  <div className="w-full flex-center gap-4 p-4">
-                    <button
-                      className="w-full max-w-80 bg-gradient-comInd border-2 border-black rounded-full font-brandon-500 text-base text-white py-2 px-6"
-                      onClick={handleAddToCart}
-                    >
-                      Adicionar ao carrinho
-                    </button>
-                  </div>
+                  <QuantitySelector product={product} />
                 </div>
               )}
               {activeTab === "caracteristicas" && (

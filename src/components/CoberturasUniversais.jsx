@@ -7,9 +7,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ProductGridSkeleton from "./ProductGridSkeleton";
 import SortSelect from "./SortSelect";
 import CardProduct from "./CardProduct";
+import { useCart } from "@/context/CartContext";
 
 const CoberturasUniversais = () => {
   const { filteredProducts, loading, filterProducts, changeProductType } = useProducts();
+   const { addToCart } = useCart();
   const [selectedCategory, setSelectedCategory] = useState("");
   const [openFilters, setOpenFilters] = useState(true);
   const [sortType, setSortType] = useState("relevant");
@@ -101,6 +103,10 @@ const CoberturasUniversais = () => {
 
   const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
 
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
+  
   return (
     <>
       <section className="w-full h-2 bg-bgCards"></section>
@@ -166,7 +172,7 @@ const CoberturasUniversais = () => {
                       key={product.id}
                       product={product}
                       onViewProduct={handleViewProduct}
-                      onAddToCart={() => console.log("add-tocart")}
+                      onAddToCart={handleAddToCart}
                     />
                   ))
                 ) : (

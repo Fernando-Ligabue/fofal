@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { MinusCircle, PlusCircle } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -11,6 +10,7 @@ import {
 
 import { useProducts } from "@/context/ProductsContext";
 import { Helmet } from "react-helmet";
+import QuantitySelector from "@/components/QuantitySelector";
 
 const CoberturaPageUniversal = () => {
   const { id } = useParams();
@@ -127,19 +127,7 @@ const CoberturaPageUniversal = () => {
                 </div>
               )}
             </div>
-            <div className="w-full flex justify-start items-center gap-4">
-              <p className="font-brandon-500 text-lg text-fofalText">
-                Quantidade
-              </p>
-              <MinusCircle size={20} className="text-fofalText" />
-              <span>1</span>
-              <PlusCircle size={20} className="text-fofalText" />
-            </div>
-            <div className="w-full flex-center gap-4 p-4">
-              <button className="w-full max-w-80 bg-gradient-auto rounded-full font-brandon-500 text-base text-white py-2 px-6">
-                Adicionar ao carrinho - {product.price.toFixed(2)} €
-              </button>
-            </div>
+            <QuantitySelector product={product} />
           </div>
         </div>
       </section>

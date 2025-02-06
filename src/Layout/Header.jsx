@@ -91,7 +91,7 @@ const Header = () => {
                                 {user && (<Search size={22} className={`text-current`} />)}
                                 {user && (<Heart size={22} className={`text-current`} />)}
                                 {user && (<User2 size={22} className={`text-current`} />)}
-                                <div className='relative'>
+                                <div className='relative cursor-pointer' onClick={() => navigate('/cart')}>
                                     <GiShoppingCart size={22} className={`text-current rotate-logo`} />
                                     <span className='h-3 w-3 bg-gradient-auto text-white text-[8px] rounded-full absolute top-0 left-0 flex justify-center items-center font-brandon-300'>{cartCountItems()}</span>
                                 </div>

@@ -35,6 +35,7 @@ const SignupPage = () => {
     last_name: "",
     email: "",
     password: "",
+    password_confirmation: "",
     birthDate: "",
     company: "",
     country: "",
@@ -184,13 +185,19 @@ const SignupPage = () => {
       return;
     }
 
-    signup(formData);
+    const formDataWithConfirmation = {
+      ...formData,
+      password_confirmation: confirmPassword,
+    };
+
+    signup(formDataWithConfirmation);
 
     setFormData({
       first_name: "",
       last_name: "",
       email: "",
       password: "",
+      password_confirmation: "",
       birthDate: "",
       company: "",
       country: "",
@@ -282,7 +289,7 @@ const SignupPage = () => {
                     toggleShowPassword={handleShowPassword}
                   />
                   <InputForm
-                    id="confirm-password"
+                    id="password_confirmation"
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}

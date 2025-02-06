@@ -2,7 +2,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const products = [];
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
@@ -59,22 +58,11 @@ export function CartProvider({ children }) {
 
 
     const getCartAmount = () => {
-        let totalAmount = 0;
-
-        for(const items in cartItems) {
-            let itemInfo = products.find((product) => product._id === items);
-            for(const item in cartItems[items]) {
-                try {
-                    if(cartItems[items][item] > 0) {
-                        totalAmount += itemInfo.price * cartItems[items][item];
-                    }
-                } catch (error) {
-                    console.error(error);
-                }
-            }
-        }
-        return totalAmount;
-    }
+        return cart.reduce((totalAmount, item) => {
+            const itemTotal = item.price * item.quantity;
+            return totalAmount + itemTotal;
+        }, 0);
+    };
 
     return (
         <CartContext.Provider value={{ cart, addToCart, updateCart, removeFromCart, cartCountItems, updateCartItems, getCartAmount }}>

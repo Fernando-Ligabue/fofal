@@ -20,6 +20,7 @@ import TapetesEvents from './pages/TapetesEvents';
 import TapetesEntrance from './pages/TapetesEntrance';
 import TapetesOffice from './pages/TapetesOffice';
 import AlcatifaEventosPage from './pages/AlcatifaEventos/[id]';
+import CartPage from './pages/Cart';
 
 const App = () => {
     useEffect(() => {
@@ -52,6 +53,7 @@ const App = () => {
                             <Route path="/comercio-industria/alcatifas-eventos/:id" element={<AlcatifaEventosPage />} />
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/signup" element={<SignupPage />} />
+                            <Route path="/cart" element={<CartPage />} />
                         </Routes>
                     </MainLayout>
                 </BrowserRouter>
