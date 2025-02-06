@@ -10,9 +10,11 @@ import logoComInd from '/logo-comind.svg';
 import logoNautico from '/logo-nautico.svg';
 import logoCasa from '/logo-casa.svg';
 import { useUser } from '@/context/UserContext';
+import { useCart } from '@/context/CartContext';
 
 const Header = () => {
     const { user } = useUser();
+    const { cartCountItems } = useCart();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
@@ -26,26 +28,25 @@ const Header = () => {
     const getLinkClassNames = (path) => {
         const pathPrefix = path.substring(0, 4);
         const pathnamePrefix = location.pathname.substring(0, 4);
-      
+
         return pathnamePrefix === pathPrefix
-          ? `mx-2 font-brandon-800 cursor-pointer underline ${isHome ? 'text-white' : 'text-black'}`
-          : `mx-2 cursor-pointer ${isHome ? 'text-white' : 'text-black'}`;
-      };
+            ? `mx-2 font-brandon-800 cursor-pointer underline ${isHome ? 'text-white' : 'text-black'}`
+            : `mx-2 cursor-pointer ${isHome ? 'text-white' : 'text-black'}`;
+    };
 
     const getLogoSrc = () => {
-        switch (location.pathname) {
-            case '/auto':
-                return logoAuto;
-            case '/com-ind':
-                return logoComInd;
-            case '/nautica':
-                return logoNautico;
-            case '/aviation':
-                return logoNautico;
-            case '/house':
-                return logoCasa;
-            default:
-                return logoSvg;
+        if (location.pathname.includes('/auto')) {
+            return logoAuto;
+        } else if (location.pathname.includes('/comercio-industria')) {
+            return logoComInd;
+        } else if (location.pathname.includes('/nautica')) {
+            return logoNautico;
+        } else if (location.pathname.includes('/aviation')) {
+            return logoNautico;
+        } else if (location.pathname.includes('/house')) {
+            return logoCasa;
+        } else {
+            return logoSvg;
         }
     };
 
@@ -86,23 +87,22 @@ const Header = () => {
 
                         {/* Botões para login e ícones de ações */}
                         <div className={`flex items-center space-x-4 ${isHome ? 'text-white' : 'text-black'}`}>
-                            <button className={`bg-transparent font-brandon-400 px-8 py-2 border rounded-full transition-all ease-in-out duration-300 ${isHome ? 'text-white border-white btn-gradient' : 'text-black border-black btn-gradient hover:text-white hover:border-black'}`}
-                            onClick={handleLoginPage}
-                            >
-                                Login
-                            </button>
-                            {user && (
-                                <div className={`flex space-x-2 ${isHome ? 'text-white' : 'text-black'}`}>
-                                    <Search size={22} className={`text-current`} />
-                                    <Heart size={22} className={`text-current`} />
-                                    <User2 size={22} className={`text-current`} />
-                                    <div className='relative'>
-                                        <GiShoppingCart size={22} className={`text-current rotate-logo`} />
-                                        <span className='h-3 w-3 bg-gradient-auto text-white text-[8px] rounded-full absolute top-0 left-0 flex justify-center items-center font-brandon-300'>2</span>
-                                    </div>
+                            <div className={`flex space-x-2 ${isHome ? 'text-white' : 'text-black'}`}>
+                                {user && (<Search size={22} className={`text-current`} />)}
+                                {user && (<Heart size={22} className={`text-current`} />)}
+                                {user && (<User2 size={22} className={`text-current`} />)}
+                                <div className='relative'>
+                                    <GiShoppingCart size={22} className={`text-current rotate-logo`} />
+                                    <span className='h-3 w-3 bg-gradient-auto text-white text-[8px] rounded-full absolute top-0 left-0 flex justify-center items-center font-brandon-300'>{cartCountItems()}</span>
                                 </div>
-                            )}
-
+                            </div>
+                            {!user &&
+                                <button className={`bg-transparent font-brandon-400 px-8 py-2 border rounded-full transition-all ease-in-out duration-300 ${isHome ? 'text-white border-white btn-gradient' : 'text-black border-black btn-gradient hover:text-white hover:border-black'}`}
+                                    onClick={handleLoginPage}
+                                >
+                                    Login
+                                </button>
+                            }
                         </div>
                     </div>
                     <div className={`xl:hidden flex items-center mt-4 md:mt-0 ${isHome ? 'text-white' : 'text-black'}`}>

@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import { CobUniversalProvider } from './CobUniversalContext'; // Importe outros contextos aqui se necessário
 import { createContext } from 'react';
 import { UserContextProvider } from './UserContext';
+import { ProductsProvider } from './ProductsContext';
+import { CartProvider } from './CartContext';
 
 const GlobalContext = createContext();
 
@@ -9,9 +10,11 @@ const GlobalProvider = ({ children }) => {
     return (
         <GlobalContext.Provider value={{}}>
             <UserContextProvider>
-                <CobUniversalProvider>
-                    {children}
-                </CobUniversalProvider>
+                <ProductsProvider>
+                    <CartProvider>
+                        {children}
+                    </CartProvider>
+                </ProductsProvider>
             </UserContextProvider>
         </GlobalContext.Provider>
     );

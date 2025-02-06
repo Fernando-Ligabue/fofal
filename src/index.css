@@ -86,3 +86,7 @@
 .input-form{
   @apply block w-full px-3 py-2 pl-10  border border-zinc-300 rounded-[4px] sm:text-sm placeholder:text-zinc-300
 }
+
+.bg-gradient-comInd {
+  background: linear-gradient(90deg, #000000 2.34%, #F1F1F1 100%);
+}

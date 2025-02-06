@@ -1,8 +1,9 @@
-import { itemsAuto } from "@/lib/constants";
-import { Helmet } from "react-helmet";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from 'react-helmet';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const Automovel = () => {
+import { itemsComInd } from '@/lib/constants';
+
+const TapetesEntrance = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -14,15 +15,15 @@ const Automovel = () => {
   return (
     <>
       <Helmet>
-        <title>FOFAL | Automóvel</title>
-        <meta name="description" content="Fofal | Tapetes e coberturas para seu automóvel" />
+        <title>FOFAL | Comércio e Indústria</title>
+        <meta name="description" content="Fofal | Tapetes de entrada" />
       </Helmet>
 
       <section className="w-full bg-banner flex-center text-center text-white p-4">
         <div
           className="grid grid-cols-1 md:grid-cols-3 max-w-container gap-6 pt-60 md:pt-40 pb-10"
         >
-          {itemsAuto.map((item) => (
+          {itemsComInd.map((item) => (
             <div
               className="cursor-pointer w-full min-h-52"
               key={item.id}
@@ -45,11 +46,11 @@ const Automovel = () => {
 
       <section className="w-full flex-center p-4">
         <div className="w-full max-w-container mx-auto p-4">
-          O CONTEUDO DOS TAPETES VAI AQUI
+          O CONTEUDO DOS TAPETES ENTRADA VAI AQUI
         </div>
       </section>
     </>
   );
-};
+}
 
-export default Automovel;
+export default TapetesEntrance

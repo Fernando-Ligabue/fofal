@@ -2,12 +2,13 @@ import { createContext, useContext, useState } from "react";
 import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { userData } from "@/lib/mock";
 
 const UserContext = createContext();
 
 export function UserContextProvider({ children }) {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState(userData || null);
   const [loading, setLoading] = useState(false);
 
   const login = async (email, password) => {

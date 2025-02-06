@@ -159,3 +159,54 @@ export const coberturasData = [
       isNew: true
     },
   ];
+
+export const alcatifasData = [
+    {
+      id: "1",
+      title: "Alcatifa Holmes",
+      category: "curta duração",
+      description: "Composição – 100% Polipropileno",
+      size: "Apenas se vendem a rolo fechado",
+      dimensions: "540 x 205 x 250",
+      aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
+      price: 30.31,
+      images:[
+        'https://dummyjson.com/image/300x200' ,
+        'https://dummyjson.com/image/300x200' ,
+        'https://dummyjson.com/image/300x200' ,
+      ],
+      isNew: true
+    },
+    {
+      id: "2",
+      title: "Alcatifa Pt",
+      category: "longa duração",
+      description: "Composição – 100% Polipropileno",
+      size: "Apenas se vendem a rolo fechado",
+      dimensions: "540 x 205 x 250",
+      aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
+      price: 27.671,
+      images:[
+        'https://dummyjson.com/image/300x200' ,
+        'https://dummyjson.com/image/300x200' ,
+        'https://dummyjson.com/image/300x200' ,
+      ],
+      isNew: true
+    },
+    {
+      id: "3",
+      title: "Alcatifa Spring",
+      category: "média duração",
+      description: "Composição – 100% Polipropileno",
+      size: "Apenas se vendem a rolo fechado",
+      dimensions: "540 x 205 x 250",
+      aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
+      price: 66.06,
+      images:[
+        'https://dummyjson.com/image/300x200' ,
+        'https://dummyjson.com/image/300x200' ,
+        'https://dummyjson.com/image/300x200' ,
+      ],
+      isNew: true
+    },
+  ];

@@ -16,6 +16,10 @@ import LoginPage from './pages/Login';
 import SignupPage from './pages/Signup';
 import AutoCoberturasUniversaisPage from './pages/AutoCoberturasUniversaisPage';
 import AutoCoberturasMedida from './pages/AutoCoberturasMedida';
+import TapetesEvents from './pages/TapetesEvents';
+import TapetesEntrance from './pages/TapetesEntrance';
+import TapetesOffice from './pages/TapetesOffice';
+import AlcatifaEventosPage from './pages/AlcatifaEventos/[id]';
 
 const App = () => {
     useEffect(() => {
@@ -42,6 +46,10 @@ const App = () => {
                             <Route path="/auto/coberturas-medida" element={<AutoCoberturasMedida />} />
                             <Route path="/auto/coberturas-universais" element={<AutoCoberturasUniversaisPage />} />
                             <Route path="/auto/cobertura-universal/:id" element={<CoberturaPageUniversal />} />
+                            <Route path="/comercio-industria/alcatifas-eventos" element={<TapetesEvents />} />
+                            <Route path="/comercio-industria/tapetes-entrada" element={<TapetesEntrance />} />
+                            <Route path="/comercio-industria/tapetes-escritorio" element={<TapetesOffice />} />
+                            <Route path="/comercio-industria/alcatifas-eventos/:id" element={<AlcatifaEventosPage />} />
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/signup" element={<SignupPage />} />
                         </Routes>

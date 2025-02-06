@@ -6,8 +6,7 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
-
-// 
+// functions auxiliares e de fetch dos dados de endpoints
 export const fetchCountries = async () => {
   const res = await axios.get('https://restcountries.com/v3.1/all');
   const data = await res.data;
@@ -21,14 +20,4 @@ export const fetchCountries = async () => {
     .sort((a, b) => a.label.localeCompare(b.label));
 
   return sortedCountries;
-};
-
-
-export const fetchAPI = async () => {
-  try {
-    const res = await axios.get('http://fofallaravel.clientes.space/api/teste');
-    console.log(res.data);
-  } catch (error) {
-    console.error("Erro ao fazer a requisição:", error);
-  }
 };

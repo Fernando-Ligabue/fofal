@@ -23,13 +23,11 @@ import SelectCountry from "@/components/SelectCountry";
 import InputForm from "@/components/InputForm";
 import toast from "react-hot-toast";
 
-import { fetchAPI } from "@/lib/utils";
 const SignupPage = () => {
   const { signup, loading } = useUser();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    console.log(fetchAPI())
   }, []);
 
   const [formData, setFormData] = useState({

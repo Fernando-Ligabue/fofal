@@ -3,10 +3,11 @@ import { Helmet } from "react-helmet";
 import { ChevronRight, MinusCircle, PlusCircle } from "lucide-react";
 
 
-import shipping from "/imagens/home/shipping.svg";
-import safeOrder from "/imagens/home/safe-order.svg";
-import specialists from "/imagens/home/specialists.svg";
-import cover from "/imagens/auto/cover-medida.webp";
+import shipping from "/images/home/shipping.svg";
+import safeOrder from "/images/home/safe-order.svg";
+import specialists from "/images/home/specialists.svg";
+import cover from "/images/auto/cover-medida.webp";
+import ColorSelector from "./ColorSelector";
 
 
 
@@ -47,10 +48,16 @@ const CoberturaMedida = () => {
 
       <section className="w-full h-full p-4">
         <div className="max-w-container h-full md:min-h-[70vh] mx-auto pt-40 sm:p-4 flex flex-col lg:flex-row justify-between items-stretch gap-10">
-          <div className="w-full flex flex-col justify-center items-center lg:max-w-[60%] bg-bgCards">
+          <div className="relative w-full flex flex-col justify-center items-center lg:max-w-[60%] bg-bgCards">
             <img src={cover} alt="FOFAL - COberturas à medida" />
+            <div className="absolute right-3">
+              <ColorSelector />
+            </div>
           </div>
           <div className="w-full lg:max-w-[40%] flex flex-col justify-start items-start space-y-6 lg:px-4">
+            <span className="text-lg text-fofalText font-brandon-400 mb-10">
+              Loja
+            </span>
             <h1 className="font-brandon-800 text-4xl sm:text-5xl text-fofalText text-left">
               Coberturas Auto
               <br />
@@ -106,9 +113,9 @@ const CoberturaMedida = () => {
                   </div>
 
                   <form onSubmit={handleSubmit}>
-                    <div className="pb-2">
+                    <div className="pb-1">
                       <p
-                        className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4"
+                        className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
                         onClick={() => setOpenCover(!openCover)}
                       >
                         <span className="font-brandon-800">Cobertura</span>
@@ -144,9 +151,9 @@ const CoberturaMedida = () => {
                     </div>
 
                     {interiorChecked && (
-                      <div>
+                      <div className="pb-1">
                         <p
-                          className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4"
+                          className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
                           onClick={() => setOpenCoverInt(!openCoverInt)}
                         >
                           <span className="font-brandon-800">Coberturas de interior</span>
@@ -170,9 +177,9 @@ const CoberturaMedida = () => {
                       </div>
                     )}
 
-                    <div className="pb-2">
+                    <div className="pb-1">
                       <p
-                        className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4"
+                        className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
                         onClick={() => setOpenBrand(!openBrand)}
                       >
                         <span className="font-brandon-800">Marca</span>
@@ -191,9 +198,9 @@ const CoberturaMedida = () => {
                     </div>
 
 
-                    <div className="pb-2">
+                    <div className="pb-1">
                       <p
-                        className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4"
+                        className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
                         onClick={() => setOpenYear(!openYear)}
                       >
                         <span className="font-brandon-800">Ano</span>
@@ -212,9 +219,9 @@ const CoberturaMedida = () => {
                     </div>
 
 
-                    <div className="pb-2">
+                    <div className="pb-1">
                       <p
-                        className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4"
+                        className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
                         onClick={() => setOpenModels(!openModels)}
                       >
                         <span className="font-brandon-800">Modelos</span>
@@ -233,9 +240,9 @@ const CoberturaMedida = () => {
                     </div>
 
 
-                    <div className="pb-2">
+                    <div className="pb-1">
                       <p
-                        className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4"
+                        className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
                         onClick={() => setOpenShapes(!openShapes)}
                       >
                         <span className="font-brandon-800">Moldes</span>
@@ -253,9 +260,9 @@ const CoberturaMedida = () => {
                       )}
                     </div>
 
-                    <div className="pb-2">
+                    <div className="pb-1">
                       <p
-                        className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4"
+                        className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
                         onClick={() => setOpenColors(!openColors)}
                       >
                         <span className="font-brandon-800">Cor da personalização</span>
@@ -267,9 +274,9 @@ const CoberturaMedida = () => {
                       {openColors && (
                         <div className="w-full flex justify-start items-start flex-col gap-1 p-2">
                           <div className="flex flex-col items-center gap-1">
-                            <input type="text" className="border border-zinc-400 rounded-[4px] p-0.5" placeholder="Cor escolhida: 1"/>
-                            <input type="text" className="border border-zinc-400 rounded-[4px] p-0.5" placeholder="Cor escolhida: 2"/>
-                            <input type="text" className="border border-zinc-400 rounded-[4px] p-0.5" placeholder="Cor escolhida: 3"/>
+                            <input type="text" className="border border-zinc-400 rounded-[4px] p-0.5" placeholder="Cor escolhida: 1" />
+                            <input type="text" className="border border-zinc-400 rounded-[4px] p-0.5" placeholder="Cor escolhida: 2" />
+                            <input type="text" className="border border-zinc-400 rounded-[4px] p-0.5" placeholder="Cor escolhida: 3" />
                           </div>
                           <small className="font-brandon-300 text-[12px] text-fofalText">* máximo 3 cores permitidas</small>
                         </div>

@@ -26,12 +26,12 @@ const AutoCoberturasMedida = () => {
         >
           {itemsAuto.map((item) => (
             <div
-              className="cursor-pointer"
+              className="cursor-pointer w-full min-h-52"
               key={item.id}
               onClick={() => navigate(item.url)}
             >
-              <div className="rounded-2xl bg-bgCards p-4 flex-center flex-col">
-                <img src={item.imageUrl} className="w-full" alt={item.title} />
+              <div className="rounded-2xl bg-bgCards p-4 flex-center flex-col xl:w-[460px]">
+                <img src={item.imageUrl} className="w-full max-w-64" alt={item.title} />
               </div>
               <h3
                 className={`text-2xl mt-4 ${getLinkClassNames(item.url)} text-fofalText`}

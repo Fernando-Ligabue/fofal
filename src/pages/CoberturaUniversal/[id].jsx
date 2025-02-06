@@ -9,15 +9,24 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import { useCobUniversal } from "@/context/CobUniversalContext";
+import { useProducts } from "@/context/ProductsContext";
 import { Helmet } from "react-helmet";
 
 const CoberturaPageUniversal = () => {
   const { id } = useParams();
-  const { products } = useCobUniversal();
+  const { products } = useProducts();
   const [product, setProduct] = useState(null);
-  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("caracteristicas");
+
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/');
+    }
+  };
 
   useEffect(() => {
     const selectedProduct = products.find((product) => product.id === id);
@@ -35,7 +44,7 @@ const CoberturaPageUniversal = () => {
           </h3>
           <button
             className="border border-fofalText rounded-full font-brandon-400 py-2 px-6"
-            onClick={() => navigate("/auto")}
+            onClick={handleBack}
           >
             Voltar
           </button>

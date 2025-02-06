@@ -1,17 +1,17 @@
 // assets  /home / header - footer
-export const heroHome = '/imagens/home/hero-home.webp';
-export const sobMedidaBanner = '/imagens/home/sob-medida.webp';
+export const heroHome = '/images/home/hero-home.webp';
+export const sobMedidaBanner = '/images/home/sob-medida.webp';
 
-export const auto = '/imagens/home/auto.webp';
-export const comInd = '/imagens/home/com-ind.webp';
-export const shipAviation = '/imagens/home/ships-aviation.webp';
-export const houses = '/imagens/home/houses.webp';
-export const sobMedida = '/imagens/home/sob-medida.webp';
+export const auto = '/images/home/auto.webp';
+export const comInd = '/images/home/com-ind.webp';
+export const shipAviation = '/images/home/ships-aviation.webp';
+export const houses = '/images/home/houses.webp';
+export const sobMedida = '/images/home/sob-medida.webp';
 
-export const shipping = '/imagens/home/shipping.svg';
-export const safeOrder = '/imagens/home/safe-order.svg';
-export const specialists = '/imagens/home/specialists.svg';
-export const atendCustom = '/imagens/home/atend-custom.svg';
+export const shipping = '/images/home/shipping.svg';
+export const safeOrder = '/images/home/safe-order.svg';
+export const specialists = '/images/home/specialists.svg';
+export const atendCustom = '/images/home/atend-custom.svg';
 
 export const navLinks = [
     {
@@ -22,7 +22,7 @@ export const navLinks = [
     {
         id: 2,
         title: 'Comércio & Indústria',
-        link: '/com-ind'
+        link: '/comercio-industria/alcatifas-eventos'
     },
     {
         id: 3,
@@ -66,7 +66,7 @@ export const categoriesHome = [
     },
     {
         id: 2,
-        href: "/com-ind",
+        href: "/comercio-industria",
         label: "Comércio & Indústria",
         imageUrl: comInd,
         description: "Lorem ipsum dolor sit amet,consectetuer adipiscing elit lorem "
@@ -115,9 +115,9 @@ export const iconsHome = [
 ]
 
 // assets pagina auto
-export const tapetes = '/imagens/auto/tapetes.webp';
-export const cobMedida = '/imagens/auto/cob-medida.webp';
-export const cobUniversal = '/imagens/auto/cob-universais.webp';
+export const tapetes = '/images/auto/tapetes.webp';
+export const cobMedida = '/images/auto/cob-medida.webp';
+export const cobUniversal = '/images/auto/cob-universais.webp';
 
 
 export const itemsAuto = [
@@ -138,5 +138,32 @@ export const itemsAuto = [
         title: 'Coberturas Universais',
         imageUrl: cobUniversal,
         url: "/auto/coberturas-universais"
+    },
+]
+
+//assets pagina comercio industria alcatifas
+
+export const alcEventos = '/images/tapetes/alc-eventos.webp';
+export const tapetesEntrada = '/images/tapetes/tapetes-entrada.webp';
+export const tapetesEscritorio = '/images/tapetes/tapetes-escritorio.webp';
+
+export const itemsComInd = [
+    {
+        id: 1,
+        title: 'Alcatifas para Eventos',
+        imageUrl: alcEventos,
+        url: "/comercio-industria/alcatifas-eventos"
+    },
+    {
+        id: 2,
+        title: 'Tapetes de Entrada',
+        imageUrl: tapetesEntrada,
+        url: "/comercio-industria/tapetes-entrada"
+    },
+    {
+        id: 3,
+        title: 'Alcatifas para Escritório/Indústria',
+        imageUrl: tapetesEscritorio,
+        url: "/comercio-industria/tapetes-escritorio"
     },
 ]
