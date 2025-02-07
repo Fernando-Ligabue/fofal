@@ -1,17 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useProducts } from "@/context/ProductsContext"; // Alterando para usar o novo hook de contexto
 import { ChevronRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import ProductGridSkeleton from "./ProductGridSkeleton";
 import SortSelect from "./SortSelect";
 import CardProduct from "./CardProduct";
+import { useProducts } from "@/context/ProductsContext";
 import { useCart } from "@/context/CartContext";
 
-const CoberturasUniversais = () => {
+const TapetesEntrada = () => {
   const { filteredProducts, loading, filterProducts, changeProductType } = useProducts();
-   const { addToCart } = useCart();
+  const { addToCart } = useCart();
   const [selectedCategory, setSelectedCategory] = useState("");
   const [openFilters, setOpenFilters] = useState(true);
   const [sortType, setSortType] = useState("relevant");
@@ -24,8 +24,8 @@ const CoberturasUniversais = () => {
 
   useEffect(() => {
     const path = location.pathname;
-    if (path.includes("coberturas-universais")) {
-      changeProductType("coberturas");
+    if (path.includes("alcatifas-eventos")) {
+      changeProductType("alcatifas");
     }
   }, [location.pathname, changeProductType]);
 
@@ -42,7 +42,7 @@ const CoberturasUniversais = () => {
   };
 
   const handleViewProduct = (productId) => {
-    navigate(`/auto/cobertura-universal/${productId}`);
+    navigate(`/comercio-industria/alcatifas-eventos/${productId}`);
   };
 
   const handleClearFilters = (e) => {
@@ -100,16 +100,16 @@ const CoberturasUniversais = () => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
-
   const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
+
 
   const handleAddToCart = (product) => {
     addToCart(product);
   };
-  
+
   return (
     <>
-      <section className="py-10 flex flex-col justify-between gap-10">
+      <section className="flex flex-col justify-between gap-10">
         <div className="w-full max-w-container mx-auto p-4 py-10 flex flex-col lg:flex-row justify-between gap-10">
           {/* Filtros */}
           <div className="flex flex-col justify-start gap-2">
@@ -120,34 +120,32 @@ const CoberturasUniversais = () => {
               >
                 Filtros
                 <ChevronRight
-                  className={`w-5 h-5 transition-all ease-in-out duration-300 ${openFilters ? "rotate-90" : "rotate-0"}`}
+                  className={`w-5 h-5 transition-all ease-in-out duration-300 ${openFilters ? "rotate-90" : "rotate-0"
+                    }`}
                 />
               </h1>
               {selectedCategory !== "" && (
-                <>
-                  <span
-                    className="absolute top-4 right-0 cursor-pointer w-fit ml-auto font-brandon-400 text-sm flex flex-nowra items-center gap-2"
-                    onClick={handleClearFilters}
-                  >
-                    Limpar filtros
-                    <X size={10} />
-                  </span>
-                </>
+                <span
+                  className="absolute top-4 right-0 cursor-pointer w-fit ml-auto font-brandon-400 text-sm flex flex-nowra items-center gap-2"
+                  onClick={handleClearFilters}
+                >
+                  Limpar filtros
+                  <X size={10} />
+                </span>
               )}
               {openFilters && (
                 <div className="py-3 sm:block">
                   <div className="flex flex-col text-md">
-                    {["autocaravana", "automovel", "caravana", "motociclo", "scooter"].map((category, index, array) => (
+                    {["curta duração", "média duração", "longa duração"].map((category, index, array) => (
                       <div
                         key={category}
-                        className={`w-full border-t border-fofalText py-3 px-1 cursor-pointer hover:bg-zinc-300 ${selectedCategory === category ? 'bg-zinc-300' : ''
-                          } ${index === array.length - 1 ? 'border-b' : ''}`}
+                        className={`w-full border-t border-fofalText py-3 px-1 cursor-pointer hover:bg-zinc-300 ${index === array.length - 1 ? 'border-b' : ''}`}
                       >
                         <p
                           className="font-brandon-400"
                           onClick={() => handleSetCategory(category)}
                         >
-                          {`Coberturas Universais ${category.charAt(0).toUpperCase() + category.slice(1)}`}
+                          {`Eventos ${category.charAt(0).toUpperCase() + category.slice(1)}`}
                         </p>
                       </div>
                     ))}
@@ -160,45 +158,43 @@ const CoberturasUniversais = () => {
           {/* Produtos */}
           <div className="min-h-[60vh] flex flex-1 flex-col gap-4">
             <SortSelect sortType={sortType} onSortChange={setSortType} />
+
             {loading ? (
               <ProductGridSkeleton />
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_1fr_1fr] gap-0">
-                {currentProducts.length > 0 ? (
-                  currentProducts.map((product) => (
-                    <CardProduct
-                      key={product.id}
-                      product={product}
-                      onViewProduct={handleViewProduct}
-                      onAddToCart={handleAddToCart}
-                    />
-                  ))
-                ) : (
-                  <div className="w-full flex flex-1 justify-center items-center">
-                    <p className="text-fofalText font-brandon-800 text-2xl">Nenhum produto encontrado</p>
-                  </div>
-                )}
-              </div>
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_1fr_1fr] gap-0">
+                  {currentProducts.map((product) => (
+                      <CardProduct
+                        key={product.id}
+                        product={product}
+                        onViewProduct={handleViewProduct}
+                        onAddToCart={handleAddToCart} />
+                    ))
+                  }
+                </div>
+                {/* Paginação */}
+                <div className="w-full flex justify-end items-center gap-4 mt-6">
+                  <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="px-4 py-2 bg-transparent text-fofalText rounded disabled:opacity-50"
+                  >
+                    Anterior
+                  </button>
+                  <span className="text-fofalText font-brandon-800">
+                    {currentPage} / {totalPages}
+                  </span>
+                  <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className="px-4 py-2 bg-transparent text-fofalText rounded disabled:opacity-50"
+                  >
+                    Próxima
+                  </button>
+                </div>
+              </>
             )}
-
-            {/* Paginação */}
-            <div className="w-full flex justify-end items-center gap-4 mt-6">
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="px-4 py-2 bg-transparent text-fofalText rounded disabled:opacity-50"
-              >
-                Anterior
-              </button>
-              <span className="text-fofalText font-brandon-800">{currentPage} / {totalPages}</span>
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="px-4 py-2 bg-transparent text-fofalText rounded disabled:opacity-50"
-              >
-                Próxima
-              </button>
-            </div>
           </div>
         </div>
       </section>
@@ -206,4 +202,4 @@ const CoberturasUniversais = () => {
   );
 };
 
-export default CoberturasUniversais;
+export default TapetesEntrada;

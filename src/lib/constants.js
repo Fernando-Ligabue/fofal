@@ -32,27 +32,27 @@ export const navLinks = [
     {
         id: 4,
         title: 'Aviação',
-        link: '/aviation'
+        link: '/aviacao'
     },
     {
         id: 5,
         title: 'Casa',
-        link: '/house'
+        link: '/casas'
     },
     {
         id: 6,
         title: 'Relva',
-        link: '/grass'
+        link: '/relva'
     },
     {
         id: 7,
         title: 'Sobre Nós',
-        link: '/about'
+        link: '/sobre'
     },
     {
         id: 8,
         title: 'Contacto',
-        link: '/contact'
+        link: '/contacto'
     },
 ]
 
@@ -66,21 +66,21 @@ export const categoriesHome = [
     },
     {
         id: 2,
-        href: "/comercio-industria",
+        href: "/comercio-industria/alcatifas-eventos",
         label: "Comércio & Indústria",
         imageUrl: comInd,
         description: "Lorem ipsum dolor sit amet,consectetuer adipiscing elit lorem "
     },
     {
         id: 3,
-        href: "/ships-planes",
+        href: "/nautica",
         label: "Náutica e Aviação",
         imageUrl: shipAviation,
         description: "Lorem ipsum dolor sit amet,consectetuer adipiscing elit lorem "
     },
     {
         id: 4,
-        href: "/houses",
+        href: "/casas",
         label: "Casa",
         imageUrl: houses,
         description: "Lorem ipsum dolor sit amet,consectetuer adipiscing elit lorem "
@@ -146,6 +146,11 @@ export const itemsAuto = [
 export const alcEventos = '/images/tapetes/alc-eventos.webp';
 export const tapetesEntrada = '/images/tapetes/tapetes-entrada.webp';
 export const tapetesEscritorio = '/images/tapetes/tapetes-escritorio.webp';
+
+// img pagina alcatifas tapetes para escritorio
+export const bgEscritorio = '/images/tapetes/bg-alc-escritorio.webp';
+export const imgEscritorio = '/images/tapetes/img-alc-escritorio.webp';
+
 
 export const itemsComInd = [
     {

@@ -41,9 +41,9 @@ const Header = () => {
             return logoComInd;
         } else if (location.pathname.includes('/nautica')) {
             return logoNautico;
-        } else if (location.pathname.includes('/aviation')) {
+        } else if (location.pathname.includes('/aviacao')) {
             return logoNautico;
-        } else if (location.pathname.includes('/house')) {
+        } else if (location.pathname.includes('/casas')) {
             return logoCasa;
         } else {
             return logoSvg;

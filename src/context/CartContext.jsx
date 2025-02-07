@@ -27,7 +27,7 @@ export function CartProvider({ children }) {
                         : item
                 );
             }
-            return [...prevCart, { ...product, quantity: 1 }];
+            return [...prevCart, { ...product, quantity: product.quantity || 1 }];
         });
     };
 

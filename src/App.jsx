@@ -21,6 +21,7 @@ import TapetesEntrance from './pages/TapetesEntrance';
 import TapetesOffice from './pages/TapetesOffice';
 import AlcatifaEventosPage from './pages/AlcatifaEventos/[id]';
 import CartPage from './pages/Cart';
+import NotFound from './pages/NotFound';
 
 const App = () => {
     useEffect(() => {
@@ -54,6 +55,7 @@ const App = () => {
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/signup" element={<SignupPage />} />
                             <Route path="/cart" element={<CartPage />} />
+                            <Route path="/*" element={<NotFound />} />
                         </Routes>
                     </MainLayout>
                 </BrowserRouter>

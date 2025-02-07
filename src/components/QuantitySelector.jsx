@@ -1,11 +1,12 @@
-import { useCart } from '@/context/CartContext';
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom';
 import { MinusCircle, PlusCircle } from 'lucide-react';
 import PropTypes from 'prop-types';
-import React from 'react'
-import { useLocation } from 'react-router-dom';
+
+import { useCart } from '@/context/CartContext';
 
 const QuantitySelector = ({ product }) => {
-    const [quantity, setQuantity] = React.useState(1);
+    const [quantity, setQuantity] = useState(1);
     const { addToCart } = useCart();
     const location = useLocation();
 
