@@ -6,7 +6,7 @@ const Automovel = () => {
   return (
     <>
       <Helmet>
-        <title>FOFAL | Automóvel</title>
+        <title>FOFAL | Tapetes Automóvel à medida</title>
         <meta name="description" content="Fofal | Tapetes e coberturas para seu automóvel" />
       </Helmet>
 

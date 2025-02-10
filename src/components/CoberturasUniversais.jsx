@@ -8,10 +8,11 @@ import ProductGridSkeleton from "./ProductGridSkeleton";
 import SortSelect from "./SortSelect";
 import CardProduct from "./CardProduct";
 import { useCart } from "@/context/CartContext";
+import Pagination from "./Pagination";
 
 const CoberturasUniversais = () => {
   const { filteredProducts, loading, filterProducts, changeProductType } = useProducts();
-   const { addToCart } = useCart();
+  const { addToCart } = useCart();
   const [selectedCategory, setSelectedCategory] = useState("");
   const [openFilters, setOpenFilters] = useState(true);
   const [sortType, setSortType] = useState("relevant");
@@ -106,7 +107,7 @@ const CoberturasUniversais = () => {
   const handleAddToCart = (product) => {
     addToCart(product);
   };
-  
+
   return (
     <>
       <section className="py-10 flex flex-col justify-between gap-10">
@@ -182,23 +183,11 @@ const CoberturasUniversais = () => {
             )}
 
             {/* Paginação */}
-            <div className="w-full flex justify-end items-center gap-4 mt-6">
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="px-4 py-2 bg-transparent text-fofalText rounded disabled:opacity-50"
-              >
-                Anterior
-              </button>
-              <span className="text-fofalText font-brandon-800">{currentPage} / {totalPages}</span>
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="px-4 py-2 bg-transparent text-fofalText rounded disabled:opacity-50"
-              >
-                Próxima
-              </button>
-            </div>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
           </div>
         </div>
       </section>

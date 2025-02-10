@@ -58,7 +58,7 @@ const CoberturaMedida = () => {
     black: coverBlack,
     blue: coverBlue,
     red: coverRed,
-    green: coverYellow,
+    yellow: coverYellow,
   };
 
   const handleColorSelect = (color) => {

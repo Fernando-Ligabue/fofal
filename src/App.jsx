@@ -7,8 +7,8 @@ import AOS from 'aos';
 
 
 import MainLayout from './Layout/MainLayout';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
-import About from './pages/About';
 import AutoTapetes from './pages/AutoTapetes';
 import GlobalProvider from './context/GlobalContext';
 import CoberturaPageUniversal from './pages/CoberturaUniversal/[id]';
@@ -22,6 +22,13 @@ import TapetesOffice from './pages/TapetesOffice';
 import AlcatifaEventosPage from './pages/AlcatifaEventos/[id]';
 import CartPage from './pages/Cart';
 import NotFound from './pages/NotFound';
+import Nautica from './pages/Nautica';
+import Aviation from './pages/Aviation';
+import Houses from './pages/Houses';
+import Grass from './pages/Grass';
+import About from './pages/About';
+import Contacts from './pages/Contacts';
+import FAQS from './pages/FAQS';
 
 const App = () => {
     useEffect(() => {
@@ -39,11 +46,12 @@ const App = () => {
             </Helmet>
 
             <GlobalProvider>
+                {/* <BrowserRouter basename='/a-fofal/'> */}
                 <BrowserRouter>
+                    <ScrollToTop />
                     <MainLayout>
                         <Routes>
                             <Route path="/" element={<Home />} />
-                            <Route path="/about" element={<About />} />
                             <Route path="/auto/tapetes" element={<AutoTapetes />} />
                             <Route path="/auto/coberturas-medida" element={<AutoCoberturasMedida />} />
                             <Route path="/auto/coberturas-universais" element={<AutoCoberturasUniversaisPage />} />
@@ -52,9 +60,16 @@ const App = () => {
                             <Route path="/comercio-industria/tapetes-entrada" element={<TapetesEntrance />} />
                             <Route path="/comercio-industria/tapetes-escritorio" element={<TapetesOffice />} />
                             <Route path="/comercio-industria/alcatifas-eventos/:id" element={<AlcatifaEventosPage />} />
+                            <Route path="/nautica" element={<Nautica />} />
+                            <Route path="/aviacao" element={<Aviation />} />
+                            <Route path="/casas" element={<Houses />} />
+                            <Route path="/relva" element={<Grass />} />
+                            <Route path="/sobre" element={<About />} />
+                            <Route path="/contacto" element={<Contacts />} />
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/signup" element={<SignupPage />} />
                             <Route path="/cart" element={<CartPage />} />
+                            <Route path="/faqs" element={<FAQS />} />
                             <Route path="/*" element={<NotFound />} />
                         </Routes>
                     </MainLayout>

@@ -46,7 +46,7 @@ function Footer() {
             <NavLink to="/terms-conditions" className='text-white font-brandon-300 no-underline'>Termos e Condições</NavLink>
             <NavLink to="/ral" className='text-white font-brandon-300 no-underline'>RAL – Resolução de Litígios
             </NavLink>
-            <NavLink to="/conplaitns-book" className='text-white font-brandon-300 no-underline'>Livro de Reclamações
+            <NavLink to="https://www.livroreclamacoes.pt/inicio/" target='_blank' className='text-white font-brandon-300 no-underline'>Livro de Reclamações
             </NavLink>
           </div>
 
@@ -54,7 +54,6 @@ function Footer() {
           <div className='space-y-6 w-full flex flex-col justify-center items-center md:justify-start md:items-start '>
             <NavLink to="/support" className='text-white font-brandon-300 no-underline'>Centro de Apoio
             </NavLink>
-            {/* <NavLink to="/faqs" className='text-white font-brandon-300 no-underline'>Perguntas frequentes</NavLink> */}
             <NavLink to="/faqs" className='text-white font-brandon-300 no-underline'>FAQ’s
             </NavLink>
             <NavLink to="/instructions" className='text-white font-brandon-300 no-underline'>Manual de instruções
@@ -68,8 +67,6 @@ function Footer() {
             <NavLink to="/guarantee" className='text-white font-brandon-300 no-underline'>Garantia
             </NavLink>
             <NavLink to="/tips" className='text-white font-brandon-300 no-underline'>Dicas</NavLink>
-            {/* <NavLink to="/tips" className='text-white font-brandon-300 no-underline xl:pt-14'>Dicas</NavLink> */}
-
           </div>
 
           <div className='w-full space-y-10'>

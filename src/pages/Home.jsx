@@ -71,7 +71,7 @@ const HomePage = () => {
             >
                 <h2 className="text-5xl sm:text-7xl font-brandon-800 mb-6 text-center">Produto à medida</h2>
                 <div className="buttons flex space-x-4">
-                    <NavLink to="/aviation" className="text-white font-brandon-500 text-xl sm:text-2xl btn-white">
+                    <NavLink to="/aviacao" className="text-white font-brandon-500 text-xl sm:text-2xl btn-white">
                         Aviões
                     </NavLink>
                     <NavLink to="/nautica" className="text-white font-brandon-500 text-xl sm:text-2xl btn-white">

@@ -25,8 +25,8 @@ const ColorSelector = ({ onColorSelect }) => {
         onClick={() => handleColorSelect('red')}
       />
       <button
-        className={`w-5 h-5 rounded-full border-2 bg-green-600 ${selectedColor === 'green' ? 'border-green-600' : 'border-zinc-200'}`}
-        onClick={() => handleColorSelect('green')}
+        className={`w-5 h-5 rounded-full border-2 bg-yellow-600 ${selectedColor === 'yellow' ? 'border-yellow-600' : 'border-zinc-200'}`}
+        onClick={() => handleColorSelect('yellow')}
       />
     </div>
   );

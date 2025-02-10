@@ -149,7 +149,18 @@ export const tapetesEscritorio = '/images/tapetes/tapetes-escritorio.webp';
 
 // img pagina alcatifas tapetes para escritorio
 export const bgEscritorio = '/images/tapetes/bg-alc-escritorio.webp';
-export const imgEscritorio = '/images/tapetes/img-alc-escritorio.webp';
+
+
+export const imgsEscritorio = [
+    {
+        id: 1,
+        imageUrl: '/images/tapetes/img-alc-escritorio.webp'
+    },
+    {
+        id: 2,
+        imageUrl: '/images/tapetes/img-alc-escritorio.webp'
+    },
+];
 
 
 export const itemsComInd = [
@@ -170,5 +181,116 @@ export const itemsComInd = [
         title: 'Alcatifas para Escritório/Indústria',
         imageUrl: tapetesEscritorio,
         url: "/comercio-industria/tapetes-escritorio"
+    },
+]
+
+// assets paginas nautica e aviação
+export const bgNautica = "/images/nautica-aviation/bg-nautica.webp"
+export const imgsBoat = [
+    {
+        id: 1,
+        imageUrl: "/images/nautica-aviation/img-boat1.webp",
+    },
+    {
+        id: 2,
+        imageUrl: "/images/nautica-aviation/img-plane1.webp",
+    },
+]
+
+export const bgAviation = "/images/nautica-aviation/bg-aviation.webp"
+export const imgsPlanes = [
+    {
+        id: 1,
+        imageUrl: "/images/nautica-aviation/img-plane1.webp",
+    },
+    {
+        id: 2,
+        imageUrl: "/images/nautica-aviation/img-boat1.webp",
+    },
+]
+
+// assests pagina casas
+export const itemsHouses = [
+    {
+        id: 1,
+        title: 'Alcatifas',
+        imageUrl: alcEventos,
+        url: "/casas/alcatifas"
+    },
+    {
+        id: 2,
+        title: 'Tapetes de Entrada',
+        imageUrl: tapetesEntrada,
+        url: "/casas/tapetes-entrada"
+    },
+]
+
+
+// assets pagina relva
+export const bgGrass = "/images/grass/bg-grass.webp"
+export const imgsGrass = [
+    {
+        id: 1,
+        imageUrl: "/images/grass/img-grass1.webp",
+    },
+]
+
+// assets pagina sobre
+export const bgAbout = "/images/about/bg-about.webp"
+export const imgAbout = "/images/about/img-about.webp"
+
+// FAQS
+export const faqs = [
+    {
+        id: 1,
+        question: "O meu carro não tem fixações de origem, posso incluir?",
+        answer: "Sim, pode acrescentar. Caso o pretenda efectuar, deverá indicar-nos nas observações da sua encomenda e efectuar a compra seleccionando na mesma quantas fixações pretende no campo “Fixações”."
+    },
+    {
+        id: 2,
+        question: "Como posso proceder à compra de tapetes auto?",
+        answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+    },
+    {
+        id: 3,
+        question: "Os tapetes auto são iguais aos de origem?",
+        answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+    },
+    {
+        id: 4,
+        question: "Recebo factura da minha encomenda?",
+        answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+    },
+    {
+        id: 5,
+        question: "Também posso adquirir os vossos produtos em loja?",
+        answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+    },
+    {
+        id: 6,
+        question: "O que recebi não foi o que encomendei, o que faço?",
+        answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+    },
+    {
+        id: 7,
+        question: "Se eu não estiver presente para receber a encomenda?",
+        answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+    },
+]
+
+export const changes = [
+    {
+        id: 1,
+        question: "Posso trocar ou devolver artigos?",
+        answer: "O cliente pode trocar ou devolver a sua encomenda no prazo máximo de 14 dias a contar da sua receção, salvo no fornecimento de bens confeccionados de acordo com especificações do consumidor ou manifestamente personalizados.",
+        warn: "Para mais informações por favor consulte",
+        url: "https://fofal.pt/envios-e-devolucoes/",
+    },
+    {
+        id: 2,
+        question: "O que faço se a minha encomenda chegar danificada?",
+        answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        warn: "Para mais informações por favor consulte",
+        url: "https://fofal.pt/envios-e-devolucoes/."
     },
 ]

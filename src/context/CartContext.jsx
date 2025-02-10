@@ -10,6 +10,7 @@ export function CartProvider({ children }) {
         return savedCart ? JSON.parse(savedCart) : [];
     });
     const [cartItems, setCartItems] = useState([]);
+    const shipping_fee = 5.95;
 
 
     useEffect(() => {
@@ -65,7 +66,7 @@ export function CartProvider({ children }) {
     };
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, updateCart, removeFromCart, cartCountItems, updateCartItems, getCartAmount }}>
+        <CartContext.Provider value={{ cart, addToCart, updateCart, removeFromCart, cartCountItems, updateCartItems, getCartAmount, shipping_fee }}>
             {children}
         </CartContext.Provider>
     );

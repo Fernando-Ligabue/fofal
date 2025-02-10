@@ -1,5 +1,5 @@
 import { useUser } from "@/context/UserContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -25,10 +25,6 @@ import toast from "react-hot-toast";
 
 const SignupPage = () => {
   const { signup, loading } = useUser();
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
 
   const [formData, setFormData] = useState({
     first_name: "",

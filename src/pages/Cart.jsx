@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const CartPage = () => {
     const { user } = useUser();
-    const { cart, updateCart, removeFromCart, getCartAmount } = useCart();
+    const { cart, updateCart, removeFromCart, getCartAmount, shipping_fee } = useCart();
     const navigate = useNavigate();
 
     const handleIncrease = (productId) => {
@@ -36,7 +36,7 @@ const CartPage = () => {
 
                 {/* div com produtos que serao apresentadas se houver items no carrinho */}
                 {cart.length > 0 && (
-                    <div className="flex space-between items-start flex-col sm:flex-row gap-14">
+                    <div className="flex space-between items-start flex-col sm:flex-row gap-2 sm:gap-14">
                         <div className="w-full sm:max-w-[70%] flex flex-col gap-5">
                             <h1 className="text-5xl font-brandon-500 text-fofalText text-left w-full">Carrinho</h1>
                             <div>
@@ -89,16 +89,21 @@ const CartPage = () => {
                             </div>
                         </div>
 
-                        <div className="w-full lg:max-w-[30%] flex flex-col gap-5">
+                        <div className="w-full lg:max-w-[30%] flex flex-col gap-2">
                             <h3 className="text-3xl font-brandon-400 text-fofalText text-left w-full pt-3 hidden sm:block">Resumo do pedido</h3>
-                            <div className="w-full flex flex-col gap-5 py-2">
+                            <div className="w-full flex flex-col gap-5 py-2 mt-3">
                                 <span className="font-brandon-400 text-sm text-fofalText">Observações</span>
                                 <textarea name="observacoes" id="observacoes" cols="30" rows="5" className="border border-fofalText p-1 rounded-[4px] resize-none"></textarea>
                             </div>
 
                             <div className="flex justify-between items-center">
+                                <span className="font-brandon-800 text-zinc-400 text-base">Taxa de envio</span>
+                                <span className="font-brandon-800 text-fofalText text-base">{shipping_fee} €</span>
+                            </div>
+
+                            <div className="flex justify-between items-center">
                                 <span className="font-brandon-800 text-zinc-400 text-base">Subtotal</span>
-                                <span className="font-brandon-800 text-fofalText text-base">{getCartAmount().toFixed(2)} €</span>
+                                <span className="font-brandon-800 text-fofalText text-base">{(getCartAmount() + shipping_fee).toFixed(2)} €</span>
                             </div>
 
                             <button onClick={!user ? () => navigate('/login') : () => {alert("checkout") }}

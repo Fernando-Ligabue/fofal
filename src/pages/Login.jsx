@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   LogIn,
@@ -20,10 +20,6 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const { login, loading } = useUser();
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
 
   const handleShowPassword = () => setShowPassword(!showPassword);
   const handleSubmit = (e) => {
