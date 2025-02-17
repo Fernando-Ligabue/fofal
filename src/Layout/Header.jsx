@@ -64,7 +64,7 @@ const Header = () => {
                     <div className='w-full flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0'>
                         <div className="logo">
                             <NavLink to="/" className={getLinkClassNames('/')}>
-                                <img src={getLogoSrc()} className='w-full max-w-52' alt="Logo FOFAL" />
+                                <img src={getLogoSrc()} className='w-full max-w-52 min-w-52' alt="Logo FOFAL" />
                             </NavLink>
                         </div>
 
@@ -131,7 +131,7 @@ const Header = () => {
                     />
                     <div className="logo">
                         <NavLink to="/" className={getLinkClassNames('/')}>
-                            <img src={logoSvg} className='w-full max-w-52' alt="Logo FOFAL" onClick={toggleSidebar} />
+                            <img src={logoSvg} className='w-full max-w-52 min-w-52' alt="Logo FOFAL" onClick={toggleSidebar} />
                         </NavLink>
                     </div>
                     <ul className="space-y-4 text-center">

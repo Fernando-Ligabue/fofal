@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { ChevronRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -7,13 +8,12 @@ import SortSelect from "./SortSelect";
 import CardProduct from "./CardProduct";
 import { useProducts } from "@/context/ProductsContext";
 import { useCart } from "@/context/CartContext";
-import FilterAlcatifas from "./FiltersAlcatifas";
-import Pagination from "./Pagination";
 
-const TapetesEntrada = () => {
+const HousesEntranceComponent = () => {
   const { filteredProducts, loading, filterProducts, changeProductType } = useProducts();
   const { addToCart } = useCart();
-  const [selectedCategory,] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [openFilters, setOpenFilters] = useState(true);
   const [sortType, setSortType] = useState("relevant");
   const [sortedProducts, setSortedProducts] = useState(filteredProducts);
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,9 +33,23 @@ const TapetesEntrada = () => {
     filterProducts(selectedCategory);
   }, [selectedCategory]);
 
-  const handleViewProduct = (productId) => {
-    navigate(`/comercio-industria/tapetes-entrada/${productId}`);
+  const handleSetCategory = (category) => {
+    setSelectedCategory(category);
   };
+
+  const handleOpenFilters = () => {
+    setOpenFilters(!openFilters);
+  };
+
+  const handleViewProduct = (productId) => {
+    navigate(`/casas/tapetes-entrada/${productId}`);
+  };
+
+  const handleClearFilters = (e) => {
+    e.stopPropagation();
+    setSelectedCategory("");
+  };
+
   const sortProducts = (products) => {
     let sorted = [...products];
 
@@ -100,7 +114,44 @@ const TapetesEntrada = () => {
           {/* Filtros */}
           <div className="flex flex-col justify-start gap-2">
             <div className="w-full lg:max-w-60 min-w-60 md:sticky relative md:top-10">
-              <FilterAlcatifas />
+              <h1
+                className="w-full my-2 text-2xl text-fofalText font-brandon-800 flex items-center cursor-pointer gap-2"
+                onClick={handleOpenFilters}
+              >
+                Filtros
+                <ChevronRight
+                  className={`w-5 h-5 transition-all ease-in-out duration-300 ${openFilters ? "rotate-90" : "rotate-0"
+                    }`}
+                />
+              </h1>
+              {selectedCategory !== "" && (
+                <span
+                  className="absolute top-4 right-0 cursor-pointer w-fit ml-auto font-brandon-400 text-sm flex flex-nowra items-center gap-2"
+                  onClick={handleClearFilters}
+                >
+                  Limpar filtros
+                  <X size={10} />
+                </span>
+              )}
+              {openFilters && (
+                <div className="py-3 sm:block">
+                  <div className="flex flex-col text-md">
+                    {["curta duração", "média duração", "longa duração"].map((category, index, array) => (
+                      <div
+                        key={category}
+                        className={`w-full border-t border-fofalText py-3 px-1 cursor-pointer hover:bg-zinc-300 ${index === array.length - 1 ? 'border-b' : ''}`}
+                      >
+                        <p
+                          className="font-brandon-400"
+                          onClick={() => handleSetCategory(category)}
+                        >
+                          {`Eventos ${category.charAt(0).toUpperCase() + category.slice(1)}`}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -114,20 +165,34 @@ const TapetesEntrada = () => {
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_1fr_1fr] gap-0">
                   {currentProducts.map((product) => (
-                    <CardProduct
-                      key={product.id}
-                      product={product}
-                      onViewProduct={handleViewProduct}
-                      onAddToCart={handleAddToCart} />
-                  ))
+                      <CardProduct
+                        key={product.id}
+                        product={product}
+                        onViewProduct={handleViewProduct}
+                        onAddToCart={handleAddToCart} />
+                    ))
                   }
                 </div>
                 {/* Paginação */}
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  onPageChange={handlePageChange}
-                />
+                <div className="w-full flex justify-end items-center gap-4 mt-6">
+                  <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="px-4 py-2 bg-transparent text-fofalText rounded disabled:opacity-50"
+                  >
+                    Anterior
+                  </button>
+                  <span className="text-fofalText font-brandon-800">
+                    {currentPage} / {totalPages}
+                  </span>
+                  <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className="px-4 py-2 bg-transparent text-fofalText rounded disabled:opacity-50"
+                  >
+                    Próxima
+                  </button>
+                </div>
               </>
             )}
           </div>
@@ -137,4 +202,4 @@ const TapetesEntrada = () => {
   );
 };
 
-export default TapetesEntrada;
+export default HousesEntranceComponent;

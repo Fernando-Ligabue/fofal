@@ -32,9 +32,9 @@ const AlcatifaEventosPage = () => {
   };
 
   useEffect(() => {
-    const selectedProduct = products.find((product) => product.id === id);
+    const selectedProduct = products.find((product) => product.id === parseInt(id));
     setProduct(selectedProduct);
-
+  
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [id, products]);
 

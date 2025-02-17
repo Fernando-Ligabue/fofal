@@ -1,10 +1,8 @@
-/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Mockup de produtos (dados genéricos)
-import { alcatifasData, coberturasData } from '@/lib/mock';
-
+import { alcatifasData, coberturasData, alcatifasHousesData } from '@/lib/mock';
 
 const ProductsContext = createContext();
 
@@ -38,12 +36,16 @@ export function ProductsProvider({ children }) {
           case 'coberturas':
             loadedProducts = coberturasData;
             break;
+          case 'alcatifas-casa':
+            loadedProducts = alcatifasHousesData;
+            break;
         }
 
+        console.log('Produtos carregados:', loadedProducts);  
+        
         setProducts(loadedProducts);
         setFilteredProducts(loadedProducts);
         
-        // Persist data in localStorage
         if (loadedProducts.length > 0) {
           localStorage.setItem('products', JSON.stringify(loadedProducts));
           localStorage.setItem('filteredProducts', JSON.stringify(loadedProducts));
@@ -56,16 +58,19 @@ export function ProductsProvider({ children }) {
     loadProducts();
   }, [productType]);
 
-  // Update localStorage when key states change
   useEffect(() => {
     if (productType) {
       localStorage.setItem('productType', productType);
     }
   }, [productType]);
 
-  const filterProducts = (category) => {
+  const filterProducts = (category, preFilteredProducts = null) => {
     let filtered;
-    if (!category) {
+    
+    if (preFilteredProducts) {
+      filtered = preFilteredProducts;
+    }
+    else if (!category) {
       filtered = products;
     } else {
       filtered = products.filter(product => product.category === category);
@@ -96,6 +101,7 @@ ProductsProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useProducts() {
   const context = useContext(ProductsContext);
   if (!context) {

@@ -37,7 +37,7 @@ export const navLinks = [
     {
         id: 5,
         title: 'Casa',
-        link: '/casas'
+        link: '/casas/alcatifas-casa'
     },
     {
         id: 6,
@@ -215,7 +215,7 @@ export const itemsHouses = [
         id: 1,
         title: 'Alcatifas',
         imageUrl: alcEventos,
-        url: "/casas/alcatifas"
+        url: "/casas/alcatifas-casa"
     },
     {
         id: 2,

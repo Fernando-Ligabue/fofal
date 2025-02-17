@@ -1,15 +1,15 @@
 import { Helmet } from 'react-helmet'
 
-import HousesAlcatifas from '@/components/HousesAlcatifas';
+import HousesEntranceComponent from '@/components/HousesEntranceComponent';
 import TopSectionHouses from '@/components/TopSectionHouses';
 
-const Houses = () => {
+const HousesEntrance = () => {
 
   return (
     <>
       <Helmet>
-        <title>FOFAL | Casas Alcatifas</title>
-        <meta name="description" content="Fofal | Alcatifas para sua casa." />
+        <title>FOFAL | Casas Tapetes de entrada</title>
+        <meta name="description" content="Fofal | Tapetes de entrada para sua casa." />
       </Helmet>
 
       <TopSectionHouses />
@@ -18,11 +18,11 @@ const Houses = () => {
 
       <section className="w-full flex-center p-4">
         <div className="w-full max-w-container mx-auto p-4">
-          <HousesAlcatifas />
+          <HousesEntranceComponent />
         </div>
       </section>
     </>
   );
 }
 
-export default Houses;
+export default HousesEntrance;

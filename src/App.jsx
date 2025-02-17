@@ -25,6 +25,8 @@ import NotFound from './pages/NotFound';
 import Nautica from './pages/Nautica';
 import Aviation from './pages/Aviation';
 import Houses from './pages/Houses';
+import HousesEntrance from './pages/HousesEntrance';
+import HousesProductPage from './pages/Houses/[id]';
 import Grass from './pages/Grass';
 import About from './pages/About';
 import Contacts from './pages/Contacts';
@@ -60,9 +62,13 @@ const App = () => {
                             <Route path="/comercio-industria/tapetes-entrada" element={<TapetesEntrance />} />
                             <Route path="/comercio-industria/tapetes-escritorio" element={<TapetesOffice />} />
                             <Route path="/comercio-industria/alcatifas-eventos/:id" element={<AlcatifaEventosPage />} />
+                            <Route path="/comercio-industria/tapetes-entrada/:id" element={<AlcatifaEventosPage />} />
                             <Route path="/nautica" element={<Nautica />} />
                             <Route path="/aviacao" element={<Aviation />} />
-                            <Route path="/casas" element={<Houses />} />
+                            <Route path="/casas/alcatifas-casa" element={<Houses />} />
+                            <Route path="/casas/tapetes-entrada" element={<HousesEntrance />} />
+                            <Route path="/casas/alcatifas-casa/:id" element={<HousesProductPage />} />
+                            <Route path="/casas/tapetes-entrada/:id" element={<HousesProductPage />} />
                             <Route path="/relva" element={<Grass />} />
                             <Route path="/sobre" element={<About />} />
                             <Route path="/contacto" element={<Contacts />} />
@@ -74,10 +80,7 @@ const App = () => {
                         </Routes>
                     </MainLayout>
                 </BrowserRouter>
-                <Toaster
-                    position="bottom-right"
-                    reverseOrder={false}
-                />
+                <Toaster position="bottom-right" reverseOrder={false}/>
             </GlobalProvider>
         </>
     );

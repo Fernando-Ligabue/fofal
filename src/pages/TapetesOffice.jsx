@@ -43,7 +43,7 @@ const TapetesOffice = () => {
 
       {/* Text Section */}
       <section className="py-12 w-full" data-aos="fade-up" data-aos-delay="300">
-        <div className='w-full max-w-container mx-auto  grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-4 items-center'>
+        <div className='w-full max-w-container mx-auto  grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-4 items-start'>
           <div className="w-full text-fofalText text-2xl font-brandon-300 leading-relaxed p-4">
             <p>Oferecemos um atendimento de excelência, flexibilidade e acabamentos de elevada qualidade.</p>
           </div>

@@ -7,10 +7,10 @@ import SortSelect from "./SortSelect";
 import CardProduct from "./CardProduct";
 import { useProducts } from "@/context/ProductsContext";
 import { useCart } from "@/context/CartContext";
-import FilterAlcatifas from "./FiltersAlcatifas";
 import Pagination from "./Pagination";
+import FiltersTapetesEntranceHouses from "./FiltersTapetesEntranceHouses";
 
-const TapetesEntrada = () => {
+const HousesAlcatifas = () => {
   const { filteredProducts, loading, filterProducts, changeProductType } = useProducts();
   const { addToCart } = useCart();
   const [selectedCategory,] = useState("");
@@ -24,8 +24,8 @@ const TapetesEntrada = () => {
 
   useEffect(() => {
     const path = location.pathname;
-    if (path.includes("tapetes-entrada")) {
-      changeProductType("alcatifas");
+    if (path.includes("casas/alcatifas-casa")) {
+      changeProductType("alcatifas-casa");
     }
   }, [location.pathname, changeProductType]);
 
@@ -34,8 +34,9 @@ const TapetesEntrada = () => {
   }, [selectedCategory]);
 
   const handleViewProduct = (productId) => {
-    navigate(`/comercio-industria/tapetes-entrada/${productId}`);
+    navigate(`/casas/alcatifas-casa/${productId}`);
   };
+
   const sortProducts = (products) => {
     let sorted = [...products];
 
@@ -88,7 +89,6 @@ const TapetesEntrada = () => {
   );
   const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
 
-
   const handleAddToCart = (product) => {
     addToCart(product);
   };
@@ -100,7 +100,7 @@ const TapetesEntrada = () => {
           {/* Filtros */}
           <div className="flex flex-col justify-start gap-2">
             <div className="w-full lg:max-w-60 min-w-60 md:sticky relative md:top-10">
-              <FilterAlcatifas />
+              <FiltersTapetesEntranceHouses />
             </div>
           </div>
 
@@ -122,6 +122,7 @@ const TapetesEntrada = () => {
                   ))
                   }
                 </div>
+
                 {/* Paginação */}
                 <Pagination
                   currentPage={currentPage}
@@ -137,4 +138,4 @@ const TapetesEntrada = () => {
   );
 };
 
-export default TapetesEntrada;
+export default HousesAlcatifas;

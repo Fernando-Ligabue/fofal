@@ -7,16 +7,19 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Helmet } from "react-helmet";
 
 import { useProducts } from "@/context/ProductsContext";
-import { Helmet } from "react-helmet";
+import shipping from "/images/home/shipping.svg";
+import safeOrder from "/images/home/safe-order.svg";
+import specialists from "/images/home/specialists.svg";
 import QuantitySelector from "@/components/QuantitySelector";
 
-const CoberturaPageUniversal = () => {
+const HousesProductPage = () => {
   const { id } = useParams();
   const { products } = useProducts();
   const [product, setProduct] = useState(null);
-  const [activeTab, setActiveTab] = useState("caracteristicas");
+  const [activeTab, setActiveTab] = useState("visao-geral");
 
   const navigate = useNavigate();
 
@@ -60,6 +63,7 @@ const CoberturaPageUniversal = () => {
         <title>FOFAL | {product.title}</title>
         <meta name="description" content={product.description} />
       </Helmet>
+
       <section className="w-full h-full py-40 p-4">
         <div className="max-w-container h-full md:min-h-[70vh] mx-auto pt-40 sm:p-4 flex flex-col md:flex-row justify-between items-stretch gap-10">
           <div className="w-full flex flex-col justify-center items-center md:max-w-[50%] bg-bgCards">
@@ -79,46 +83,74 @@ const CoberturaPageUniversal = () => {
               <CarouselNext className="absolute top-1/2 right-5" />
             </Carousel>
           </div>
-          <div className="w-full md:max-w-[50%] flex-flex-col justify-start items-start space-y-6 lg:px-10">
-            <span className="text-lg text-fofalText font-brandon-400">
+          <div className="w-full lg:max-w-[40%] flex flex-col justify-start items-start space-y-6 lg:px-4">
+            <span className="text-lg text-fofalText font-brandon-400 mb-10">
               Loja
             </span>
-            <h1 className="text-3xl font-brandon-900">{product.title}</h1>
-            <p>{product.description}</p>
-            <p className="text-lg font-brandon-800">
-              {product.price.toFixed(2)} €
-            </p>
+            <h1 className="font-brandon-800 text-4xl sm:text-5xl text-fofalText text-left">
+              {product.title}
+            </h1>
 
-            <div className="w-full flex gap-10 border-b border-fofalText py-4">
+            <div className="w-full flex justify-between items-center gap-4 border-b border-fofalText py-4">
+              <span
+                onClick={() => setActiveTab("visao-geral")}
+                className={`font-brandon-500 text-fofalText text-xs gap-4 uppercase cursor-pointer ${activeTab === "visao-geral" ? "font-bold" : ""
+                  }`}
+              >
+                Visão Geral
+              </span>
               <span
                 onClick={() => setActiveTab("caracteristicas")}
-                className={`font-brandon-500 text-fofalText text-md gap-4 uppercase cursor-pointer ${activeTab === "caracteristicas" ? "font-bold" : ""
+                className={`font-brandon-500 text-fofalText text-xs gap-4 uppercase cursor-pointer ${activeTab === "caracteristicas" ? "font-bold" : ""
                   }`}
               >
                 Características
               </span>
               <span
                 onClick={() => setActiveTab("informacoes")}
-                className={`font-brandon-500 text-fofalText text-md gap-4 uppercase cursor-pointer ${activeTab === "informacoes" ? "font-bold" : ""
+                className={`font-brandon-500 text-fofalText text-xs gap-4 uppercase cursor-pointer ${activeTab === "informacoes" ? "font-bold" : ""
                   }`}
               >
                 Informações
               </span>
             </div>
             <div>
+              {activeTab === "visao-geral" && (
+                <div className="flex flex-col gap-2 space-y-6 ">
+                  <p className="font-brandon-500 text-mdg text-fofalText">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Debitis est ratione numquam ex! Dignissimos veniam magni
+                    accusantium blanditiis. Blanditiis odio natus eos eius, ipsam
+                    quia assumenda libero eveniet officiis voluptates?
+                  </p>
+
+                  <div className="flex justify-around items-center gap-4">
+                    <div className="flex-center flex-col gap-2">
+                      <img className="w-full max-w-6" src={shipping} alt="FOFAL" />
+                      <p className="text-sm font-brandon-500 text-zinc-400">Envios Nacionais</p>
+                    </div>
+                    <div className="flex-center flex-col gap-2">
+                      <img className="w-full max-w-5" src={safeOrder} alt="FOFAL" />
+                      <p className="text-sm font-brandon-500 text-zinc-400">Compra Segura</p>
+                    </div>
+                    <div className="flex-center flex-col gap-2">
+                      <img className="w-full max-w-6" src={specialists} alt="FOFAL" />
+                      <p className="text-sm font-brandon-500 text-zinc-400">Somos Especialistas</p>
+                    </div>
+                  </div>
+
+                  <QuantitySelector product={product} />
+                </div>
+              )}
               {activeTab === "caracteristicas" && (
                 <div className="flex flex-col gap-2 space-y-6 ">
                   <p className="font-brandon-500 text-lg text-fofalText">
                     Tamanho:{" "}
-                    <span className="font-brandon-400">
-                      {product.size} - {product.dimensions}
-                    </span>
+                    <span className="font-brandon-400"></span>
                   </p>
                   <p className="font-brandon-500 text-lg text-fofalText border-t border-fofalText pt-4">
                     Informação Adicional <br />{" "}
-                    <span className="font-brandon-400">
-                      {product.aditionalInfo}
-                    </span>
+                    <span className="font-brandon-400"></span>
                   </p>
                 </div>
               )}
@@ -128,7 +160,6 @@ const CoberturaPageUniversal = () => {
                 </div>
               )}
             </div>
-            <QuantitySelector product={product} />
           </div>
         </div>
       </section>
@@ -136,4 +167,4 @@ const CoberturaPageUniversal = () => {
   );
 };
 
-export default CoberturaPageUniversal;
+export default HousesProductPage;

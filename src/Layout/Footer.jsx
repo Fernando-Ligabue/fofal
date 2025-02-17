@@ -26,7 +26,7 @@ function Footer() {
       <div className='px-4'>
         <div className="w-full max-w-container mx-auto flex justify-center md:justify-start items-center">
           <NavLink to="/">
-            <img src={logoSvg} className='w-full max-w-52' alt="Logo FOFAL" />
+            <img src={logoSvg} className='w-full max-w-52 min-w-52' alt="Logo FOFAL" />
           </NavLink>
         </div>
 
