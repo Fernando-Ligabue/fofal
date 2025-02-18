@@ -4,6 +4,25 @@ import { faqs, changes } from "@/lib/constants"
 
 function FAQS() {
 
+    const renderAnswer = (answer) => {
+        const lines = answer.split('\n');
+
+        return (
+            <div>
+                {lines.map((line, index) => {
+                    if (line.startsWith('*') || line.startsWith('-')) {
+                        return (
+                            <ul key={index}>
+                                <li className="list-disc">{line}</li>
+                            </ul>
+                        )
+                    }
+                    return <p key={index}>{line}</p>;
+                })}
+            </div>
+        )
+    }
+
     return (
         <section className="w-full pt-60 sm:pt-48 pb-20">
             <div className="w-full max-w-screen-xl mx-auto p-4">
@@ -15,7 +34,7 @@ function FAQS() {
                             <AccordionItem key={faq.id} value={faq.id} className="border border-zinc-300 px-2.5 rounded-[8px]">
                                 <AccordionTrigger className="font-brandon-500 text-xl">{faq.question}</AccordionTrigger>
                                 <AccordionContent className="font-brandon-300 text-lg">
-                                    {faq.answer}
+                                    {renderAnswer(faq.answer)}
                                 </AccordionContent>
                             </AccordionItem>
                         ))}
@@ -31,7 +50,12 @@ function FAQS() {
                             <AccordionItem key={change.id} value={change.id} className="border border-zinc-300 px-2.5 rounded-[8px]">
                                 <AccordionTrigger className="font-brandon-500 text-xl">{change.question}</AccordionTrigger>
                                 <AccordionContent className="font-brandon-300 text-lg">
-                                    {change.answer} <br /><br /> {change.warn} <a href={change.url} className="text-fofalYellow font-brandon-500 hover:underline">{change.url}</a>.
+                                    {renderAnswer(change.answer)}
+                                    <br />
+                                    {change.warn}
+                                    <a href={change.href} className="text-fofalYellow font-brandon-500 hover:underline">
+                                        {change.url}
+                                    </a>.
                                 </AccordionContent>
                             </AccordionItem>
                         ))}

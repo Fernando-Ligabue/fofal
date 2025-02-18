@@ -8,6 +8,7 @@ import AOS from 'aos';
 
 import MainLayout from './Layout/MainLayout';
 import ScrollToTop from './components/ScrollToTop';
+import ToTopButton from './components/ToTopButton';
 import Home from './pages/Home';
 import AutoTapetes from './pages/AutoTapetes';
 import GlobalProvider from './context/GlobalContext';
@@ -83,6 +84,7 @@ const App = () => {
                     </MainLayout>
                 </GlobalProvider>
             </BrowserRouter>
+            <ToTopButton />
             <Toaster position="bottom-right" reverseOrder={false} />
         </>
     );

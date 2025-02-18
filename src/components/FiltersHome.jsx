@@ -81,7 +81,7 @@ const FiltersHome = () => {
             <button
                 onClick={handleSubmit}
                 disabled={!dropdowns.modelo}
-                className="px-6 py-2 bg-white hover:bg-white/90 text-fofalText rounded-full !border border-1 border-white disabled:opacity-50"
+                className="flex-center px-6 sm:px-8 py-2 bg-white hover:bg-white/90 text-fofalText rounded-full !border border-1 border-white disabled:opacity-50"
             >
                 Personalizar
             </button>

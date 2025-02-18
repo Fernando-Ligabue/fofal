@@ -142,7 +142,6 @@ export const itemsAuto = [
 ]
 
 //assets pagina comercio industria alcatifas
-
 export const alcEventos = '/images/tapetes/alc-eventos.webp';
 export const tapetesEntrada = '/images/tapetes/tapetes-entrada.webp';
 export const tapetesEscritorio = '/images/tapetes/tapetes-escritorio.webp';
@@ -249,32 +248,40 @@ export const faqs = [
     {
         id: 2,
         question: "Como posso proceder à compra de tapetes auto?",
-        answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+        answer: `- Seleccionar a marca, ano e modelo da viatura;
+        - Seleccionar a qualidade do material pretendida;
+        - Seleccionar a cor pretendida para o material;
+        - Seleccionar para que lugares pretende os tapetes
+        - Se pretender fixações, seleccionar em que tapetes as pretende. Caso não tenha fixações de origem e queira acrescentar, indicar em observações e seleccionar na mesma no campo “Fixações”;
+        - Caso pretenda personalização/bordado nos tapetes, indicar em quais pretende. Nas observações indicar a cor, a localização e se pretende a personalização marca ou modelo da viatura;
+        - Escolher o tipo de acabamento pretendido. Por norma executamos à cor do tapete, caso deseje outra cor por favor indicar nas observações;
+        - Indicar se pretende ou não reforço de PVC no condutor;
+        - Efectuar pagamento.`
     },
     {
         id: 3,
         question: "Os tapetes auto são iguais aos de origem?",
-        answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+        answer: "Os nossos tapetes apresentam os moldes efectuados por nós e directamente em cada viatura, pelo que apesar de serem sempre à medida de cada modelo poderão apresentar um design diferente dos de origem. Relativamente à qualidade, material igual ao de origem só na marca de cada viatura, a Fofal dispõe de materiais equiparados e de gamas superiores."
     },
     {
         id: 4,
         question: "Recebo factura da minha encomenda?",
-        answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+        answer: "Sim, a factura é sempre enviada juntamente com a sua encomenda. Caso a pretenda antecipadamente, por favor fale connosco. "
     },
     {
         id: 5,
         question: "Também posso adquirir os vossos produtos em loja?",
-        answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+        answer: "Sim, temos loja física onde poderá adquirir o que necessitar. Alguns materiais temos em stock, outros temos disponíveis as amostras para que possa escolher e deixar a encomenda connosco."
     },
     {
         id: 6,
         question: "O que recebi não foi o que encomendei, o que faço?",
-        answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+        answer: "Envie-nos um e-mail para apoioaocliente@fofal.pt a explicar-nos o sucedido. Com a maior celeridade possível, entraremos em contacto para resolvermos a situação."
     },
     {
         id: 7,
         question: "Se eu não estiver presente para receber a encomenda?",
-        answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+        answer: "Será notificado através de e-mail num prazo de 24h-48h com um código para levantamento no armazém mais próximo, ou será deixada uma notificação por escrito na sua caixa de correio para levantamento no posto mais próximo da transportadora em questão."
     },
 ]
 
@@ -283,14 +290,16 @@ export const changes = [
         id: 1,
         question: "Posso trocar ou devolver artigos?",
         answer: "O cliente pode trocar ou devolver a sua encomenda no prazo máximo de 14 dias a contar da sua receção, salvo no fornecimento de bens confeccionados de acordo com especificações do consumidor ou manifestamente personalizados.",
-        warn: "Para mais informações por favor consulte",
+        warn: "Para mais informações por favor consulte ",
+        href:"https://fofal.pt/envios-e-devolucoes/",
         url: "https://fofal.pt/envios-e-devolucoes/",
     },
     {
         id: 2,
         question: "O que faço se a minha encomenda chegar danificada?",
-        answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        warn: "Para mais informações por favor consulte",
-        url: "https://fofal.pt/envios-e-devolucoes/."
+        answer: "Se no ato da entrega a embalagem estiver danificada, o cliente deverá rejeitar a encomenda e informar a Casa dos Tapetes Fofal Lda do sucedido. Só desta forma poderemos garantir a resolução do problema.",
+        warn: "Enviar um e-mail para: ",
+        href: "mailto:apoioaocliente@fofal.pt",
+        url: "apoioaocliente@fofal.pt"
     },
 ]
