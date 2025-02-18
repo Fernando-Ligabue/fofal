@@ -40,6 +40,8 @@ const App = () => {
         });
     }, []);
 
+
+
     return (
         <>
             <Helmet>
@@ -47,9 +49,9 @@ const App = () => {
                 <meta name="description" content="COBERTURAS PARA AUTOMÓVEIS - Personalize a cobertura para o seu automóvel - TAPETES AUTOMÓVEL - AVIÕES & BARCOS - Alcatifas" />
             </Helmet>
 
-            <GlobalProvider>
-                {/* <BrowserRouter basename='/a-fofal/'> */}
-                <BrowserRouter>
+            {/* <BrowserRouter basename='/a-fofal/'> */}
+            <BrowserRouter>
+                <GlobalProvider>
                     <ScrollToTop />
                     <MainLayout>
                         <Routes>
@@ -79,9 +81,9 @@ const App = () => {
                             <Route path="/*" element={<NotFound />} />
                         </Routes>
                     </MainLayout>
-                </BrowserRouter>
-                <Toaster position="bottom-right" reverseOrder={false}/>
-            </GlobalProvider>
+                </GlobalProvider>
+            </BrowserRouter>
+            <Toaster position="bottom-right" reverseOrder={false} />
         </>
     );
 };

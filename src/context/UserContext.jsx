@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { userData } from "@/lib/mock";
+import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext();
 
@@ -10,6 +11,7 @@ export function UserContextProvider({ children }) {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const [user, setUser] = useState(userData || null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const login = async (email, password) => {
     setLoading(true);
@@ -28,45 +30,20 @@ export function UserContextProvider({ children }) {
     }
   };
 
-  const signup = async (
-    first_name,
-    last_name,
-    email,
-    password,
-    birthDate,
-    company,
-    country,
-    address,
-    zipCode,
-    city,
-    district,
-    phone,
-    nif,
-    privacyPolicy,
-  ) => {
+  const signup = async (userData) => {
     setLoading(true);
 
-    console.log(first_name, last_name, email, password, birthDate, company, country, address, zipCode, city, district, phone, nif, privacyPolicy);  
-
     try {
-      const res = await axios.post(`${baseUrl}/auth/register`, {
-        first_name,
-        last_name,
-        email,
-        password,
-        birthDate,
-        company,
-        country,
-        address,
-        zipCode,
-        city,
-        district,
-        phone,
-        nif,
-        privacyPolicy,
+      console.log(userData);
+      const res = await axios.post(`${baseUrl}/auth/register`, userData, {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }
       });
       setUser(res.data.user);
       toast.success("Registo efetuado com sucesso, redirecionando para a página de login!");
+      navigate("/login");
     } catch (error) {
       toast.error(error.response?.data?.message || "Ocorreu um erro");
     } finally {

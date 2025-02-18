@@ -24,8 +24,8 @@ const TapetesEntrada = () => {
 
   useEffect(() => {
     const path = location.pathname;
-    if (path.includes("tapetes-entrada")) {
-      changeProductType("alcatifas");
+    if (path.includes("comercio-industria/tapetes-entrada")) {
+      changeProductType("comercial-tapetes-entrada");
     }
   }, [location.pathname, changeProductType]);
 

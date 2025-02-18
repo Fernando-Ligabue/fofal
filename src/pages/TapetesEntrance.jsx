@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet';
 
-import TapetesEntrada from '@/components/TapetesEntrada';
+import AlcatifasTapetesEntrada from '@/components/AlcatifasTapetesEntrada';
 import TopSectionTapetes from '@/components/TopSectionTapetes';
 
 const TapetesEntrance = () => {
@@ -63,7 +63,7 @@ const TapetesEntrance = () => {
       <section className="w-full h-2 bg-bgCards"></section>
 
       <section>
-        <TapetesEntrada />
+        <AlcatifasTapetesEntrada />
       </section>
     </>
   );

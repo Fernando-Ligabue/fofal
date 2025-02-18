@@ -140,7 +140,7 @@ const AlcatifasEventos = () => {
                     {["curta duração", "média duração", "longa duração"].map((category, index, array) => (
                       <div
                         key={category}
-                        className={`w-full border-t border-fofalText py-3 px-1 cursor-pointer hover:bg-zinc-300 ${index === array.length - 1 ? 'border-b' : ''}`}
+                        className={`w-full border-t border-fofalText py-3 px-1 cursor-pointer hover:bg-zinc-300 ${selectedCategory === category ? 'bg-zinc-300' : ''} ${index === array.length - 1 ? 'border-b' : ''}`}
                       >
                         <p
                           className="font-brandon-400"

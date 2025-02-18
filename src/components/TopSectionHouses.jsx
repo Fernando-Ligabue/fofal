@@ -13,7 +13,7 @@ const TopSectionHouses = () => {
 
   const renderCarouselItem = (item) => (
     <>
-      <div className="rounded-2xl bg-bgCards p-4 flex-center flex-col xl:w-[435px]">
+      <div className="rounded-2xl bg-bgCards p-4 flex-center flex-col lg:w-full xl:w-[435px]">
         <img src={item.imageUrl} className="w-full max-w-64" alt={item.title} />
       </div>
       <h3 className={`text-2xl mt-4 ${getLinkClassNames(item.url)} text-fofalText`}>
@@ -35,7 +35,7 @@ const TopSectionHouses = () => {
         </div>
       </div>
 
-      <div className="hidden md:grid md:grid-cols-2 w-full max-w-container gap-6 xl:gap-20 pt-60 md:pt-40 pb-10">
+      <div className="hidden md:grid md:grid-cols-2 w-full max-w-container gap-6  pt-60 md:pt-40 pb-10">
         {itemsHouses.map((item) => (
           <div
             className="cursor-pointer w-full min-h-52"

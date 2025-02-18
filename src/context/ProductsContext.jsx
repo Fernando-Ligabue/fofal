@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Mockup de produtos (dados genéricos)
-import { alcatifasData, coberturasData, alcatifasHousesData } from '@/lib/mock';
+import { alcatifasData, coberturasData, alcatifasHousesData, tapetesEntranceHousesData, tapetesEntranceComercialData } from '@/lib/mock';
 
 const ProductsContext = createContext();
 
@@ -13,13 +13,13 @@ export function ProductsProvider({ children }) {
   });
 
   const [loading, setLoading] = useState(true);
-  
+
   const [filteredProducts, setFilteredProducts] = useState(() => {
     const savedFilteredProducts = localStorage.getItem('filteredProducts');
     return savedFilteredProducts ? JSON.parse(savedFilteredProducts) : [];
   });
 
-  const [productType, setProductType] = useState(() => 
+  const [productType, setProductType] = useState(() =>
     localStorage.getItem('productType') || null
   );
 
@@ -33,24 +33,28 @@ export function ProductsProvider({ children }) {
           case 'alcatifas':
             loadedProducts = alcatifasData;
             break;
+            case 'comercial-tapetes-entrada':
+            loadedProducts = tapetesEntranceComercialData;
+            break;
           case 'coberturas':
             loadedProducts = coberturasData;
             break;
           case 'alcatifas-casa':
             loadedProducts = alcatifasHousesData;
             break;
+          case 'tapetes-entrada':
+            loadedProducts = tapetesEntranceHousesData;
+            break;
         }
 
-        console.log('Produtos carregados:', loadedProducts);  
-        
         setProducts(loadedProducts);
         setFilteredProducts(loadedProducts);
-        
+
         if (loadedProducts.length > 0) {
           localStorage.setItem('products', JSON.stringify(loadedProducts));
           localStorage.setItem('filteredProducts', JSON.stringify(loadedProducts));
         }
-        
+
         setLoading(false);
       }, 1000);
     };
@@ -66,7 +70,7 @@ export function ProductsProvider({ children }) {
 
   const filterProducts = (category, preFilteredProducts = null) => {
     let filtered;
-    
+
     if (preFilteredProducts) {
       filtered = preFilteredProducts;
     }
@@ -75,7 +79,32 @@ export function ProductsProvider({ children }) {
     } else {
       filtered = products.filter(product => product.category === category);
     }
-    
+
+    setFilteredProducts(filtered);
+    localStorage.setItem('filteredProducts', JSON.stringify(filtered));
+  };
+
+  const filterProductsByTapeteType = (selectedTapetes) => {
+    if (selectedTapetes.length === 0) {
+      setFilteredProducts(products);
+      localStorage.setItem('filteredProducts', JSON.stringify(products));
+      return;
+    }
+
+    const filtered = products.filter(product => {
+      return selectedTapetes.some(tapete => {
+        const titleMatch = product.title.includes(tapete.value);
+
+        const categoryMatch = product.category === tapete.ambiente;
+
+        if (tapete.value === "Tapete de Entrada Alumínio") {
+          return titleMatch && categoryMatch;
+        }
+
+        return titleMatch;
+      });
+    });
+
     setFilteredProducts(filtered);
     localStorage.setItem('filteredProducts', JSON.stringify(filtered));
   };
@@ -90,6 +119,7 @@ export function ProductsProvider({ children }) {
       filteredProducts,
       loading,
       filterProducts,
+      filterProductsByTapeteType,
       changeProductType,
     }}>
       {children}

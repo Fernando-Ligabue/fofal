@@ -142,11 +142,11 @@ const SignupPage = () => {
     if (
       !formData.phone ||
       formData.phone.length < 9 ||
-      formData.phone.length > 13 ||
+      formData.phone.length > 14 ||
       !phoneRegex.test(formData.phone)
     ) {
       toast.error(
-        "Por favor, insira um número de phone válido, entre 9 e 13 dígitos."
+        "Por favor, insira um número de phone válido, entre 9 e 14 dígitos."
       );
       return false;
     }
@@ -372,7 +372,7 @@ const SignupPage = () => {
                         })
                       }
                       label="Código Postal"
-                      placeholder="Rua, Av, etc"
+                      placeholder="0000-000"
                       icon={Package}
                     />
                   </div>
@@ -417,7 +417,7 @@ const SignupPage = () => {
                       setFormData({ ...formData, phone: e.target.value })
                     }
                     label="Telefone"
-                    placeholder="+351 999 999 999"
+                    placeholder="+351999999999"
                     icon={Phone}
                   />
                   <div className="flex-1">
