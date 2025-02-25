@@ -10,7 +10,8 @@ const FiltersTapetesEntranceHouses = () => {
 
     const [selectedFilters, setSelectedFilters] = useState({
         category: [],
-        cor: [],
+        type: [],
+        color: [],
         material: [],
         usoAplicacao: [],
         finalidadeAplicacao: [],
@@ -36,8 +37,18 @@ const FiltersTapetesEntranceHouses = () => {
         }));
     };
 
+    const getTypeValues = () => {
+        const types = countOccurrences(products.map(item => item.type));
+        return Object.entries(types).map(([label, count]) => ({
+            label,
+            value: label,
+            count
+        }));
+    };
+
+
     const getColorValues = () => {
-        const colors = countOccurrences(products.map(item => item.acabamento?.cor));
+        const colors = countOccurrences(products.map(item => item.acabamento?.color));
         return Object.entries(colors).map(([label, count]) => ({
             label,
             value: label,
@@ -55,7 +66,7 @@ const FiltersTapetesEntranceHouses = () => {
     };
 
     const getUsageValues = () => {
-        const usos = countOccurrences(products.map(item => item.uso?.aplicacao));
+        const usos = countOccurrences(products.map(item => item.usage?.aplicacao));
         return Object.entries(usos).map(([label, count]) => ({
             label,
             value: label,
@@ -90,8 +101,15 @@ const FiltersTapetesEntranceHouses = () => {
             ]
         },
         {
-            title: "Acabamento",
-            key: "cor",
+            title: "Tipo",
+            key: "type",
+            items: [
+                { label: "Tipo", options: getTypeValues() }
+            ]
+        },
+        {
+            title: "Cor",
+            key: "color",
             items: [
                 { label: "Cor", options: getColorValues() }
             ]
@@ -146,8 +164,11 @@ const FiltersTapetesEntranceHouses = () => {
                 const categoryMatch = selectedFilters.category.length === 0 ||
                     selectedFilters.category.includes(product.category);
 
-                const colorMatch = selectedFilters.cor.length === 0 ||
-                    (product.acabamento && selectedFilters.cor.includes(product.acabamento.cor));
+                const typeMatch = selectedFilters.type.length === 0 ||
+                    selectedFilters.type.includes(product.type);
+
+                const colorMatch = selectedFilters.color.length === 0 ||
+                    (product.acabamento && selectedFilters.color.includes(product.acabamento.color));
 
                 const materialMatch = selectedFilters.material.length === 0 ||
                     (product.composicao && selectedFilters.material.includes(product.composicao.material));
@@ -161,7 +182,7 @@ const FiltersTapetesEntranceHouses = () => {
                 const aspectoMatch = selectedFilters.aspecto.length === 0 ||
                     (product.aspecto && selectedFilters.aspecto.includes(product.aspecto.visual));
 
-                return categoryMatch && colorMatch && materialMatch &&
+                return categoryMatch && typeMatch &&colorMatch && materialMatch &&
                     usoMatch && finalidadeMatch && aspectoMatch;
             });
 
@@ -184,7 +205,8 @@ const FiltersTapetesEntranceHouses = () => {
     const clearAllFilters = () => {
         setSelectedFilters({
             category: [],
-            cor: [],
+            type: [],
+            color: [],
             material: [],
             usoAplicacao: [],
             finalidadeAplicacao: [],
@@ -210,7 +232,7 @@ const FiltersTapetesEntranceHouses = () => {
             <ScrollArea className="h-full">
                 <Accordion type="multiple" className="w-full space-y-4">
                     {filterSections.map((section) => (
-                        <AccordionItem key={section.title} value={section.title} className="border-none">
+                        <AccordionItem key={section.title} value={section.title} className="border-none selection:none">
                             <AccordionTrigger className="text-base text-fofalText font-brandon-800 pt-4 pb-0 hover:no-underline border-t border-fofalText">
                                 {section.title}
                             </AccordionTrigger>

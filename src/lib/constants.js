@@ -248,15 +248,15 @@ export const faqs = [
     {
         id: 2,
         question: "Como posso proceder à compra de tapetes auto?",
-        answer: `- Seleccionar a marca, ano e modelo da viatura;
-        - Seleccionar a qualidade do material pretendida;
-        - Seleccionar a cor pretendida para o material;
-        - Seleccionar para que lugares pretende os tapetes
-        - Se pretender fixações, seleccionar em que tapetes as pretende. Caso não tenha fixações de origem e queira acrescentar, indicar em observações e seleccionar na mesma no campo “Fixações”;
-        - Caso pretenda personalização/bordado nos tapetes, indicar em quais pretende. Nas observações indicar a cor, a localização e se pretende a personalização marca ou modelo da viatura;
-        - Escolher o tipo de acabamento pretendido. Por norma executamos à cor do tapete, caso deseje outra cor por favor indicar nas observações;
-        - Indicar se pretende ou não reforço de PVC no condutor;
-        - Efectuar pagamento.`
+        answer: `Seleccionar a marca, ano e modelo da viatura;
+        Seleccionar a qualidade do material pretendida;
+        Seleccionar a cor pretendida para o material;
+        Seleccionar para que lugares pretende os tapetes
+        Se pretender fixações, seleccionar em que tapetes as pretende. Caso não tenha fixações de origem e queira acrescentar, indicar em observações e seleccionar na mesma no campo “Fixações”;
+        Caso pretenda personalização/bordado nos tapetes, indicar em quais pretende. Nas observações indicar a cor, a localização e se pretende a personalização marca ou modelo da viatura;
+        Escolher o tipo de acabamento pretendido. Por norma executamos à cor do tapete, caso deseje outra cor por favor indicar nas observações;
+        Indicar se pretende ou não reforço de PVC no condutor;
+        Efectuar pagamento.`
     },
     {
         id: 3,
@@ -266,7 +266,7 @@ export const faqs = [
     {
         id: 4,
         question: "Recebo factura da minha encomenda?",
-        answer: "Sim, a factura é sempre enviada juntamente com a sua encomenda. Caso a pretenda antecipadamente, por favor fale connosco. "
+        answer: "Sim, a factura é sempre enviada juntamente com a sua encomenda. Caso a pretenda antecipadamente, por favor fale connosco."
     },
     {
         id: 5,

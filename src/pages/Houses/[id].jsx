@@ -143,14 +143,14 @@ const HousesProductPage = () => {
                 </div>
               )}
               {activeTab === "caracteristicas" && (
-                <div className="flex flex-col gap-2 space-y-6 ">
+                <div className="w-full flex flex-col gap-2 space-y-6 ">
                   <p className="font-brandon-500 text-lg text-fofalText">
-                    Tamanho:{" "}
+                    Tamanho: Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus pariatur ea quos ex a esse!
                     <span className="font-brandon-400"></span>
                   </p>
                   <p className="font-brandon-500 text-lg text-fofalText border-t border-fofalText pt-4">
                     Informação Adicional <br />{" "}
-                    <span className="font-brandon-400"></span>
+                    <span className="font-brandon-400"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem facilis iste consequatur!</span>
                   </p>
                 </div>
               )}

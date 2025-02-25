@@ -451,13 +451,14 @@ export const alcatifasHousesData = [
       'https://dummyjson.com/image/300x200'
     ],
     category: "Alcatifas Naturais",
+    type: "Teste tipo",
     acabamento: {
       color: "Cinzento"
     },
     composicao: {
       material: "Lã"
     },
-    uso: {
+    usage: {
       aplicacao: "Doméstica"
     },
     finalidade: {
@@ -482,13 +483,14 @@ export const alcatifasHousesData = [
       'https://dummyjson.com/image/300x200'
     ],
     category: "Alcatifas Sintéticas",
+    type: "Teste tipo",
     acabamento: {
       cor: "Azul Marinho"
     },
     composicao: {
       material: "Poliéster"
     },
-    uso: {
+    usage: {
       aplicacao: "Comercial"
     },
     finalidade: {
@@ -513,13 +515,14 @@ export const alcatifasHousesData = [
       'https://dummyjson.com/image/300x200'
     ],
     category: "Alcatifas Naturais",
+    type: "Teste tipo",
     acabamento: {
       cor: "Bege Claro"
     },
     composicao: {
       material: "Algodão"
     },
-    uso: {
+    usage: {
       aplicacao: "Doméstica"
     },
     finalidade: {
@@ -544,13 +547,14 @@ export const alcatifasHousesData = [
       'https://dummyjson.com/image/300x200'
     ],
     category: "Alcatifas Naturais",
+    type: "Teste tipo",
     acabamento: {
       cor: "Verde Musgo"
     },
     composicao: {
       material: "Vinil"
     },
-    uso: {
+    usage: {
       aplicacao: "Comercial"
     },
     finalidade: {
@@ -575,13 +579,14 @@ export const alcatifasHousesData = [
       'https://dummyjson.com/image/300x200'
     ],
     category: "Alcatifas Sintéticas",
+    type: "Teste tipo",
     acabamento: {
       cor: "Cinza Claro"
     },
     composicao: {
       material: "Nylon"
     },
-    uso: {
+    usage: {
       aplicacao: "Doméstica"
     },
     finalidade: {
@@ -606,13 +611,14 @@ export const alcatifasHousesData = [
       'https://dummyjson.com/image/300x200'
     ],
     category: "Alcatifas Naturais",
+    type: "Teste tipo",
     acabamento: {
       cor: "Marrom Claro"
     },
     composicao: {
       material: "Lã e Algodão"
     },
-    uso: {
+    usage: {
       aplicacao: "Doméstica"
     },
     finalidade: {
@@ -631,8 +637,8 @@ export const tapetesEntranceHousesData = [
     title: "Tapete de entrada",
     category: "Ambiente Interior",
     description: "Composição – 100% Polipropileno",
-    segmento: "alcatifas-eventos",
-    setor: "comercio-industria",
+    segmento: "tapetes-entrada",
+    setor: "casas",
     size: "Apenas se vendem a rolo fechado",
     dimensions: "540 x 205 x 250",
     aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
@@ -643,8 +649,9 @@ export const tapetesEntranceHousesData = [
       'https://dummyjson.com/image/300x200',
     ],
     isNew: true,
+    type: "BT113",
     acabamento: {
-      color: "Cinzento"
+      color: "Vermelho"
     },
     composicao: {
       material: "Alumínio"
@@ -664,8 +671,8 @@ export const tapetesEntranceHousesData = [
     title: "Tapete de entrada",
     category: "Ambiente Interior",
     description: "Composição – 100% Polipropileno",
-    segmento: "alcatifas-eventos",
-    setor: "comercio-industria",
+    segmento: "tapetes-entrada",
+    setor: "casas",
     size: "Apenas se vendem a rolo fechado",
     dimensions: "540 x 205 x 250",
     aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
@@ -676,11 +683,12 @@ export const tapetesEntranceHousesData = [
       'https://dummyjson.com/image/300x200',
     ],
     isNew: true,
+    type: "BT190",
     acabamento: {
-      color: "Cinzento"
+      color: "Azul"
     },
     composicao: {
-      material: "Cairo"
+      material: "Alumínio"
     },
     usage: {
       aplicacao: "Doméstica"
@@ -697,8 +705,8 @@ export const tapetesEntranceHousesData = [
     title: "Tapete de entrada",
     category: "Ambiente Interior",
     description: "Composição – 100% Polipropileno",
-    segmento: "alcatifas-eventos",
-    setor: "comercio-industria",
+    segmento: "tapetes-entrada",
+    setor: "casas",
     size: "Apenas se vendem a rolo fechado",
     dimensions: "540 x 205 x 250",
     aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
@@ -709,11 +717,12 @@ export const tapetesEntranceHousesData = [
       'https://dummyjson.com/image/300x200',
     ],
     isNew: true,
+    type: "Cairo",
     acabamento: {
-      color: "Cinzento"
+      color: "Verde"
     },
     composicao: {
-      material: "MT113"
+      material: "Alcatifa alta densidade"
     },
     usage: {
       aplicacao: "Doméstica"
@@ -730,8 +739,8 @@ export const tapetesEntranceHousesData = [
     title: "Tapete de entrada",
     category: "Ambiente Interior",
     description: "Composição – 100% Polipropileno",
-    segmento: "alcatifas-eventos",
-    setor: "comercio-industria",
+    segmento: "tapetes-entrada",
+    setor: "casas",
     size: "Apenas se vendem a rolo fechado",
     dimensions: "540 x 205 x 250",
     aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
@@ -742,11 +751,12 @@ export const tapetesEntranceHousesData = [
       'https://dummyjson.com/image/300x200',
     ],
     isNew: true,
+    type: "BT199",
     acabamento: {
-      color: "Cinzento"
+      color: "Preto"
     },
     composicao: {
-      material: "BT199"
+      material: "Alcatifa alta densidade"
     },
     usage: {
       aplicacao: "Doméstica"
@@ -763,8 +773,8 @@ export const tapetesEntranceHousesData = [
     title: "Tapete de entrada",
     category: "Ambiente Exterior",
     description: "Composição – 100% Polipropileno",
-    segmento: "alcatifas-eventos",
-    setor: "comercio-industria",
+    segmento: "tapetes-entrada",
+    setor: "casas",
     size: "Apenas se vendem a rolo fechado",
     dimensions: "540 x 205 x 250",
     aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
@@ -775,6 +785,7 @@ export const tapetesEntranceHousesData = [
       'https://dummyjson.com/image/300x200',
     ],
     isNew: true,
+    type: "BT200",
     acabamento: {
       color: "Cinzento"
     },
@@ -796,8 +807,8 @@ export const tapetesEntranceHousesData = [
     title: "Tapete de entrada",
     category: "Ambiente Exterior",
     description: "Composição – 100% Polipropileno",
-    segmento: "alcatifas-eventos",
-    setor: "comercio-industria",
+    segmento: "tapetes-entrada",
+    setor: "casas",
     size: "Apenas se vendem a rolo fechado",
     dimensions: "540 x 205 x 250",
     aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
@@ -808,11 +819,46 @@ export const tapetesEntranceHousesData = [
       'https://dummyjson.com/image/300x200',
     ],
     isNew: true,
+    type: "BT193",
+    acabamento: {
+      color: "Metálico"
+    },
+    composicao: {
+      material: "Alcatifa alta densidade"
+    },
+    usage: {
+      aplicacao: "Doméstica"
+    },
+    finalidade: {
+      aplicacao: "Exterior"
+    },
+    aspecto: {
+      visual: "Liso"
+    },
+  },
+  {
+    id: 7,
+    title: "Tapete de entrada",
+    category: "Ambiente Exterior",
+    description: "Composição – 100% Polipropileno",
+    segmento: "tapetes-entrada",
+    setor: "casas",
+    size: "Apenas se vendem a rolo fechado",
+    dimensions: "540 x 205 x 250",
+    aditionalInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit diam, ultricies a nunc eu, facilisis rutrum sem. Praesent eu commodo nisi. Etiam libero diam, finibus ac urna non, vulputate porta justo.",
+    price: 86.31,
+    images: [
+      'https://dummyjson.com/image/300x200',
+      'https://dummyjson.com/image/300x200',
+      'https://dummyjson.com/image/300x200',
+    ],
+    isNew: true,
+    type: "Amumínio",
     acabamento: {
       color: "Cinzento"
     },
     composicao: {
-      material: "Vinil"
+      material: "Alumínio"
     },
     usage: {
       aplicacao: "Doméstica"

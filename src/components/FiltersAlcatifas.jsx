@@ -147,7 +147,7 @@ const FilterAlcatifas = () => {
           selectedFilters.category.includes(product.category);
 
         const colorMatch = selectedFilters.cor.length === 0 ||
-          (product.acabamento && selectedFilters.cor.includes(product.acabamento.cor));
+          (product.acabamento && selectedFilters.cor.includes(product.acabamento.color));
 
         const materialMatch = selectedFilters.material.length === 0 ||
           (product.composicao && selectedFilters.material.includes(product.composicao.material));
@@ -210,7 +210,7 @@ const FilterAlcatifas = () => {
       <ScrollArea className="h-full">
         <Accordion type="multiple" className="w-full space-y-4">
           {filterSections.map((section) => (
-            <AccordionItem key={section.title} value={section.title} className="border-none">
+            <AccordionItem key={section.title} value={section.title} className="border-none selection:none">
               <AccordionTrigger className="text-base text-fofalText font-brandon-800 pt-4 pb-0 hover:no-underline border-t border-fofalText">
                 {section.title}
               </AccordionTrigger>

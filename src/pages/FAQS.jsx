@@ -10,11 +10,9 @@ function FAQS() {
         return (
             <div>
                 {lines.map((line, index) => {
-                    if (line.startsWith('*') || line.startsWith('-')) {
+                    if (line.endsWith(';') || line.endsWith('.')) {
                         return (
-                            <ul key={index}>
-                                <li className="list-disc">{line}</li>
-                            </ul>
+                                <li key={index} className="list-disc">{line}</li>
                         )
                     }
                     return <p key={index}>{line}</p>;
