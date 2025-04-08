@@ -15,7 +15,7 @@ import safeOrder from "/images/home/safe-order.svg";
 import specialists from "/images/home/specialists.svg";
 import QuantitySelector from "@/components/QuantitySelector";
 
-const HousesProductPage = () => {
+const ComercialEntanceCarpetPage = () => {
   const { id } = useParams();
   const { products } = useProducts();
   const [product, setProduct] = useState(null);
@@ -179,7 +179,7 @@ const HousesProductPage = () => {
                 </div>
               )}
             </div>
-            {product.type !== "Alumínio" &&  <QuantitySelector product={product} />}
+            {product.type !== "Alumínio" && <QuantitySelector product={product} />}
           </div>
         </div>
       </section>
@@ -187,4 +187,4 @@ const HousesProductPage = () => {
   );
 };
 
-export default HousesProductPage;
+export default ComercialEntanceCarpetPage;

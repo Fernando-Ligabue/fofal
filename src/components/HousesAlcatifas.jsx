@@ -8,7 +8,7 @@ import CardProduct from "./CardProduct";
 import { useProducts } from "@/context/ProductsContext";
 import { useCart } from "@/context/CartContext";
 import Pagination from "./Pagination";
-import FiltersTapetesEntranceHouses from "./FiltersTapetesEntranceHouses";
+// import FiltersTapetesEntranceHouses from "./FiltersTapetesEntranceHouses";
 
 const HousesAlcatifas = () => {
   const { filteredProducts, loading, filterProducts, changeProductType } = useProducts();
@@ -96,13 +96,23 @@ const HousesAlcatifas = () => {
   return (
     <>
       <section className="flex flex-col justify-between gap-10">
+        {/* texto introdutório */}
+        <div className="w-full max-w-container mx-auto p-4 flex flex-col gap-8">
+          <h1 className="font-brandon-800 text-3xl text-fofalText">Alcatifas para Casa</h1>
+          <div className="lg:columns-2 gap-16">
+            <p className="font-brandon-400 text-2xl text-fofalText mb-8">No âmbito de decoração e renovação da sua casa, a Fofal disponibiliza-lhe uma vasta gama de opções diferenciadas e de elevada qualidade e acompanha-o durante todo o processo,
+              aconselhando-o, fazendo o levantamento de medidas e efectuando a colocação no local. Dispomos de Alcatifas com <strong>Padrões</strong> e Alcatifas <strong>Lisas</strong> e dentro destas gamas pode encontrar <strong>Alcatifas Naturais</strong> (Lã), <strong>Sintéticas</strong> (Poliamida, Poliéster, Polipropileno e Nylon) e <strong>Sisais</strong> (Naturais e Mistos).</p>
+
+            <p className="font-brandon-400 text-2xl text-fofalText mb-8">Para a escolha de uma alcatifa poderá ajudar tendo em conta o local para onde se destina, a dimensão do tapete e o tipo de acabamento em volta.</p>
+          </div>
+        </div>
         <div className="w-full max-w-container mx-auto p-4 py-10 flex flex-col lg:flex-row justify-between gap-10">
           {/* Filtros */}
-          <div className="flex flex-col justify-start gap-2">
+          {/* <div className="flex flex-col justify-start gap-2">
             <div className="w-full lg:max-w-60 min-w-60 md:sticky relative md:top-10">
               <FiltersTapetesEntranceHouses />
             </div>
-          </div>
+          </div> */}
 
           {/* Produtos */}
           <div className="min-h-[60vh] flex flex-1 flex-col gap-4">

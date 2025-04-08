@@ -73,18 +73,23 @@ const TapetesOffice = () => {
             </Carousel>
           </div>
           <div className="w-full flex flex-col gap-6 py-10 p-4 lg:p-0">
-            <h4 className="text-6xl font-brandon-900 text-fofalText">Lorem</h4>
+            <p className="text-2xl font-brandon-400 text-fofalText max-w-full p-1 sm:pr-8">A Fofal conta com mais de 60 anos de mercado no Mundo das Alcatifas e com este sector vem
+              proporcionar-lhe um ambiente energizante e acolhedor no seu local de trabalho. Contamos com
+              as melhores parcerias de alcatifas no Mercado como a DESSO – Tarkett, oferecendo-lhe tapetes
+              duráveis e funcionais com base numa economia sustentável e aliada aos designs mais
+              inovadores.</p>
+            <p className="text-2xl font-brandon-400 text-fofalText max-w-full p-1 sm:pr-8">Nos dias de hoje passamos grande parte do nosso tempo nos nossos locais de trabalho, sendo
+              importante a promoção de um ambiente saudável e de bem-estar, o que nos leva a apresentar
+              algumas soluções de alcatifas que reduzem, por exemplo, a quantidade de acumulação de
+              poeiras no ambiente de escritório e o ruído.
+            </p>
+            <p className="text-2xl font-brandon-400 text-fofalText max-w-full p-1 sm:pr-8">Descubra a gama de alcatifas e pavimentos que temos para oferecer e que vão contribuir para
+              espaços de trabalho inspiradores e multifuncionais, desde alcatifas modulares a rolos, com
+              diferentes cores, texturas e padrões poderá aconselhar-se connosco para encontrarmos a
+              melhor solução para o seu espaço</p>
 
-            <p className="text-3xl font-brandon-400 text-fofalText max-w-full xl:max-w-[60%] p-1">Lorem ipsum dolor sit amet, consectetuer
-              adipiscing elit, sed diam nonummy nibh euismod
-              tincidunt ut laoreet dolore magna aliquam erat
-              volutpat.</p>
-
-            <div className="mt-6 xl:mt-28 p-1">
-              <p className="text-3xl font-brandon-400 text-fofalText max-w-96"><strong>|</strong> Lorem ipsum dolor sit</p>
-              <p className="text-3xl font-brandon-400 text-fofalText max-w-96"><strong>|</strong> Lorem ipsum dolor sit</p>
-              <p className="text-3xl font-brandon-400 text-fofalText max-w-96"><strong>|</strong> Lorem ipsum dolor sit</p>
-              <p className="text-3xl font-brandon-400 text-fofalText max-w-96"><strong>|</strong> Lorem ipsum dolor sit</p>
+            <div className="mt-6 p-1">
+              <p className="text-3xl font-brandon-400 text-fofalText max-w-96">Entre em Contacto Connosco!</p>
             </div>
           </div>
         </div>

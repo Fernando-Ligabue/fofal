@@ -16,7 +16,6 @@ const CoberturaPageUniversal = () => {
   const { id } = useParams();
   const { products } = useProducts();
   const [product, setProduct] = useState(null);
-  const [activeTab, setActiveTab] = useState("caracteristicas");
 
   const navigate = useNavigate();
 
@@ -91,42 +90,25 @@ const CoberturaPageUniversal = () => {
 
             <div className="w-full flex gap-10 border-b border-fofalText py-4">
               <span
-                onClick={() => setActiveTab("caracteristicas")}
-                className={`font-brandon-500 text-fofalText text-md gap-4 uppercase cursor-pointer ${activeTab === "caracteristicas" ? "font-bold" : ""
-                  }`}
+                className={`font-brandon-800 text-fofalText text-md gap-4 uppercase cursor-pointer"}`}
               >
                 Características
               </span>
-              <span
-                onClick={() => setActiveTab("informacoes")}
-                className={`font-brandon-500 text-fofalText text-md gap-4 uppercase cursor-pointer ${activeTab === "informacoes" ? "font-bold" : ""
-                  }`}
-              >
-                Informações
-              </span>
             </div>
             <div>
-              {activeTab === "caracteristicas" && (
                 <div className="flex flex-col gap-2 space-y-6 ">
-                  <p className="font-brandon-500 text-lg text-fofalText">
+                  <p className="font-brandon-500 text-lg text-fofalText ">
                     Tamanho:{" "}
                     <span className="font-brandon-400">
                       {product.size} - {product.dimensions}
                     </span>
                   </p>
                   <p className="font-brandon-500 text-lg text-fofalText border-t border-fofalText pt-4">
-                    Informação Adicional <br />{" "}
                     <span className="font-brandon-400">
                       {product.aditionalInfo}
                     </span>
                   </p>
                 </div>
-              )}
-              {activeTab === "informacoes" && (
-                <div className="flex flex-col gap-2 space-y-6 ">
-                  CONTEUDO DE INFORMAÇÕES AQUI
-                </div>
-              )}
             </div>
             <QuantitySelector product={product} />
           </div>

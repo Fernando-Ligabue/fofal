@@ -115,7 +115,7 @@ const AlcatifasEventos = () => {
           {/* Filtros */}
           <div className="flex flex-col justify-start gap-2">
             <div className="w-full lg:max-w-60 min-w-60 md:sticky relative md:top-10">
-              <h1
+              <h2
                 className="w-full my-2 text-2xl text-fofalText font-brandon-800 flex items-center cursor-pointer gap-2"
                 onClick={handleOpenFilters}
               >
@@ -124,7 +124,7 @@ const AlcatifasEventos = () => {
                   className={`w-5 h-5 transition-all ease-in-out duration-300 ${openFilters ? "rotate-90" : "rotate-0"
                     }`}
                 />
-              </h1>
+              </h2>
               {selectedCategory !== "" && (
                 <span
                   className="absolute top-4 right-0 cursor-pointer w-fit ml-auto font-brandon-400 text-sm flex flex-nowra items-center gap-2"

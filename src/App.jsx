@@ -32,6 +32,8 @@ import Grass from './pages/Grass';
 import About from './pages/About';
 import Contacts from './pages/Contacts';
 import FAQS from './pages/FAQS';
+import AutoCapasBancosPage from './pages/AutoCapasBancos';
+import ComercialEntanceCarpetPage from './pages/Comercial/[id]';
 
 const App = () => {
     useEffect(() => {
@@ -61,11 +63,12 @@ const App = () => {
                             <Route path="/auto/coberturas-medida" element={<AutoCoberturasMedida />} />
                             <Route path="/auto/coberturas-universais" element={<AutoCoberturasUniversaisPage />} />
                             <Route path="/auto/cobertura-universal/:id" element={<CoberturaPageUniversal />} />
+                            <Route path="/auto/capas-bancos" element={<AutoCapasBancosPage />} />
                             <Route path="/comercio-industria/alcatifas-eventos" element={<TapetesEvents />} />
                             <Route path="/comercio-industria/tapetes-entrada" element={<TapetesEntrance />} />
                             <Route path="/comercio-industria/tapetes-escritorio" element={<TapetesOffice />} />
                             <Route path="/comercio-industria/alcatifas-eventos/:id" element={<AlcatifaEventosPage />} />
-                            <Route path="/comercio-industria/tapetes-entrada/:id" element={<AlcatifaEventosPage />} />
+                            <Route path="/comercio-industria/tapetes-entrada/:id" element={<ComercialEntanceCarpetPage />} />
                             <Route path="/nautica" element={<Nautica />} />
                             <Route path="/aviacao" element={<Aviation />} />
                             <Route path="/casas/alcatifas-casa" element={<Houses />} />

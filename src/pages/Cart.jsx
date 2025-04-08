@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 const CartPage = () => {
     const { user } = useUser();
-    const { cart, updateCart, removeFromCart, getCartAmount, shipping_fee } = useCart();
+    // const { cart, updateCart, removeFromCart, getCartAmount, shipping_fee } = useCart();
+    const { cart, updateCart, removeFromCart, getCartAmount } = useCart();
     const navigate = useNavigate();
 
     const handleIncrease = (productId) => {
@@ -23,7 +24,7 @@ const CartPage = () => {
     return (
         <section className="w-full p-4">
             <div className="max-w-screen-xl flex flex-col mx-auto gap-6 pt-48 lg:pt-60 pb-10">
-                {/* div vazia se nao houver items no carrinho */}
+                {/* Div vazia se não houver itens no carrinho */}
                 {cart.length === 0 && (
                     <div className="flex-center flex-col gap-4 pb-40 border-t border-b border-fofalText pt-36">
                         <ShoppingBag size={100} />
@@ -34,7 +35,7 @@ const CartPage = () => {
                     </div>
                 )}
 
-                {/* div com produtos que serao apresentadas se houver items no carrinho */}
+                {/* Div com produtos que serão apresentados se houver itens no carrinho */}
                 {cart.length > 0 && (
                     <div className="flex space-between items-start flex-col sm:flex-row gap-2 sm:gap-14">
                         <div className="w-full sm:max-w-[70%] flex flex-col gap-5">
@@ -46,45 +47,56 @@ const CartPage = () => {
                                     <span className="font-brandon-400 text-sm text-fofalText">Total</span>
                                 </div>
 
-                                {cart.length > 0 && (
-                                    cart.map((item) => (
-                                        <div key={item.id} className="relative w-full grid grid-cols-[1fr_30%_15%] md:px-4 pt-4 pb-10 items-center border-b border-fofalText">
-                                            <div className="font-brandon-300 text-sm text-fofalText flex flex-col lg:flex-row justify-start items-start gap-4">
-                                                <img className="w-full max-w-32" src={item.images[0] || "https://dummyjson.com/image/200x100"} alt={item.title} />
-                                                <div>
-                                                    <Link to={`/${item.setor}/${item.segmento}/${item.id}`} className="font-brandon-800 text-base text-fofalText max-w-60">{item.title}</Link>
-                                                    <p className="font-brandon-800 text-base text-fofalText max-w-60">{item.name}</p>
-                                                    {item.dimensions && <p className="font-brandon-400 text-base text-fofalText max-w-60">{item.dimensions}</p>}
-                                                    {item.description ? (
-                                                        <p className="font-brandon-400 text-base text-fofalText max-w-60 truncate">{item.description}</p>
-                                                    ) : (
-                                                        <p className="font-brandon-400 text-base text-fofalText max-w-60">Descrição não disponível</p>
-                                                    )}
+                                {cart.map((item) => (
+                                    <div key={item.id} className="relative w-full grid grid-cols-[1fr_30%_15%] md:px-4 pt-4 pb-10 items-center border-b border-fofalText">
+                                        <div className="font-brandon-300 text-sm text-fofalText flex flex-col lg:flex-row justify-start items-start gap-4">
+                                            <img className="w-full max-w-32" src={item.images[0] || "https://dummyjson.com/image/200x100"} alt={item.title} />
+                                            <div>
+                                                <Link to={`/${item.setor}/${item.segmento}/${item.id}`} className="font-brandon-800 text-base text-fofalText max-w-60">{item.title} - {item.type}</Link>
+                                                {/* {item.dimensions && <p className="font-brandon-400 text-base text-fofalText max-w-60">{item.dimensions}</p>} */}
+
+                                                <p className="font-brandon-400 text-base text-fofalText max-w-60 truncate">{item.size}</p>
+
+                                                {item.type === "MT113" && item.thickness && (
+                                                    <p className="font-brandon-400 text-sm text-fofalText">Espessura: {item.thickness} mm</p>
+                                                )}
+
+                                                {/* Verifica se o produto é vendido por metro quadrado */}
+                                                {item.isSoldPerSquareMeter && item.width && item.height && (
+                                                    <small className="font-brandon-400 text-fofalText">
+                                                        Tamanho: {(item.width * item.height).toFixed(2)} m²
+                                                    </small>
+                                                )}
+
+                                                {/* Exibe tamanho para produtos que não são vendidos por metro quadrado */}
+                                                {!item.isSoldPerSquareMeter && (
                                                     <small className="font-brandon-400 text-fofalText">Tamanho: {item.size}</small>
-                                                </div>
-                                            </div>
-
-                                            <div className="font-brandon-300 text-sm text-fofalText flex justify-start items-center gap-8">
-                                                <div className="flex justify-center items-center gap-2 border border-fofalText p-2 rounded-[4px] min-w-20">
-                                                    <Minus size={14} className={`cursor-pointer ${item.quantity === 1 ? 'opacity-50 !cursor-not-allowed' : ''}`} onClick={() => handleDecrease(item.id)} />
-                                                    <span className="font-brandon-500 text-base text-fofalText selection:bg-transparent">{item.quantity}</span>
-                                                    <Plus size={14} className="cursor-pointer" onClick={() => handleIncrease(item.id)} />
-                                                </div>
-                                            </div>
-
-                                            <div className="font-brandon-300 text-sm text-fofalText">
-                                                <span className="font-brandon-500">{(item.price * item.quantity).toFixed(2)} €</span>
-                                            </div>
-
-                                            <div className="absolute sm:left-4 bottom-2 flex-center gap-1 cursor-pointer" onClick={() => removeFromCart(item.id)}>
-                                                <Trash2 size={14} className="cursor-pointer text-red-700" /><span className="text-sm text-red-700 font-brandon-400">Remover</span>
+                                                )}
                                             </div>
                                         </div>
-                                    ))
-                                )}
+
+                                        <div className="font-brandon-300 text-sm text-fofalText flex justify-start items-center gap-8">
+                                            <div className="flex justify-center items-center gap-2 border border-fofalText p-2 rounded-[4px] min-w-20">
+                                                <Minus size={14} className={`cursor-pointer ${item.quantity === 1 ? 'opacity-50 !cursor-not-allowed' : ''}`} onClick={() => handleDecrease(item.id)} />
+                                                <span className="font-brandon-500 text-base text-fofalText selection:bg-transparent">{item.quantity}</span>
+                                                <Plus size={14} className="cursor-pointer" onClick={() => handleIncrease(item.id)} />
+                                            </div>
+                                        </div>
+
+                                        <div className="font-brandon-300 text-sm text-fofalText">
+                                            <span className="font-brandon-500">{(item.price * item.quantity).toFixed(2)} €</span>
+                                        </div>
+
+                                        <div className="absolute sm:left-4 bottom-2 flex-center gap-1 cursor-pointer" onClick={() => removeFromCart(item.id)}>
+                                            <Trash2 size={14} className="cursor-pointer text-red-700" /><span className="text-sm text-red-700 font-brandon-400">Remover</span>
+                                        </div>
+                                    </div>
+                                ))}
 
                                 <div className="w-full max-w-screen-xl mx-auto gap-6 py-6">
-                                    <Link to="/" className="w-full text-left py-2 text-fofalText font-brandon-400 hover:font-brandon-500 hover:underline text-base rounded-full"><span>{cart.length > 0 ? 'Continuar comprando' : 'Voltar para a loja'}</span></Link>
+                                    <Link to="/" className="w-full text-left py-2 text-fofalText font-brandon-400 hover:font-brandon-500 hover:underline text-base rounded-full">
+                                        <span>{cart.length > 0 ? 'Continuar comprando' : 'Voltar para a loja'}</span>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -96,25 +108,25 @@ const CartPage = () => {
                                 <textarea name="observacoes" id="observacoes" cols="30" rows="5" className="border border-fofalText p-1 rounded-[4px] resize-none"></textarea>
                             </div>
 
-                            <div className="flex justify-between items-center">
+                            {/* <div className="flex justify-between items-center">
                                 <span className="font-brandon-800 text-zinc-400 text-base">Taxa de envio</span>
                                 <span className="font-brandon-800 text-fofalText text-base">{shipping_fee} €</span>
-                            </div>
+                            </div> */}
 
                             <div className="flex justify-between items-center">
                                 <span className="font-brandon-800 text-zinc-400 text-base">Subtotal</span>
-                                <span className="font-brandon-800 text-fofalText text-base">{(getCartAmount() + shipping_fee).toFixed(2)} €</span>
+                                {/* <span className="font-brandon-800 text-fofalText text-base">{(getCartAmount() + shipping_fee).toFixed(2)} €</span> */}
+                                <span className="font-brandon-800 text-fofalText text-base">{getCartAmount().toFixed(2)} €</span>
                             </div>
 
-                            <button onClick={!user ? () => navigate('/login') : () => {alert("checkout") }}
+                            <button onClick={!user ? () => navigate('/login') : () => { alert("checkout") }}
                                 className="bg-gradient-auto w-full rounded-[4px] py-2 text-white font-brandon-400 text-base">
                                 Confirmar
                             </button>
                             <p className="font-brandon-500 text-zinc-400 text-sm">IVA incluído</p>
                         </div>
                     </div>
-                )
-                }
+                )}
             </div>
         </section>
     );

@@ -115,20 +115,19 @@ const CoberturaMedida = () => {
               {activeTab === "visao-geral" && (
                 <div className={`space-y-6`}>
                   <div className="flex flex-col gap-2">
-                    <h3 className="font-brandon-800 text-lg text-fofalText">Conforto | Design</h3>
+                    <h3 className="font-brandon-800 text-lg text-fofalText">Design</h3>
                     <p className="font-brandon-400 text-base text-fofalText">São desenhadas à medida a partir de trabalho artesanal, dando-se importância aos detalhes, sendo uma confeção minuciosa e ajustando-se ao veículo em todas as suas linhas. Cobrem a viatura na totalidade, mais especificamente até abaixo do meio da cava da roda. As coberturas são entregues devidamente embaladas num saco confecionado para o efeito e que servirá para proteger a sua cobertura automóvel quando esta não estiver a uso.</p>
                   </div>
 
                   <div className="flex flex-col gap-2">
                     <h3 className="font-brandon-800 text-lg text-fofalText">Personalização</h3>
-                    <p className="font-brandon-400 text-base text-fofalText">Reproduzimos a grande maioria dos logótipos das variadas marcas de automóveis. Também podemos criar letterings, ou grafismos. A personalização trata-se de uma Impressão Vinílica Termo-soldada e Serigrafia de tamanho máximo A3, a monocromático ou a cores.<br />
-                      Se pretender uma personalização fora do âmbito automóvel, envie-nos a imagem (de preferência em formato vetorial) para verificarmos a possibilidade de execução e apresentarmos uma proposta.</p>
+                    <p className="font-brandon-400 text-base text-fofalText">Reproduzimos a grande maioria dos logótipos das variadas marcas de automóveis. Também podemos criar letterings, ou grafismos.<br /> Se pretender uma personalização fora do âmbito automóvel, envie-nos a imagem (de preferência em formato vetorial) para verificarmos a possibilidade de execução e  apresentarmos uma proposta.</p>
                   </div>
 
                   <div className="flex flex-col gap-2">
                     <h3 className="font-brandon-800 text-lg text-fofalText">Moldes</h3>
-                    <p className="font-brandon-400 text-base text-fofalText">Dispomos de uma vasta gama de modelos, contudo, poderemos não dispor ainda do molde da sua viatura. Após a encomenda e caso esta situação se verifique, entramos em contacto para resolver a situação.<br />
-                      Prazo de Execução: O prazo de execução depende do volume de produção, no entanto o tempo estimado será de 2-3 semanas após encomenda e verificação dos moldes (se necessário) e salvo ruptura de stock da cor escolhida</p>
+                    <p className="font-brandon-400 text-base text-fofalText">Dispomos de uma vasta gama de modelos, contudo, poderemos não dispor ainda do molde da sua viatura. Após a encomenda e caso esta situação se verifique, entramos em contacto para resolver a situação.<br /><br />
+                      <strong>Para valores e mais informações sobre os produtos, visite a nossa página de compra onde poderá encontrar as características de cada material.</strong></p>
                   </div>
                 </div>
               )}
@@ -143,19 +142,13 @@ const CoberturaMedida = () => {
                   <div className="flex flex-col gap-2">
                     <h3 className="font-brandon-800 text-lg text-fofalText">Coberturas Exterior à Medida</h3>
                     <h4 className="font-brandon-800 text-base text-fofalText">Tecido de Lona</h4>
-                    <p className="font-brandon-400 text-base text-fofalText">As nossas coberturas para exterior são de lona e apresentam uma elevada resistência aos raios U.V. , à chuva (impermeáveis), à neve e gelo, aos dejectos de aves e às resinas das árvores. Nas costuras são vulcanizadas para que não passe água entre as mesmas e por dentro são constituídas por pelúcia de forma a que não risque a viatura. A cobertura leva nos quatro cantos elásticos e entre as rodas ilhoses para que possa prender a cobertura nos dias mais ventosos.<br />
-                      Apenas está disponível na cor Cinzento Claro devido aos raios U.V.</p>
+                    <p className="font-brandon-400 text-base text-fofalText">As nossas coberturas para exterior são de lona e apresentam uma elevada resistência aos raios U.V. , à chuva (impermeáveis), à neve e gelo, aos dejectos de aves e às resinas das árvores. Nas costuras são vulcanizadas para que não passe água entre as mesmas e por dentro são constituídas por pelúcia de forma a que não risque a viatura. A cobertura leva nos quatro cantos elásticos e entre as rodas ilhoses para que possa prender a cobertura nos dias mais ventosos. Apenas está disponível na cor Cinzento Claro devido aos raios U.V., trata-se de um material durável e resistente, garantindo uma barreira confiável contra as intempéries, sendo perfeitas para uso em ambientes de exterior.</p>
                   </div>
                 </div>
               )}
             </div>
             <div className="flex flex-col gap-2 space-y-6 ">
-              {/* <p className="font-brandon-500 text-lg text-fofalText">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Debitis est ratione numquam ex! Dignissimos veniam magni
-                accusantium blanditiis. Blanditiis odio natus eos eius, ipsam
-                quia assumenda libero eveniet officiis voluptates?
-              </p> */}
+
               {/* quadro de servicos/icons */}
               <div className="flex justify-around items-center gap-4">
                 <div className="flex-center flex-col gap-2">

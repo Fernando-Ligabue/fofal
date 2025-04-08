@@ -1,6 +1,12 @@
 import CoberturasUniversais from '../components/CoberturasUniversais'
 import { Helmet } from 'react-helmet';
 import TopSectionAuto from '@/components/TopSectionAuto';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 const AutoCoberturasUniversaisPage = () => {
 
@@ -23,12 +29,28 @@ const AutoCoberturasUniversaisPage = () => {
           <p className="sm:hidden font-brandon-800 text-3xl text-fofalText mb-2">Coberturas Universais</p>
           <h1 className="font-brandon-800 text-3xl text-fofalText">Descrição</h1>
           <div className="lg:columns-2 gap-16">
-            <p className="font-brandon-400 text-2xl text-fofalText mb-8"><strong>As coberturas universais</strong> são a escolha ideal para quem busca uma solução <strong>prática, acessível e eficaz</strong> para proteger o automóvel. Projetadas para se adaptar a uma ampla gama de modelos e tamanhos de veículos, elas oferecem <strong>proteção completa</strong> contra fatores externos, como <strong>poeira, chuva, raios UV, excrementos de pássaros e seiva de árvores</strong>.
-            </p>
+            <p className="font-brandon-400 text-2xl text-fofalText mb-8"><strong>As coberturas universais</strong> são para exterior e apesar do seu carácter mais temporário relativamente às Coberturas de Lona (PVC), são também <strong>impermeáveis</strong> e no seu verso são constituídas por uma <strong>camada fina de pelúcia</strong> para não riscar a viatura. Estas coberturas, possuem orifícios de ventilação que previnem a condensação.</p>
 
-            <p className="font-brandon-400 text-2xl text-fofalText mb-8">Além de preservar a <strong>pintura</strong>, as coberturas universais também protegem os componentes <strong>plásticos</strong> e de <strong>borracha</strong>, ajudando a evitar <strong>ressecamento</strong> e desgastes prematuros. Fabricadas com <strong>materiais duráveis e resistentes</strong>, elas garantem uma barreira confiável contra as <strong>intempéries</strong>, sendo perfeitas para uso em ambientes externos e internos.</p>
-
-            <p className="font-brandon-400 text-2xl text-fofalText mb-8">Se você valoriza a <strong>conservação</strong> do seu veículo e quer mantê-lo sempre protegido, as coberturas universais são uma solução prática e eficiente para prolongar sua vida útil e manter sua aparência como nova.</p>
+            <p className="font-brandon-400 text-2xl text-fofalText mb-8">Apresentam também furações na zona dianteira e traseira para prender a cobertura com uma corda. As coberturas universais já <strong>estão pré-fabricadas e estão categorizadas por tamanhos</strong>.</p>
+          </div>
+          <div>
+            <Accordion type="single" collapsible className="w-full max-w-80">
+              <AccordionItem value="item-1" className="border-none">
+                <AccordionTrigger className="font-brandon-500 text-xl text-black">Tamanhos</AccordionTrigger>
+                <AccordionContent>
+                  <ul className='font-brandon-400 text-lg text-fofalText mb-4'>
+                    <li>Tamanho S - 400 x 160 x 120</li>
+                    <li>Tamanho M - 430 x 160 x 120</li>
+                    <li>Tamanho L - 480 x 175 x 120</li>
+                    <li>Tamanho XL - 530 x 175 x 120</li>
+                    <li>Tamanho XXL1 - 463 x 173 x 143</li>
+                    <li>Tamanho XXL2 - 491 x 194 x 146</li>
+                    <li>Tamanho XXL3 - 508 x 198 x 145</li>
+                  </ul>
+                  <small className='font-brandon-400 text-md text-fofalText'>*Medidas Máximas em Centímetros (Comprimento x Largura x Altura).</small>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
       </section>

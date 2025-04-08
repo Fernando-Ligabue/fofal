@@ -62,14 +62,14 @@ export const categoriesHome = [
         href: "/auto/tapetes",
         label: "Automóvel",
         imageUrl: auto,
-        description: "Lorem ipsum dolor sit amet,consectetuer adipiscing elit lorem "
+        description: "Tapetes, Capas de Bancos e Coberturas tudo à Medida da Sua Viatura"
     },
     {
         id: 2,
         href: "/comercio-industria/alcatifas-eventos",
         label: "Comércio & Indústria",
         imageUrl: comInd,
-        description: "Lorem ipsum dolor sit amet,consectetuer adipiscing elit lorem "
+        description: "Alcatifas Sector da Saúde, Educação, Hotelaria, Escritório, Desporto, entre outros."
     },
     {
         id: 3,
@@ -83,7 +83,7 @@ export const categoriesHome = [
         href: "/casas",
         label: "Casa",
         imageUrl: houses,
-        description: "Lorem ipsum dolor sit amet,consectetuer adipiscing elit lorem "
+        description: "Escolha o Tapete à Medida para a Sua Casa, com a Cor e Acabamentos ao Seu Gosto"
     },
 ];
 
@@ -118,6 +118,7 @@ export const iconsHome = [
 export const tapetes = '/images/auto/tapetes.webp';
 export const cobMedida = '/images/auto/cob-medida.webp';
 export const cobUniversal = '/images/auto/cob-universais.webp';
+export const capasBancos = '/images/auto/capas-bancos.webp';
 
 
 export const itemsAuto = [
@@ -138,6 +139,12 @@ export const itemsAuto = [
         title: 'Coberturas Universais',
         imageUrl: cobUniversal,
         url: "/auto/coberturas-universais"
+    },
+    {
+        id: 4,
+        title: 'Capas para Bancos à medida',
+        imageUrl: capasBancos,
+        url: "/auto/capas-bancos"
     },
 ]
 

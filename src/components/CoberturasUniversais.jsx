@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useProducts } from "@/context/ProductsContext"; // Alterando para usar o novo hook de contexto
-import { ChevronRight, X } from "lucide-react";
+import { useProducts } from "@/context/ProductsContext";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -11,10 +10,8 @@ import { useCart } from "@/context/CartContext";
 import Pagination from "./Pagination";
 
 const CoberturasUniversais = () => {
-  const { filteredProducts, loading, filterProducts, changeProductType } = useProducts();
+  const { filteredProducts, loading, changeProductType } = useProducts();
   const { addToCart } = useCart();
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [openFilters, setOpenFilters] = useState(true);
   const [sortType, setSortType] = useState("relevant");
   const [sortedProducts, setSortedProducts] = useState(filteredProducts);
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,25 +27,8 @@ const CoberturasUniversais = () => {
     }
   }, [location.pathname, changeProductType]);
 
-  useEffect(() => {
-    filterProducts(selectedCategory);
-  }, [selectedCategory]);
-
-  const handleSetCategory = (category) => {
-    setSelectedCategory(category);
-  };
-
-  const handleOpenFilters = () => {
-    setOpenFilters(!openFilters);
-  };
-
   const handleViewProduct = (productId) => {
     navigate(`/auto/cobertura-universal/${productId}`);
-  };
-
-  const handleClearFilters = (e) => {
-    e.stopPropagation();
-    setSelectedCategory("");
   };
 
   const sortProducts = (products) => {
@@ -112,52 +92,6 @@ const CoberturasUniversais = () => {
     <>
       <section className="py-10 flex flex-col justify-between gap-10">
         <div className="w-full max-w-container mx-auto p-4 py-10 flex flex-col lg:flex-row justify-between gap-10">
-          {/* Filtros */}
-          <div className="flex flex-col justify-start gap-2">
-            <div className="w-full lg:max-w-60 min-w-60 md:sticky relative md:top-10">
-              <h1
-                className="w-full my-2 text-2xl text-fofalText font-brandon-800 flex items-center cursor-pointer gap-2"
-                onClick={handleOpenFilters}
-              >
-                Filtros
-                <ChevronRight
-                  className={`w-5 h-5 transition-all ease-in-out duration-300 ${openFilters ? "rotate-90" : "rotate-0"}`}
-                />
-              </h1>
-              {selectedCategory !== "" && (
-                <>
-                  <span
-                    className="absolute top-4 right-0 cursor-pointer w-fit ml-auto font-brandon-400 text-sm flex flex-nowra items-center gap-2"
-                    onClick={handleClearFilters}
-                  >
-                    Limpar filtros
-                    <X size={10} />
-                  </span>
-                </>
-              )}
-              {openFilters && (
-                <div className="py-3 sm:block">
-                  <div className="flex flex-col text-md">
-                    {["autocaravana", "automovel", "caravana", "motociclo", "scooter"].map((category, index, array) => (
-                      <div
-                        key={category}
-                        className={`w-full border-t border-fofalText py-3 px-1 cursor-pointer hover:bg-zinc-300 ${selectedCategory === category ? 'bg-zinc-300' : ''
-                          } ${index === array.length - 1 ? 'border-b' : ''}`}
-                      >
-                        <p
-                          className="font-brandon-400"
-                          onClick={() => handleSetCategory(category)}
-                        >
-                          {`Coberturas Universais ${category.charAt(0).toUpperCase() + category.slice(1)}`}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-
           {/* Produtos */}
           <div className="min-h-[60vh] flex flex-1 flex-col gap-4">
             <SortSelect sortType={sortType} onSortChange={setSortType} />

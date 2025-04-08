@@ -86,7 +86,7 @@ const Header = () => {
                         </nav>
 
                         {/* Botões para login e ícones de ações */}
-                        <div className={`flex items-center space-x-4 ${isHome ? 'text-white' : 'text-black'}`}>
+                        <div className={`w-full sm:w-fit flex justify-center sm:justify-between items-center space-x-4 ${isHome ? 'text-white' : 'text-black'}`}>
                             <div className={`flex space-x-2 ${isHome ? 'text-white' : 'text-black'}`}>
                                 {user && (<Search size={22} className={`text-current`} />)}
                                 {user && (<Heart size={22} className={`text-current`} />)}
