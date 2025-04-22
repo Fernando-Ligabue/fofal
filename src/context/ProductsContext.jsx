@@ -1,9 +1,11 @@
+/* eslint-disable no-case-declarations */
 import { createContext, useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Mockup de produtos (dados genéricos)
-import { alcatifasData, coberturasData, alcatifasHousesData, tapetesEntranceHousesData, tapetesEntranceComercialData } from '@/lib/mock';
-
+import { fetchAlcatifasHouses, fetchEntranceCarpetsHouses } from '@/lib/actions/houses';
+import { fetchEntranceCarpetsComercial, fetchAlcatifasComercial } from '@/lib/actions/comercial';
+import { fetchUniversalCovers } from '@/lib/actions/automotive';
 const ProductsContext = createContext();
 
 export function ProductsProvider({ children }) {
@@ -24,39 +26,42 @@ export function ProductsProvider({ children }) {
   );
 
   useEffect(() => {
-    const loadProducts = () => {
+    const loadProducts = async () => {
       setLoading(true);
 
-      setTimeout(() => {
-        let loadedProducts = [];
-        switch (productType) {
-          case 'alcatifas':
-            loadedProducts = alcatifasData;
-            break;
-            case 'comercial-tapetes-entrada':
-            loadedProducts = tapetesEntranceComercialData;
-            break;
-          case 'coberturas':
-            loadedProducts = coberturasData;
-            break;
-          case 'alcatifas-casa':
-            loadedProducts = alcatifasHousesData;
-            break;
-          case 'tapetes-entrada':
-            loadedProducts = tapetesEntranceHousesData;
-            break;
-        }
+      let loadedProducts = [];
+      switch (productType) {
+        case 'alcatifas':
+          const resAlcCom = await fetchAlcatifasComercial();
+          loadedProducts = resAlcCom.data;
+          break;
+        case 'comercial-tapetes-entrada':
+          const resCarpetCom = await fetchEntranceCarpetsComercial();
+          loadedProducts = resCarpetCom.data;
+          break;
+        case 'coberturas':
+          const resCovers = await fetchUniversalCovers();
+          loadedProducts = resCovers.data;
+          break;
+        case 'alcatifas-casa':
+        const resAlcHouse = await fetchAlcatifasHouses();
+        loadedProducts = resAlcHouse.data;
+          break;
+        case 'tapetes-entrada':
+          const resCarpetHouse = await fetchEntranceCarpetsHouses();
+          loadedProducts = resCarpetHouse.data;
+          break;
+      }
 
-        setProducts(loadedProducts);
-        setFilteredProducts(loadedProducts);
+      setProducts(loadedProducts);
+      setFilteredProducts(loadedProducts);
 
-        if (loadedProducts.length > 0) {
-          localStorage.setItem('products', JSON.stringify(loadedProducts));
-          localStorage.setItem('filteredProducts', JSON.stringify(loadedProducts));
-        }
+      if (loadedProducts.length > 0) {
+        localStorage.setItem('products', JSON.stringify(loadedProducts));
+        localStorage.setItem('filteredProducts', JSON.stringify(loadedProducts));
+      }
 
-        setLoading(false);
-      }, 1000);
+      setLoading(false);
     };
 
     loadProducts();

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { ChevronRight, MinusCircle, PlusCircle } from "lucide-react";
 
@@ -11,6 +11,8 @@ import coverBlue from "/images/auto/cover-medida-blue.webp";
 import coverRed from "/images/auto/cover-medida-red.webp";
 import coverYellow from "/images/auto/cover-medida-yellow.webp";
 import ColorSelector from "./ColorSelector";
+import { tapetesMedidaData } from "@/lib/mock";
+import VehicleSelects from "./VehicleSelect";
 
 
 
@@ -19,19 +21,32 @@ const CoberturaMedida = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState('black');
 
-  const [openCover, setOpenCover] = useState(false);
-  const [openCoverInt, setOpenCoverInt] = useState(false);
+  const [openSection, setOpenSection] = useState(null);
+
   const [interiorChecked, setInteriorChecked] = useState(false);
   const [exteriorChecked, setExteriorChecked] = useState(false);
 
-  const [openBrand, setOpenBrand] = useState(false);
-  const [openYear, setOpenYear] = useState(false);
-  const [openModels, setOpenModels] = useState(false);
-  const [openShapes, setOpenShapes] = useState(false);
-  const [openColors, setOpenColors] = useState(false);
+  const [anoSelecionado, setAnoSelecionado] = useState('');
+  const [marcaSelecionada, setMarcaSelecionada] = useState('');
+  const [modeloSelecionado, setModeloSelecionado] = useState('');
+
+  const modelosDaMarca = (marca) => {
+    const marcaEncontrada = tapetesMedidaData[0].Marcas.find(m => m.nome === marca);
+    return marcaEncontrada ? marcaEncontrada.modelos : [];
+  };
+
+  useEffect(() => {
+    if (marcaSelecionada) {
+      setModeloSelecionado('');
+    }
+  }, [marcaSelecionada]);
+
+
 
   const handleSubmit = () => {
     alert("Form submit");
+
+    setOpenSection(null);
   };
 
   const handleInteriorChange = () => {
@@ -169,15 +184,15 @@ const CoberturaMedida = () => {
                 <div className="pb-1">
                   <p
                     className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
-                    onClick={() => setOpenCover(!openCover)}
+                    onClick={() => setOpenSection(openSection === 'cover' ? null : 'cover')}
                   >
                     <span className="font-brandon-800">Cobertura</span>
                     <ChevronRight
-                      className={`w-5 h-5 transition-all ease-in-out duration-300 ${openCover ? "rotate-90" : "rotate-0"
+                      className={`w-5 h-5 transition-all ease-in-out duration-300 ${openSection ? "rotate-90" : "rotate-0"
                         }`}
                     />
                   </p>
-                  {openCover && (
+                  {openSection === "cover" && (
                     <div className="w-full flex justify-start items-start flex-col gap-1 p-2">
                       <div className="flex items-center gap-1">
                         <input
@@ -207,15 +222,15 @@ const CoberturaMedida = () => {
                   <div className="pb-1">
                     <p
                       className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
-                      onClick={() => setOpenCoverInt(!openCoverInt)}
+                      onClick={() => setOpenSection(openSection === 'coverInt' ? null : 'coverInt')}
                     >
                       <span className="font-brandon-800">Coberturas de interior</span>
                       <ChevronRight
-                        className={`w-5 h-5 transition-all ease-in-out duration-300 ${openCoverInt ? "rotate-90" : "rotate-0"
+                        className={`w-5 h-5 transition-all ease-in-out duration-300 ${openSection ? "rotate-90" : "rotate-0"
                           }`}
                       />
                     </p>
-                    {openCoverInt && (
+                    {openSection === "coverInt" && (
                       <div className="w-full flex justify-start items-start flex-col gap-1 p-2">
                         <div className="flex items-center gap-1">
                           <input type="checkbox" name="interior" id="interior" />
@@ -233,78 +248,85 @@ const CoberturaMedida = () => {
                 <div className="pb-1">
                   <p
                     className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
-                    onClick={() => setOpenBrand(!openBrand)}
+                    onClick={() => setOpenSection(openSection === 'brand' ? null : 'brand')}
                   >
                     <span className="font-brandon-800">Marca</span>
                     <ChevronRight
-                      className={`w-5 h-5 transition-all ease-in-out duration-300 ${openBrand ? "rotate-90" : "rotate-0"
+                      className={`w-5 h-5 transition-all ease-in-out duration-300 ${openSection ? "rotate-90" : "rotate-0"
                         }`}
                     />
                   </p>
-                  {openBrand && (
+                  {openSection === "brand" && (
                     <div className="w-full flex justify-start items-start flex-col gap-1 p-2">
-                      <div className="flex items-center gap-1">
-                        select marcas
-                      </div>
+                      <VehicleSelects
+                        options={tapetesMedidaData[0].Marcas}
+                        selectedValue={marcaSelecionada}
+                        onValueChange={setMarcaSelecionada}
+                        placeholder="Selecione a marca da viatura"
+                      />
                     </div>
                   )}
                 </div>
 
-
                 <div className="pb-1">
                   <p
                     className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
-                    onClick={() => setOpenYear(!openYear)}
-                  >
-                    <span className="font-brandon-800">Ano</span>
-                    <ChevronRight
-                      className={`w-5 h-5 transition-all ease-in-out duration-300 ${openYear ? "rotate-90" : "rotate-0"
-                        }`}
-                    />
-                  </p>
-                  {openYear && (
-                    <div className="w-full flex justify-start items-start flex-col gap-1 p-2">
-                      <div className="flex items-center gap-1">
-                        select anos
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-
-                <div className="pb-1">
-                  <p
-                    className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
-                    onClick={() => setOpenModels(!openModels)}
+                    onClick={() => setOpenSection(openSection === 'models' ? null : 'models')}
                   >
                     <span className="font-brandon-800">Modelos</span>
                     <ChevronRight
-                      className={`w-5 h-5 transition-all ease-in-out duration-300 ${openModels ? "rotate-90" : "rotate-0"
+                      className={`w-5 h-5 transition-all ease-in-out duration-300 ${openSection ? "rotate-90" : "rotate-0"
                         }`}
                     />
                   </p>
-                  {openModels && (
+                  {openSection === "models" && (
                     <div className="w-full flex justify-start items-start flex-col gap-1 p-2">
-                      <div className="flex items-center gap-1">
-                        select models
-                      </div>
+                      <VehicleSelects
+                        options={modelosDaMarca(marcaSelecionada)}
+                        selectedValue={modeloSelecionado}
+                        onValueChange={setModeloSelecionado}
+                        placeholder="Selecione o modelo da viatura"
+                        disabled={!marcaSelecionada}
+                      />
                     </div>
                   )}
                 </div>
 
+                <div className="pb-1">
+                  <p
+                    className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
+                    onClick={() => setOpenSection(openSection === 'year' ? null : 'year')}
+                  >
+                    <span className="font-brandon-800">Ano</span>
+                    <ChevronRight
+                      className={`w-5 h-5 transition-all ease-in-out duration-300 ${openSection ? "rotate-90" : "rotate-0"
+                        }`}
+                    />
+                  </p>
+                  {openSection === "year" && (
+                    <div className="w-full flex justify-start items-start flex-col gap-1 p-2">
+                      <VehicleSelects
+                        options={tapetesMedidaData[0].Anos}
+                        selectedValue={anoSelecionado}
+                        onValueChange={setAnoSelecionado}
+                        placeholder="Selecione o ano da viatura"
+                      />
+                    </div>
+                  )}
+                </div>
 
                 <div className="pb-1">
                   <p
                     className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
-                    onClick={() => setOpenShapes(!openShapes)}
+                    onClick={() => setOpenSection(openSection === 'shapes' ? null : 'shapes')}
                   >
                     <span className="font-brandon-800">Moldes</span>
                     <ChevronRight
-                      className={`w-5 h-5 transition-all ease-in-out duration-300 ${openShapes ? "rotate-90" : "rotate-0"
+                      className={`w-5 h-5 transition-all ease-in-out duration-300 ${openSection ? "rotate-90" : "rotate-0"
                         }`}
                     />
                   </p>
-                  {openShapes && (
+                  {openSection === "shapes" && (
                     <div className="w-full flex justify-start items-start flex-col gap-1 p-2">
                       <div className="flex items-center gap-1">
                         select Moldes
@@ -316,15 +338,15 @@ const CoberturaMedida = () => {
                 <div className="pb-1">
                   <p
                     className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
-                    onClick={() => setOpenColors(!openColors)}
+                    onClick={() => setOpenSection(openSection === 'colors' ? null : 'colors')}
                   >
                     <span className="font-brandon-800">Cor da personalização</span>
                     <ChevronRight
-                      className={`w-5 h-5 transition-all ease-in-out duration-300 ${openColors ? "rotate-90" : "rotate-0"
+                      className={`w-5 h-5 transition-all ease-in-out duration-300 ${openSection ? "rotate-90" : "rotate-0"
                         }`}
                     />
                   </p>
-                  {openColors && (
+                  {openSection === "colors" && (
                     <div className="w-full flex justify-start items-start flex-col gap-1 p-2">
                       <div className="flex flex-col items-center gap-1">
                         <input type="text" className="border border-zinc-400 rounded-[4px] p-0.5" placeholder="Cor escolhida: 1" />

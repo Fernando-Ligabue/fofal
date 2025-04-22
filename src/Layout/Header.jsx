@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { GiShoppingCart } from "react-icons/gi";
-import { Heart, Menu, Search, User2, X } from 'lucide-react';
+import { Heart, LogOut, Menu, Search, User2, X } from 'lucide-react';
 
 import { navLinks } from '@/lib/constants';
 import logoSvg from '/logo-svg.svg';
@@ -13,7 +13,7 @@ import { useUser } from '@/context/UserContext';
 import { useCart } from '@/context/CartContext';
 
 const Header = () => {
-    const { user } = useUser();
+    const { user, logout } = useUser();
     const { cartCountItems } = useCart();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const location = useLocation();
@@ -61,7 +61,7 @@ const Header = () => {
             </div>
             <div className='w-full max-w-container mx-auto'>
                 <div className='flex justify-between items-start md:items-center gap-6 px-4 sm:py-4'>
-                    <div className='w-full flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0'>
+                    <div className=' reative w-full flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0 gap-2'>
                         <div className="logo">
                             <NavLink to="/" className={getLinkClassNames('/')}>
                                 <img src={getLogoSrc()} className='w-full max-w-52 min-w-52' alt="Logo FOFAL" />
@@ -90,7 +90,7 @@ const Header = () => {
                             <div className={`flex space-x-2 ${isHome ? 'text-white' : 'text-black'}`}>
                                 {user && (<Search size={22} className={`text-current`} />)}
                                 {user && (<Heart size={22} className={`text-current`} />)}
-                                {user && (<User2 size={22} className={`text-current`} />)}
+                                {user && (<User2 size={22} className={`text-current cursor-pointer`} onClick={() => navigate('/profile')} />)}
                                 <div className='relative cursor-pointer' onClick={() => navigate('/cart')}>
                                     <GiShoppingCart size={22} className={`text-current rotate-logo`} />
                                     <span className='h-3 w-3 bg-gradient-auto text-white text-[8px] rounded-full absolute top-0 left-0 flex justify-center items-center font-brandon-300'>{cartCountItems()}</span>
@@ -103,11 +103,16 @@ const Header = () => {
                                     Login
                                 </button>
                             }
+                            {user && (
+                                <>
+                                    <LogOut className="block cursor-pointer" size={24} onClick={logout} />
+                                </>
+                            )}
                         </div>
                     </div>
-                    <div className={`xl:hidden flex items-center mt-4 md:mt-0 ${isHome ? 'text-white' : 'text-black'}`}>
+                    <div className={`absolute md:relative right-2 xl:hidden flex items-center mt-4 md:mt-0 ${isHome ? 'text-white' : 'text-black'}`}>
                         <Menu
-                            size={48}
+                            size={44}
                             onClick={toggleSidebar}
                             className="p-2 rounded-md cursor-pointer"
                         />

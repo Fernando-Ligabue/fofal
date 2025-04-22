@@ -53,6 +53,8 @@ export function UserContextProvider({ children }) {
 
   const logout = () => {
     setUser(null);
+    navigate("/login");
+    localStorage.removeItem("user");
     toast.success("Logout efetuado!");
   };
 

@@ -34,6 +34,8 @@ import Contacts from './pages/Contacts';
 import FAQS from './pages/FAQS';
 import AutoCapasBancosPage from './pages/AutoCapasBancos';
 import ComercialEntanceCarpetPage from './pages/Comercial/[id]';
+import CheckoutPage from './pages/Checkout';
+import ProfilePage from './pages/Profile';
 
 const App = () => {
     useEffect(() => {
@@ -81,6 +83,8 @@ const App = () => {
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/signup" element={<SignupPage />} />
                             <Route path="/cart" element={<CartPage />} />
+                            <Route path="/checkout" element={<CheckoutPage />} />
+                            <Route path="/profile" element={<ProfilePage />} />
                             <Route path="/faqs" element={<FAQS />} />
                             <Route path="/*" element={<NotFound />} />
                         </Routes>

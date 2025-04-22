@@ -6,13 +6,11 @@ import path from 'path';
 export default defineConfig({
     plugins: [plugin()],
     base: '/',
+    // base: '/a-fofal/',
     resolve: {
         alias: {
           // eslint-disable-next-line no-undef
           '@': path.resolve(__dirname, 'src'),
         },
       },
-    // server: {
-    //   port: 5175,
-    // }
 })

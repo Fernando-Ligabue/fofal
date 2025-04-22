@@ -62,7 +62,7 @@ export const categoriesHome = [
         href: "/auto/tapetes",
         label: "Automóvel",
         imageUrl: auto,
-        description: "Tapetes, Capas de Bancos e Coberturas tudo à Medida da Sua Viatura"
+        description: "Tapetes e Coberturas à Medida e Personalizados para a sua Viatura"
     },
     {
         id: 2,
@@ -113,13 +113,14 @@ export const iconsHome = [
         description: "Atendimento de acordo com as necessidades de cada cliente"
     },
 ]
+// export const tapetes = '/a-fofal/images/auto/tapetes.webp'; este é o padrao quando fizer a dist para o condor
 
-// assets pagina auto
+// assets paginas auto
 export const tapetes = '/images/auto/tapetes.webp';
 export const cobMedida = '/images/auto/cob-medida.webp';
 export const cobUniversal = '/images/auto/cob-universais.webp';
 export const capasBancos = '/images/auto/capas-bancos.webp';
-
+export const carPositions = '/images/auto/car-positions.webp';
 
 export const itemsAuto = [
     {

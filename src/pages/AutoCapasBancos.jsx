@@ -100,7 +100,7 @@ const AutoCapasBancosPage = () => {
                 Na encomenda, deve escolher o material pretendido para as laterais e para a zona central, uma vez que pode optar por fazer tudo em <strong>tecido</strong> ou em <strong>napel</strong>, mas também enveredar pela <strong>solução mista</strong> - napa nas laterais e tecido na zona central. A costura com a qual são feitas as capas também pode ser escolhida a cor – ou no tom do material ou em outro escolhido por si.
               </p>
               <p className="text-2xl font-brandon-400 text-fofalText max-w-full p-1">
-                As capas podem também ser <strong>personalizadas</strong> com a <strong>marca/modelo do veículo</strong> (personalização bordada na capa). Personalizações  fora do âmbito automóvel, deverá ser solicitada uma apreciação via e-mail.
+                As capas podem também ser <strong>personalizadas</strong> com a <strong>marca/modelo da viatura</strong> (personalização bordada na capa). Personalizações  fora do âmbito automóvel, deverá ser solicitada uma apreciação via e-mail.
               </p>
 
               <p className="text-2xl font-brandon-800 text-fofalText max-w-full p-1 pt-8">Opções de Fabrico</p>
@@ -125,9 +125,6 @@ const AutoCapasBancosPage = () => {
           </TabsContent>
         </Tabs>
       </section>
-
-
-
     </>
   )
 }
