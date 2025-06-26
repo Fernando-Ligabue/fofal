@@ -1,4 +1,4 @@
-import { useCart } from "@/context/CartContext";
+;import useCart from "@/hooks/useCart";
 // import { useUser } from "@/context/UserContext";
 import { Link } from "react-router-dom";
 

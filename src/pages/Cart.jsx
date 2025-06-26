@@ -1,11 +1,10 @@
-import { useCart } from "@/context/CartContext";
+;import useCart from "@/hooks/useCart";
 import { useUser } from "@/context/UserContext";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 const CartPage = () => {
     const { user } = useUser();
-    // const { cart, updateCart, removeFromCart, getCartAmount, shipping_fee } = useCart();
     const { cart, updateCart, removeFromCart, getCartAmount } = useCart();
     const navigate = useNavigate();
 
@@ -77,9 +76,15 @@ const CartPage = () => {
 
                                                     {/* Verifica se o produto é vendido por metro quadrado */}
                                                     {item.isSoldPerSquareMeter && item.width && item.height && (
-                                                        <small className="font-brandon-400 text-fofalText">
-                                                            Tamanho: {(item.width * item.height).toFixed(2)} m²
-                                                        </small>
+                                                        <>
+                                                            <small className="font-brandon-400 text-fofalText">
+                                                                Cor: {item.color || "Não especificada"}
+                                                            </small>
+                                                            <br />
+                                                            <small className="font-brandon-400 text-fofalText">
+                                                                Tamanho: {(item.width * item.height).toFixed(2)} m²
+                                                            </small>
+                                                        </>
                                                     )}
 
                                                     {/* Exibe tamanho para produtos que não são vendidos por metro quadrado */}
@@ -141,7 +146,7 @@ const CartPage = () => {
                                         </div>
 
                                         <div className="font-brandon-300 text-sm text-fofalText">
-                                            <span className="font-brandon-500">{(item.price * item.quantity).toFixed(2)} €</span>
+                                            <span className="font-brandon-500">{Number(item.price * item.quantity).toFixed(2)} €</span>
                                         </div>
 
                                         <div className="absolute sm:left-4 bottom-2 flex-center gap-1 cursor-pointer" onClick={() => removeFromCart(item.id)}>

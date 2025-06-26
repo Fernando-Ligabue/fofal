@@ -10,7 +10,7 @@ import logoComInd from '/logo-comind.svg';
 import logoNautico from '/logo-nautico.svg';
 import logoCasa from '/logo-casa.svg';
 import { useUser } from '@/context/UserContext';
-import { useCart } from '@/context/CartContext';
+import useCart from '@/hooks/useCart';
 
 const Header = () => {
     const { user, logout } = useUser();

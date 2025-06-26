@@ -3,8 +3,10 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-hot-toast";
+import { calculateBT200, calculateBTIndoor, calculateDefault, calculateAlcatifas, calculateMT113 } from "@/lib/fnUtils.js/calculates";
+import { resolvePrice } from "@/lib/fnUtils.js/resolvers";
 
-const CartContext = createContext();
+export const  CartContext = createContext();
 
 export function CartProvider({ children }) {
     const [cart, setCart] = useState(() => {
@@ -12,8 +14,6 @@ export function CartProvider({ children }) {
         return savedCart ? JSON.parse(savedCart) : [];
     });
     const [cartItems, setCartItems] = useState([]);
-    // const shipping_fee = 5.95;
-
 
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
@@ -314,158 +314,86 @@ export function CartProvider({ children }) {
         return customCarpetProduct;
     };
 
-    const addSquareMeterToCart = (product, width = 0, height = 0, thickness = "") => {
-        // Certificar-se de que o produto é vendido por metro quadrado
-        if (product.isSoldPerSquareMeter) {
-            const area = width * height;
-
-            if (area <= 0) {
-                toast.error("Por favor, insira as medidas de largura e altura.");
-                return;
-            }
-
-            let finalPrice = product.price * area;
-
-            let productDetails = {
-                basePrice: finalPrice,
-                thicknessCost: 0,
-                glueCost: 0,
-                shippingCost: 0
-            };
-
-            // Verificação para o tipo de produto MT113 (espessura e cola)
-            if (product.type === "MT113") {
-                let thicknessPricePerMeter = 0;
-
-                const thicknessStr = String(thickness || "");
-
-                if (!thicknessStr || thicknessStr.trim() === "") {
-                    toast.error("Por favor, forneça uma espessura para o produto MT113.");
-                    return;
-                }
-
-                let thicknessMin, thicknessMax;
-
-                if (thicknessStr.includes('-')) {
-                    const thicknessRange = thicknessStr.split('-');
-                    thicknessMin = parseFloat(thicknessRange[0]);
-                    thicknessMax = parseFloat(thicknessRange[1]);
-                } else {
-                    thicknessMin = parseFloat(thicknessStr);
-                    thicknessMax = thicknessMin;
-                }
-
-                if (isNaN(thicknessMin) || isNaN(thicknessMax)) {
-                    toast.error("Os valores de espessura fornecidos não são números válidos.");
-                    return;
-                }
-
-                if (thicknessMin >= 3 && thicknessMax <= 5) {
-                    thicknessPricePerMeter = 26.63;
-                } else if (thicknessMin >= 5 && thicknessMax <= 7) {
-                    thicknessPricePerMeter = 28.33;
-                } else if (thicknessMin >= 8 && thicknessMax <= 9) {
-                    thicknessPricePerMeter = 30.42;
-                } else if (thicknessMin >= 10 && thicknessMax <= 11) {
-                    thicknessPricePerMeter = 54.96;
-                } else if (thicknessMin >= 12 && thicknessMax <= 13) {
-                    thicknessPricePerMeter = 56.65;
-                } else if (thicknessMin >= 14 && thicknessMax <= 15) {
-                    thicknessPricePerMeter = 58.74;
-                } else if (thicknessMin >= 16 && thicknessMax <= 17) {
-                    thicknessPricePerMeter = 60.84;
-                } else {
-                    toast.error("A espessura fornecida não é válida para o produto MT113.");
-                    return;
-                }
-
-                const thicknessCost = thicknessPricePerMeter * area;
-
-                const glueCost = 30.75;
-
-                productDetails.thicknessCost = thicknessCost;
-                productDetails.glueCost = glueCost;
-
-                finalPrice += thicknessCost + glueCost;
-
-                console.log(`Detalhes do cálculo MT113:
-                    - Preço base: ${product.price * area}€
-                    - Preço espessura (${thicknessPricePerMeter}€/m² × ${area}m²): ${thicknessCost}€
-                    - Preço cola: ${glueCost}€
-                    - Preço total antes do envio: ${finalPrice}€`);
-            }
-
-            let weightPerSquareMeter = 0;
-            let shippingCost = 0;
-
-            if (product.type === "BT200") {
-                weightPerSquareMeter = 3.5;
-            } else if (product.type === "BT INDOOR") {
-                weightPerSquareMeter = 2.6;
-            }
-
-            const totalWeight = weightPerSquareMeter * area;
-
-            if (totalWeight >= 13 && totalWeight <= 20) {
-                shippingCost = 34.94;
-            } else if (totalWeight >= 21 && totalWeight <= 30) {
-                shippingCost = 40.59;
-            } else if (totalWeight >= 31 && totalWeight <= 40) {
-                shippingCost = 47.97;
-            } else if (totalWeight >= 41 && totalWeight <= 50) {
-                shippingCost = 55.35;
-            } else if (totalWeight >= 51 && totalWeight <= 100) {
-                shippingCost = 92.25;
-            }
-
-            productDetails.shippingCost = shippingCost;
-
-            finalPrice += shippingCost;
-
-            const uniqueId = `${product.id}-${width}-${height}-${thickness}`;
-
-            console.log("Preço final calculado:", finalPrice, "Detalhes:", productDetails);
-
-            setCart((prevCart) => {
-                const existingProduct = prevCart.find(item => item.id === uniqueId);
-
-                const productForCart = {
-                    ...product,
-                    id: uniqueId,
-                    quantity: 1,
-                    price: finalPrice,
-                    width,
-                    height,
-                    thickness,
-                    productDetails,
-                    shippingCost
-                };
-
-                if (existingProduct) {
-                    toast.success(`${product.title} de área ${area}m² já está no carrinho. Quantidade atualizada.`);
-                    return prevCart.map(item =>
-                        item.id === uniqueId
-                            ? {
-                                ...productForCart,
-                                quantity: item.quantity + 1
-                            }
-                            : item
-                    );
-                }
-
-                let successMessage = `Produto "${product.title}" de área ${area}m²`;
-                if (product.type === "MT113") {
-                    successMessage += ` e espessura de ${thickness} adicionado ao carrinho.`;
-                    // successMessage += ` Preço total: ${finalPrice.toFixed(2)}€ (produto: ${productDetails.basePrice.toFixed(2)}€ + espessura: ${productDetails.thicknessCost.toFixed(2)}€ + cola: ${productDetails.glueCost.toFixed(2)}€ + envio: ${productDetails.shippingCost.toFixed(2)}€)`;
-                } else {
-                    successMessage += ` adicionado ao carrinho.`;
-                }
-
-                toast.success(successMessage);
-                return [...prevCart, productForCart];
-            });
+    const addSquareMeterToCart = async ( product, width = 0, height = 0, thickness = "", color = "" ) => {
+        if (!product.isSoldPerSquareMeter) return;
+    
+        // Verificação de largura máxima
+        if (width > 2 && height > 2) {
+            toast.error("Para medidas superiores a 2m, por favor contacte-nos pelo email: comercial@fofal.pt");
+            return;
         }
-    };
+    
+        let result;
+    
+        toast.loading("Por favor aguarde...");
+    
+        switch (product.type) {
+            case "Holmes":
+                result = await calculateAlcatifas(product, width, height, thickness ?? "2.5");
+                break;
+            case "Plat":
+                result = await calculateAlcatifas(product, width, height, thickness ?? "2.5");
+                break;
+            case "Salsa":
+                result = await calculateAlcatifas(product, width, height, thickness ?? "2.5");
+                break;
+            case "BT INDOOR":
+                result = calculateBTIndoor(product, width, height);
+                break;
+            case "BT200":
+                result = calculateBT200(product, width, height);
+                break;
+            case "MT113":
+                result = calculateMT113(product, width, height, thickness);
+                break;
+            default:
+                result = calculateDefault(product, width, height);
+        }
+    
+        toast.dismiss();
+        if (!result) return;
+    
+        const productPrice = result.finalPrice ?? result.price;
+        const fallbackPrice = resolvePrice(product, width, height);
+        const price = parseFloat(productPrice ?? fallbackPrice);
+    
+        if (isNaN(price)) {
+            toast.error("Preço inválido recebido do servidor.");
+            return;
+        }
+    
+        const productDetails = result.productDetails ?? {};
+    
+        const uniqueId = `${product.id}-${width}-${height}-${thickness}-${color}`;
+    
+        setCart((prevCart) => {
+            const existingProduct = prevCart.find(item => item.id === uniqueId);
+    
+            const productForCart = {
+                ...product,
+                id: uniqueId,
+                quantity: 1,
+                price,
+                width,
+                height,
+                thickness,
+                color,
+                productDetails
+            };
+    
+            if (existingProduct) {
+                toast.success(`${product.title} já está no carrinho. Quantidade atualizada.`);
+                return prevCart.map(item =>
+                    item.id === uniqueId
+                        ? { ...productForCart, quantity: item.quantity + 1 }
+                        : item
+                );
+            }
+    
+            toast.success(`Produto "${product.title}" adicionado ao carrinho.`);
+            return [...prevCart, productForCart];
+        });
+    };    
 
     const updateCart = (productId, quantity) => {
         setCart((prevCart) =>
@@ -515,7 +443,6 @@ export function CartProvider({ children }) {
                 updateCartItems,
                 getCartAmount,
                 addCustomAutoCarpetToCart,
-                // shipping_fee
             }}>
             {children}
         </CartContext.Provider>
@@ -525,11 +452,3 @@ export function CartProvider({ children }) {
 CartProvider.propTypes = {
     children: PropTypes.node.isRequired,
 };
-
-export function useCart() {
-    const context = useContext(CartContext);
-    if (!context) {
-        throw new Error('useCart deve ser usado dentro de um CartProvider');
-    }
-    return context;
-}

@@ -1,12 +1,14 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-case-declarations */
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Mockup de produtos (dados genéricos)
 import { fetchAlcatifasHouses, fetchEntranceCarpetsHouses } from '@/lib/actions/houses';
 import { fetchEntranceCarpetsComercial, fetchAlcatifasComercial } from '@/lib/actions/comercial';
 import { fetchUniversalCovers } from '@/lib/actions/automotive';
-const ProductsContext = createContext();
+
+export const ProductsContext = createContext();
 
 export function ProductsProvider({ children }) {
   const [products, setProducts] = useState(() => {
@@ -26,46 +28,58 @@ export function ProductsProvider({ children }) {
   );
 
   useEffect(() => {
-    const loadProducts = async () => {
-      setLoading(true);
+  const loadProducts = async () => {
+    setLoading(true);
 
-      let loadedProducts = [];
-      switch (productType) {
-        case 'alcatifas':
-          const resAlcCom = await fetchAlcatifasComercial();
-          loadedProducts = resAlcCom.data;
-          break;
-        case 'comercial-tapetes-entrada':
-          const resCarpetCom = await fetchEntranceCarpetsComercial();
-          loadedProducts = resCarpetCom.data;
-          break;
-        case 'coberturas':
-          const resCovers = await fetchUniversalCovers();
-          loadedProducts = resCovers.data;
-          break;
-        case 'alcatifas-casa':
+    // criação de cache de produtos para evitar requisições a db
+    const cachedProducts = localStorage.getItem(`products-${productType}`);
+    if (cachedProducts) {
+      const parsed = JSON.parse(cachedProducts);
+      setProducts(parsed);
+      setFilteredProducts(parsed);
+      setLoading(false);
+      return;
+    }
+
+    let loadedProducts = [];
+
+    switch (productType) {
+      case 'alcatifas':
+        const resAlcCom = await fetchAlcatifasComercial();
+        loadedProducts = resAlcCom.data;
+        break;
+      case 'comercial-tapetes-entrada':
+        const resCarpetCom = await fetchEntranceCarpetsComercial();
+        loadedProducts = resCarpetCom.data;
+        break;
+      case 'coberturas':
+        const resCovers = await fetchUniversalCovers();
+        loadedProducts = resCovers.data;
+        break;
+      case 'alcatifas-casa':
         const resAlcHouse = await fetchAlcatifasHouses();
         loadedProducts = resAlcHouse.data;
-          break;
-        case 'tapetes-entrada':
-          const resCarpetHouse = await fetchEntranceCarpetsHouses();
-          loadedProducts = resCarpetHouse.data;
-          break;
-      }
+        break;
+      case 'tapetes-entrada':
+        const resCarpetHouse = await fetchEntranceCarpetsHouses();
+        loadedProducts = resCarpetHouse.data;
+        break;
+      default:
+        loadedProducts = [];
+    }
 
-      setProducts(loadedProducts);
-      setFilteredProducts(loadedProducts);
+    setProducts(loadedProducts);
+    setFilteredProducts(loadedProducts);
+    localStorage.setItem(`products-${productType}`, JSON.stringify(loadedProducts));
 
-      if (loadedProducts.length > 0) {
-        localStorage.setItem('products', JSON.stringify(loadedProducts));
-        localStorage.setItem('filteredProducts', JSON.stringify(loadedProducts));
-      }
+    setLoading(false);
+  };
 
-      setLoading(false);
-    };
-
+  if (productType) {
     loadProducts();
-  }, [productType]);
+  }
+}, [productType]);
+
 
   useEffect(() => {
     if (productType) {
@@ -82,7 +96,7 @@ export function ProductsProvider({ children }) {
     else if (!category) {
       filtered = products;
     } else {
-      filtered = products.filter(product => product.category === category);
+      filtered = products.filter(product => product.category.toLowerCase() === category);
     }
 
     setFilteredProducts(filtered);
@@ -135,12 +149,3 @@ export function ProductsProvider({ children }) {
 ProductsProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
-// eslint-disable-next-line react-refresh/only-export-components
-export function useProducts() {
-  const context = useContext(ProductsContext);
-  if (!context) {
-    throw new Error('useProducts deve ser usado dentro de um ProductsProvider');
-  }
-  return context;
-}

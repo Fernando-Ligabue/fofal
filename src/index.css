@@ -50,6 +50,7 @@
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  accent-color: #bc1e33;
 }
 
 .no-scrollbar::-webkit-scrollbar{

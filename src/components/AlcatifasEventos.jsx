@@ -6,9 +6,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ProductGridSkeleton from "./ProductGridSkeleton";
 import SortSelect from "./SortSelect";
 import CardProduct from "./CardProduct";
-import { useProducts } from "@/context/ProductsContext";
-import { useCart } from "@/context/CartContext";
+import useProducts from "@/hooks/useProducts";
+import useCart from "@/hooks/useCart";
 import Pagination from "./Pagination";
+import { revalidateProducts } from "@/lib/fnUtils.js/revalidateProducts";
 
 const AlcatifasEventos = () => {
   const { filteredProducts, loading, filterProducts, changeProductType } = useProducts();
@@ -23,11 +24,21 @@ const AlcatifasEventos = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  let clearRevalidate = null;
+
   useEffect(() => {
     const path = location.pathname;
     if (path.includes("alcatifas-eventos")) {
-      changeProductType("alcatifas");
+      const selectedType = "alcatifas";
+
+      changeProductType(selectedType);
+
+      clearRevalidate = revalidateProducts(changeProductType, selectedType, 900000);
     }
+
+    return () => {
+      if (clearRevalidate) clearRevalidate();
+    };
   }, [location.pathname, changeProductType]);
 
   useEffect(() => {

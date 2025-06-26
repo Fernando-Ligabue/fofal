@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { cn, fetchCountries } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { fetchCountries } from "@/lib/fnUtils.js/countries";
 import { Button } from "@/components/ui/button";
 import {
   Command,

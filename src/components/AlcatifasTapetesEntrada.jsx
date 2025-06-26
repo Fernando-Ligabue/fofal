@@ -5,11 +5,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ProductGridSkeleton from "./ProductGridSkeleton";
 import SortSelect from "./SortSelect";
 import CardProduct from "./CardProduct";
-import { useProducts } from "@/context/ProductsContext";
-import { useCart } from "@/context/CartContext";
+import useProducts from "@/hooks/useProducts";
+;import useCart from "@/hooks/useCart";
 // import FilterAlcatifas from "./FiltersAlcatifas";
 import Pagination from "./Pagination";
-import FiltersEntranceCarpets from "./FiltersEntranceCarpets";
+import FiltersCarpetsHouses from "./FiltersCarpetsHouses";
 
 const TapetesEntrada = () => {
   const { filteredProducts, loading, filterProducts, changeProductType } = useProducts();
@@ -101,7 +101,7 @@ const TapetesEntrada = () => {
           {/* Filtros */}
           <div className="flex flex-col justify-start gap-2">
             <div className="w-full lg:max-w-60 min-w-60 md:sticky relative md:top-10">
-              <FiltersEntranceCarpets />
+              <FiltersCarpetsHouses />
             </div>
           </div>
 

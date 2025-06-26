@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 import { Checkbox } from "../components/ui/checkbox";
-import { useProducts } from "@/context/ProductsContext";
+import useProducts from "@/hooks/useProducts";
 import { X } from "lucide-react";
 
 const FilterAlcatifas = () => {

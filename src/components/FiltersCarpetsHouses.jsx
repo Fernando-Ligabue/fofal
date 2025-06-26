@@ -1,21 +1,16 @@
 import { useState, useEffect } from "react";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
-import { Checkbox } from "../components/ui/checkbox";
-import { useProducts } from "@/context/ProductsContext";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
+import { Checkbox } from "./ui/checkbox";
+import useProducts from "@/hooks/useProducts";
 import { X } from "lucide-react";
 
-const FiltersEntranceCarpets = () => {
+const FiltersCarpetsHouses = () => {
     const { products, filterProducts } = useProducts();
 
     const [selectedFilters, setSelectedFilters] = useState({
         category: [],
-        type: [],
-        color: [],
         material: [],
-        usoAplicacao: [],
-        finalidadeAplicacao: [],
-        aspecto: []
     });
 
     const countOccurrences = (values) => {
@@ -37,30 +32,15 @@ const FiltersEntranceCarpets = () => {
         }));
     };
 
-    const getMaterialValues = () => {
-        const materials = countOccurrences(products.map(item => item.composicao?.material));
-        return Object.entries(materials).map(([label, count]) => ({
-            label,
-            value: label,
-            count
-        }));
-    };
-
     const filterSections = [
         {
-            title: "Uso",
+            title: "Uso/Material",
             key: "category",
             items: [
                 { label: "Tipo", options: getCategoryValues() }
             ]
         },
-        {
-            title: "Material",
-            key: "material",
-            items: [
-                { label: "Material", options: getMaterialValues() }
-            ]
-        },
+
     ];
 
     const handleFilterChange = (key, value) => {
@@ -82,11 +62,11 @@ const FiltersEntranceCarpets = () => {
             const filteredProducts = products.filter(product => {
                 const categoryMatch = selectedFilters.category.length === 0 ||
                     selectedFilters.category.includes(product.category);
-                    
+
                 const materialMatch = selectedFilters.material.length === 0 ||
                     (product.composicao && selectedFilters.material.includes(product.composicao.material));
 
-                return categoryMatch && materialMatch ;
+                return categoryMatch && materialMatch;
             });
 
             setFilteredProductsLocal(filteredProducts);
@@ -108,12 +88,7 @@ const FiltersEntranceCarpets = () => {
     const clearAllFilters = () => {
         setSelectedFilters({
             category: [],
-            type: [],
-            color: [],
             material: [],
-            usoAplicacao: [],
-            finalidadeAplicacao: [],
-            aspecto: []
         });
     };
 
@@ -171,4 +146,4 @@ const FiltersEntranceCarpets = () => {
     );
 };
 
-export default FiltersEntranceCarpets;
+export default FiltersCarpetsHouses;

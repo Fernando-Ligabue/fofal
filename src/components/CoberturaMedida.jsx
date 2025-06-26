@@ -90,7 +90,7 @@ const CoberturaMedida = () => {
 
       <section className="w-full h-full p-4">
         <div className="max-w-container h-full md:min-h-[70vh] mx-auto pt-10 sm:p-4 flex flex-col lg:flex-row justify-between items-start gap-10">
-          <div className="relative w-full sm:min-h-screen flex flex-col justify-center items-center lg:max-w-[60%] bg-bgCards">
+          <div className="md:sticky relative md:top-10 w-full sm:min-h-screen flex flex-col justify-center items-center lg:max-w-[60%] bg-bgCards">
             <img src={colorImages[selectedColor]}
               alt={`FOFAL - COberturas à medida ${selectedColor}`}
               className="w-full max-w-[680px]"
@@ -104,11 +104,11 @@ const CoberturaMedida = () => {
             <span className="text-lg text-fofalText font-brandon-400 mb-10">
               Loja
             </span>
-            <h1 className="font-brandon-800 text-4xl sm:text-5xl text-fofalText text-left">
+            <h4 className="font-brandon-800 text-4xl sm:text-5xl text-fofalText text-left">
               Coberturas Auto
               <br />
               à medida
-            </h1>
+            </h4>
 
             <div className="w-full flex justify-start items-center gap-4 border-b border-fofalText py-4">
               <span

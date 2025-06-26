@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   Carousel,
@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { Helmet } from "react-helmet";
 
-import { useProducts } from "@/context/ProductsContext";
+import useProducts from "@/hooks/useProducts";
 import shipping from "/images/home/shipping.svg";
 import safeOrder from "/images/home/safe-order.svg";
 import specialists from "/images/home/specialists.svg";
@@ -131,11 +131,11 @@ const ComercialEntanceCarpetPage = () => {
                 <div className="flex flex-col gap-2 space-y-6 p-1">
                   <p className="font-brandon-500 text-mdg text-fofalText">
                     {product.description.map((item, index) => (
-                      <>
+                      <React.Fragment key={index}>
                         <span key={index}>{item}</span>
                         <br />
                         <br />
-                      </>
+                      </React.Fragment>
                     ))}
                   </p>
 
@@ -169,11 +169,11 @@ const ComercialEntanceCarpetPage = () => {
                 <div className="flex flex-col gap-2 space-y-6 p-1.5">
                   <p className="font-brandon-500 text-md text-fofalText">
                     {product.customization.map((item, index) => (
-                      <>
-                        <span key={index}>{item}</span>
+                      <React.Fragment key={index}>
+                        <span>{item}</span>
                         <br />
                         <br />
-                      </>
+                      </React.Fragment>
                     ))}
                   </p>
                 </div>

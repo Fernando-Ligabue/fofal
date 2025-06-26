@@ -9,7 +9,7 @@ import { tapetesMedidaData } from "@/lib/mock";
 import { ChevronRight, Minus, Plus } from "lucide-react";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "./ui/select";
 import VehicleSelects from "./VehicleSelect";
-import { useCart } from "@/context/CartContext";
+import useCart from "@/hooks/useCart";
 import { Label } from "./ui/label";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 
@@ -24,9 +24,9 @@ const AutoTapetesMedida = () => {
     const [materialSelecionado, setMaterialSelecionado] = useState('');
     const [cores, setCores] = useState(['', '', '']);
     const [fixacoes, setFixacoes] = useState(false);
-    const [espigoes, setEspigoes] = useState(false);
-    const [bordado, setBordado] = useState(false);
-    const [acabamento, setAcabamento] = useState("debruado_fiola");
+    const [bordado, setBordado] = useState("condutor");
+    const [orientation, setOrientation] = useState(false);
+    const [acabamento, setAcabamento] = useState("debruado_fio");
 
     const isRubberMaterial = () => {
         return materialSelecionado === 'rubber-hexa' || materialSelecionado === 'rubber-flex';
@@ -48,7 +48,7 @@ const AutoTapetesMedida = () => {
             setBordado(false);
             setAcabamento("Material não permite esta seleção");
         } else {
-            setAcabamento("debruado_fiola");
+            setAcabamento("debruado_fio");
         }
     }, [materialSelecionado]);
 
@@ -150,7 +150,7 @@ const AutoTapetesMedida = () => {
             material: materialSelecionado,
             cores: cores.filter(cor => cor.trim() !== ''),
             fixacoes: fixacoes,
-            espigoes: espigoes,
+            orientation: orientation,
             bordado: isRubberMaterial() ? "Material não permite esta seleção" : bordado,
             acabamento: isRubberMaterial() ? "Material não permite esta seleção" : acabamento
         };
@@ -168,9 +168,9 @@ const AutoTapetesMedida = () => {
             setCores(['', '', '']);
 
             setFixacoes(false);
-            setEspigoes(false);
+            setOrientation(false);
             setBordado(false);
-            setAcabamento("debruado_fiola");
+            setAcabamento("debruado_fio");
 
             setOpenSection(null);
         }
@@ -191,7 +191,7 @@ const AutoTapetesMedida = () => {
                     )}
                 </div>
 
-                <div className="space-y-6 flex flex-col xl:flex-row gap-10 w-full flex-1">
+                <div className="space-y-6 flex flex-col xl:flex-row gap-10 w-full flex-1 md:sticky relative md:top-10">
                     <div className="flex flex-col w-full max-w-72">
                         <h3 className="text-3xl text-fofalText font-brandon-500">Posições selecionadas: <br /><span className="text-xl text-fofalText font-brandon-500">{selectionTitle}</span></h3>
 
@@ -529,50 +529,24 @@ const AutoTapetesMedida = () => {
                             </p>
                             {openSection === 'fixacao' && (
                                 <div className="w-full flex justify-start items-start flex-col gap-3 p-2">
-                                    <RadioGroup value={fixacoes ? "sim" : "nao"} onValueChange={(value) => setFixacoes(value === "sim")}>
-                                        <div className="flex items-center space-x-2">
-                                            <RadioGroupItem value="sim" id="fixacoes-sim" />
-                                            <Label htmlFor="fixacoes-sim">Sim</Label>
-                                        </div>
-                                        <div className="flex items-center space-x-2">
-                                            <RadioGroupItem value="nao" id="fixacoes-nao" />
-                                            <Label htmlFor="fixacoes-nao">Não</Label>
-                                        </div>
-                                    </RadioGroup>
+                                    <>
+                                        <p className="font-brandon-400 text-fofalText">Selecione a peça com fixação:</p>
+                                        <RadioGroup value={fixacoes} onValueChange={(value) => setFixacoes(value)}>
+                                            <div className="flex items-center space-x-2">
+                                                <RadioGroupItem value="condutor" id="ficaxao-condutor" />
+                                                <Label htmlFor="ficaxao-condutor">Condutor</Label>
+                                            </div>
+                                            <div className="flex items-center space-x-2">
+                                                <RadioGroupItem value="passageiro" id="ficaxao-passageiro" />
+                                                <Label htmlFor="ficaxao-passageiro">Passageiro</Label>
+                                            </div>
+                                            <div className="flex items-center space-x-2">
+                                                <RadioGroupItem value="ambos" id="ficaxao-ambos" />
+                                                <Label htmlFor="ficaxao-ambos">Ambos</Label>
+                                            </div>
+                                        </RadioGroup>
+                                    </>
                                     <small className="font-brandon-300 text-[12px] text-fofalText">* Adicione apenas se a viatura apresentar pontos de fixação correspondentes</small>
-                                </div>
-                            )}
-                        </div>
-
-                        <div className="pb-1">
-                            <p
-                                className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
-                                onClick={() => setOpenSection(openSection === 'espigao' ? null : 'espigao')}
-                            >
-                                <span className="font-brandon-800">Espigões</span>
-                                <ChevronRight
-                                    className={`w-5 h-5 transition-all ease-in-out duration-300 ${openSection ? "rotate-90" : "rotate-0"}`}
-                                />
-                            </p>
-                            {openSection === 'espigao' && (
-                                <div className="w-full flex justify-start items-start flex-col gap-3 p-2">
-                                    {isRubberMaterial() ? (
-                                        <p className="text-sm text-gray-500">Material não permite esta personalização.</p>
-                                    ) : (
-                                        <>
-                                            <RadioGroup value={espigoes ? "sim" : "nao"} onValueChange={(value) => setEspigoes(value === "sim")}>
-                                                <div className="flex items-center space-x-2">
-                                                    <RadioGroupItem value="sim" id="espigoes-sim" />
-                                                    <Label htmlFor="espigoes-sim">Sim</Label>
-                                                </div>
-                                                <div className="flex items-center space-x-2">
-                                                    <RadioGroupItem value="nao" id="espigoes-nao" />
-                                                    <Label htmlFor="espigoes-nao">Não</Label>
-                                                </div>
-                                            </RadioGroup>
-                                            <small className="font-brandon-300 text-[12px] text-fofalText">* Não aplicável para borrachas e alguns tipos de alcatifa</small>
-                                        </>
-                                    )}
                                 </div>
                             )}
                         </div>
@@ -582,26 +556,71 @@ const AutoTapetesMedida = () => {
                                 className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
                                 onClick={() => setOpenSection(openSection === 'bordado' ? null : 'bordado')}
                             >
-                                <span className="font-brandon-800">Bordado</span>
+                                <span className="font-brandon-800">Bordado (personalização)</span>
                                 <ChevronRight
                                     className={`w-5 h-5 transition-all ease-in-out duration-300 ${openSection === 'bordado' ? "rotate-90" : "rotate-0"}`}
                                 />
                             </p>
                             {openSection === 'bordado' && (
-                                <div className="w-full flex justify-start items-start flex-col gap-3 p-2">
+                                <div className="w-full flex justify-start items-start flex-col gap-2 p-2">
                                     {isRubberMaterial() ? (
                                         <p className="text-sm text-gray-500">Material não permite bordado</p>
                                     ) : (
-                                        <RadioGroup value={bordado ? "sim" : "nao"} onValueChange={(value) => setBordado(value === "sim")}>
-                                            <div className="flex items-center space-x-2">
-                                                <RadioGroupItem value="sim" id="bordado-sim" />
-                                                <Label htmlFor="bordado-sim">Sim</Label>
-                                            </div>
-                                            <div className="flex items-center space-x-2">
-                                                <RadioGroupItem value="nao" id="bordado-nao" />
-                                                <Label htmlFor="bordado-nao">Não</Label>
-                                            </div>
-                                        </RadioGroup>
+                                        <>
+                                            <p className="font-brandon-400 text-fofalText">Selecione a peça com bordado:</p>
+                                            <RadioGroup value={bordado} onValueChange={(value) => setBordado(value)}>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="condutor" id="bordado-condutor" />
+                                                    <Label htmlFor="bordado-condutor">Condutor</Label>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="passageiro" id="bordado-passageiro" />
+                                                    <Label htmlFor="bordado-passageiro">Passageiro</Label>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="ambos" id="bordado-ambos" />
+                                                    <Label htmlFor="bordado-ambos">Ambos</Label>
+                                                </div>
+                                            </RadioGroup>
+                                        </>
+                                    )}
+                                    <small className="font-brandon-300 text-[12px] text-fofalText">* Não disponível para borrachas e alguns materiais específicos</small>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="pb-1">
+                            <p
+                                className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
+                                onClick={() => setOpenSection(openSection === 'orientation' ? null : 'orientation')}
+                            >
+                                <span className="font-brandon-800">Orientação (bordado)</span>
+                                <ChevronRight
+                                    className={`w-5 h-5 transition-all ease-in-out duration-300 ${openSection === 'orientation' ? "rotate-90" : "rotate-0"}`}
+                                />
+                            </p>
+                            {openSection === 'orientation' && (
+                                <div className="w-full flex justify-start items-start flex-col gap-2 p-2">
+                                    {isRubberMaterial() ? (
+                                        <p className="text-sm text-gray-500">Material não permite bordado</p>
+                                    ) : (
+                                        <>
+                                            <p className="font-brandon-400 text-fofalText">Selecione a orientação do bordado:</p>
+                                            <RadioGroup value={orientation} onValueChange={(value) => setOrientation(value)}>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="condutor" id="orientation-condutor" />
+                                                    <Label htmlFor="orientation-condutor">Condutor</Label>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="passageiro" id="orientation-passageiro" />
+                                                    <Label htmlFor="orientation-passageiro">Passageiro</Label>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="ambos" id="orientation-ambos" />
+                                                    <Label htmlFor="orientation-ambos">Ambos</Label>
+                                                </div>
+                                            </RadioGroup>
+                                        </>
                                     )}
                                     <small className="font-brandon-300 text-[12px] text-fofalText">* Não disponível para borrachas e alguns materiais específicos</small>
                                 </div>
@@ -613,7 +632,7 @@ const AutoTapetesMedida = () => {
                                 className="flex justify-between items-center font-brandon-500 text-lg text-fofalText border-t border-fofalText py-4 cursor-pointer"
                                 onClick={() => setOpenSection(openSection === 'acabamento' ? null : 'acabamento')}
                             >
-                                <span className="font-brandon-800">Acabamento (Debruado)</span>
+                                <span className="font-brandon-800">Debruado (acabamento em volta)</span>
                                 <ChevronRight
                                     className={`w-5 h-5 transition-all ease-in-out duration-300 ${openSection === 'acabamento' ? "rotate-90" : "rotate-0"}`}
                                 />
@@ -625,8 +644,8 @@ const AutoTapetesMedida = () => {
                                     ) : (
                                         <RadioGroup value={acabamento} onValueChange={setAcabamento}>
                                             <div className="flex items-center space-x-2">
-                                                <RadioGroupItem value="debruado_fiola" id="acabamento-fiola" />
-                                                <Label htmlFor="acabamento-fiola">Debruado Fiolã (Incluído)</Label>
+                                                <RadioGroupItem value="debruado_fio" id="acabamento-fio" />
+                                                <Label htmlFor="acabamento-fio">Debruado Fio (Incluído)</Label>
                                             </div>
                                             <div className="flex items-center space-x-2">
                                                 <RadioGroupItem value="debruado_nobuk" id="acabamento-nobuk" />

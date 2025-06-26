@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import { useProducts } from "@/context/ProductsContext";
+import useProducts from "@/hooks/useProducts";
 import { Helmet } from "react-helmet";
 import QuantitySelector from "@/components/QuantitySelector";
 

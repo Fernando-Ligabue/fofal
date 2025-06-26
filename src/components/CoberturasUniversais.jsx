@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useProducts } from "@/context/ProductsContext";
+import useProducts from "@/hooks/useProducts";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import ProductGridSkeleton from "./ProductGridSkeleton";
 import SortSelect from "./SortSelect";
 import CardProduct from "./CardProduct";
-import { useCart } from "@/context/CartContext";
+;import useCart from "@/hooks/useCart";
 import Pagination from "./Pagination";
 
 const CoberturasUniversais = () => {

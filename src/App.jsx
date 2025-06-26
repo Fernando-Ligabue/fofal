@@ -54,8 +54,8 @@ const App = () => {
                 <meta name="description" content="COBERTURAS PARA AUTOMÓVEIS - Personalize a cobertura para o seu automóvel - TAPETES AUTOMÓVEL - AVIÕES & BARCOS - Alcatifas" />
             </Helmet>
 
-            {/* <BrowserRouter basename='/a-fofal/'> */}
-            <BrowserRouter>
+            <BrowserRouter basename='/a-fofal/'>
+            {/* <BrowserRouter> */}
                 <GlobalProvider>
                     <ScrollToTop />
                     <MainLayout>

@@ -5,10 +5,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ProductGridSkeleton from "./ProductGridSkeleton";
 import SortSelect from "./SortSelect";
 import CardProduct from "./CardProduct";
-import { useProducts } from "@/context/ProductsContext";
-import { useCart } from "@/context/CartContext";
+import useProducts from "@/hooks/useProducts";
+;import useCart from "@/hooks/useCart";
 import Pagination from "./Pagination";
-// import FiltersTapetesEntranceHouses from "./FiltersTapetesEntranceHouses";
+import { revalidateProducts } from "@/lib/fnUtils.js/revalidateProducts";
+import FiltersCarpetsHouses from "./FiltersCarpetsHouses";
 
 const HousesAlcatifas = () => {
   const { filteredProducts, loading, filterProducts, changeProductType } = useProducts();
@@ -22,12 +23,22 @@ const HousesAlcatifas = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    const path = location.pathname;
-    if (path.includes("casas/alcatifas-casa")) {
-      changeProductType("alcatifas-casa");
-    }
-  }, [location.pathname, changeProductType]);
+    let clearRevalidate = null;
+  
+    useEffect(() => {
+      const path = location.pathname;
+      if (path.includes("casas/alcatifas-casa")) {
+        const selectedType = "alcatifas-casa";
+  
+        changeProductType(selectedType);
+  
+        clearRevalidate = revalidateProducts(changeProductType, selectedType, 900000);
+      }
+  
+      return () => {
+        if (clearRevalidate) clearRevalidate();
+      };
+    }, [location.pathname, changeProductType]);
 
   useEffect(() => {
     filterProducts(selectedCategory);
@@ -108,11 +119,11 @@ const HousesAlcatifas = () => {
         </div>
         <div className="w-full max-w-container mx-auto p-4 py-10 flex flex-col lg:flex-row justify-between gap-10">
           {/* Filtros */}
-          {/* <div className="flex flex-col justify-start gap-2">
+          <div className="flex flex-col justify-start gap-2">
             <div className="w-full lg:max-w-60 min-w-60 md:sticky relative md:top-10">
-              <FiltersTapetesEntranceHouses />
+              <FiltersCarpetsHouses />
             </div>
-          </div> */}
+          </div>
 
           {/* Produtos */}
           <div className="min-h-[60vh] flex flex-1 flex-col gap-4">
